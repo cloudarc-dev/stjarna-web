@@ -56,7 +56,7 @@ const services = [
 
 const cases = [
   {
-    title: "Västerbotten Taxi",
+    title: "Umeå Taxi",
     description:
       "Installation av alkolås och GPS-spårning för hela fordonsflottan, med integration mot centralsystem för fleet management.",
   },
