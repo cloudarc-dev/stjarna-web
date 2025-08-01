@@ -1,14 +1,30 @@
 import Link from "next/link"
+import Image from "next/image"
 import { AnimatedText } from "./ui/animated-text"
 import { ShineButton } from "./ui/shine-button"
 
 export function Footer() {
   return (
-    <footer className="border-t mt-32 py-16 bg-gray-100 dark:bg-card/20">
+    <footer className="border-t py-16 bg-gray-100 dark:bg-card/20">
       <div className="container max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
-          <AnimatedText text="#StjärnaFyrkant Umeå" el="h3" className="text-2xl font-extrabold" />
-          <p className="mt-2 text-muted-foreground">Lokal närvaro, hållbart ansvar.</p>
+          <div className="mb-4">
+            <Image
+              src="/stjarnafyrkant-logo-original-rgb-1.svg"
+              alt="StjärnaFyrkant Västerbotten"
+              width={200}
+              height={44}
+              className="h-11 w-auto dark:hidden"
+            />
+            <Image
+              src="/stjarnafyrkant-logo-inverterad-rgb-300x66.png"
+              alt="StjärnaFyrkant Västerbotten"
+              width={200}
+              height={44}
+              className="h-11 w-auto hidden dark:block"
+            />
+          </div>
+          <p className="text-muted-foreground">Lokal närvaro, hållbart ansvar.</p>
         </div>
         <div className="grid grid-cols-2 gap-8">
           <div>
@@ -71,7 +87,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container max-w-screen-2xl mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
-        <p>&copy; {new Date().getFullYear()} StjärnaFyrkant Umeå. Alla rättigheter förbehållna.</p>
+        <p>&copy; {new Date().getFullYear()} StjärnaFyrkant Västerbotten. Alla rättigheter förbehållna.</p>
         <div className="mt-4 md:mt-0 flex items-center gap-4">
           <Link href="/seo-plan" className="hover:text-primary text-xs opacity-60">
             SEO Plan

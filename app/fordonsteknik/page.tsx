@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { ShineButton } from "@/components/ui/shine-button"
+import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Shield, Radio, Wrench, Truck, Search, Code, Users, Rocket } from "lucide-react"
 import Image from "next/image"
@@ -13,22 +14,22 @@ import { MysticalBackground } from "@/components/ui/mystical-background"
 const serviceCategories = [
   {
     title: "Säkerhet & Fordonsstyrning",
-    icon: <Shield className="w-10 h-10 text-primary" />,
+    icon: <svg className="w-10 h-10 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>,
     description: "Alkolås, varningssystem, backkameror och övervakning för full efterlevnad och trygghet.",
   },
   {
     title: "Kommunikation & Digital Uppkoppling",
-    icon: <Radio className="w-10 h-10 text-primary" />,
+    icon: <Radio className="w-10 h-10 text-green-600 dark:text-green-400" />,
     description: "Komradio, GPS-spårning och digitala körjournaler för en helt uppkopplad fordonspark.",
   },
   {
     title: "Fordonsinredning & Utrustning",
-    icon: <Truck className="w-10 h-10 text-primary" />,
+    icon: <Truck className="w-10 h-10 text-green-600 dark:text-green-400" />,
     description: "Specialanpassad bilinredning, hyllsystem och arbetsbelysning för maximal effektivitet.",
   },
   {
     title: "Service & Support",
-    icon: <Wrench className="w-10 h-10 text-primary" />,
+    icon: <svg className="w-10 h-10 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>,
     description: "Löpande service, reparationer, felsökning och uppgraderingar med mobilitetsgaranti.",
   },
 ]
@@ -75,12 +76,19 @@ export default function FordonsteknikPage() {
             </div>
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="container mx-auto relative z-10">
-              <div className="max-w-2xl">
-                <AnimatedText
-                  text="Fordonsteknik i Umeå"
-                  el="h1"
-                  className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white"
-                />
+              <div className="max-w-4xl">
+                <div className="space-y-2">
+                  <AnimatedText
+                    text="Fordonsteknik"
+                    el="h1"
+                    className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                  />
+                  <AnimatedText
+                    text="i Västerbotten"
+                    el="span"
+                    className="block text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                  />
+                </div>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -88,7 +96,7 @@ export default function FordonsteknikPage() {
                   className="mt-6 text-lg text-white/80"
                 >
                   Säkerhet, kommunikation och utrustning för alla fordon. Vi levererar helhetslösningar inom
-                  fordonsteknik för företag i Umeåregionen.
+                  fordonsteknik för företag i Västerbotten.
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -103,7 +111,7 @@ export default function FordonsteknikPage() {
           </section>
 
           {/* Services Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-4xl font-bold mb-16 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -133,18 +141,18 @@ export default function FordonsteknikPage() {
           </section>
 
           {/* Cases Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Lokala Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <motion.div whileHover={{ y: -5 }} className="p-8 border rounded-xl bg-background">
-                  <h3 className="font-bold text-xl">Umeå Taxi</h3>
+                  <h3 className="font-bold text-xl">Västerbotten Taxi</h3>
                   <p className="text-muted-foreground mt-2">
                     Installation av alkolås och GPS-spårning för hela fordonsflottan.
                   </p>
                 </motion.div>
                 <motion.div whileHover={{ y: -5 }} className="p-8 border rounded-xl bg-background">
-                  <h3 className="font-bold text-xl">Bygg & Transport AB</h3>
+                  <h3 className="font-bold text-xl">Skellefteå Buss</h3>
                   <p className="text-muted-foreground mt-2">
                     Komplett bilinredning och arbetsbelysning för servicebilar.
                   </p>
@@ -160,7 +168,7 @@ export default function FordonsteknikPage() {
           </section>
 
           {/* Process Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -183,7 +191,7 @@ export default function FordonsteknikPage() {
           </section>
 
           {/* Experts Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">

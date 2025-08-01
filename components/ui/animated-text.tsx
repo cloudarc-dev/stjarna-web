@@ -1,16 +1,25 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 import type { JSX } from "react" // Import JSX to declare the variable
 
 interface AnimatedTextProps {
+  children?: React.ReactNode
   text: string
   el?: keyof JSX.IntrinsicElements
   className?: string
 }
 
-export function AnimatedText({ text, el: Wrapper = "p", className }: AnimatedTextProps) {
-  const container = {
+export function AnimatedText({ text, el: Wrapper = "p", className, children }: AnimatedTextProps) {
+  const headingTags = ["h1", "h2", "h3", "h4", "h5", "h6"] as const
+  const isHeading = headingTags.includes(Wrapper as typeof headingTags[number])
+  const gradientClass = isHeading && Wrapper !== "h1" && Wrapper !== "h2"
+    ? "bg-gradient-to-b from-primary via-primary/80 to-primary/60 text-transparent bg-clip-text drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)]"
+    : ""
+
+  const defaultWeight = Wrapper === "h1" ? "font-bold" : ""
+
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -18,12 +27,12 @@ export function AnimatedText({ text, el: Wrapper = "p", className }: AnimatedTex
     }),
   }
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -32,7 +41,7 @@ export function AnimatedText({ text, el: Wrapper = "p", className }: AnimatedTex
       opacity: 0,
       y: 20,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -40,7 +49,7 @@ export function AnimatedText({ text, el: Wrapper = "p", className }: AnimatedTex
   }
 
   return (
-    <Wrapper className={cn("font-display overflow-hidden", className)}>
+    <Wrapper className={cn("font-display overflow-hidden", defaultWeight, gradientClass, className)}>
       <motion.span variants={container} initial="hidden" animate="visible" aria-label={text}>
         {text.split(" ").map((word, index) => (
           <span key={index} className="inline-block mr-[0.25em]">
@@ -52,6 +61,7 @@ export function AnimatedText({ text, el: Wrapper = "p", className }: AnimatedTex
           </span>
         ))}
       </motion.span>
+    {children && <span className="ml-2 inline-block">{children}</span>}
     </Wrapper>
   )
 }

@@ -55,6 +55,7 @@ const config = {
         },
       },
       fontFamily: {
+        display: ['Open Sans', 'system-ui', 'sans-serif'],
         sans: ['Open Sans', 'system-ui', 'sans-serif'],
       },
       borderRadius: {

@@ -66,7 +66,7 @@ export default function VerksamhetspolicyPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative py-24 md:py-32 text-center px-4">
+          <section className="relative py-24 md:py-32 dark:border-t text-center px-4">
             <div className="container mx-auto">
               <AnimatedText
                 text="Verksamhetspolicy (KMA)"
@@ -85,7 +85,7 @@ export default function VerksamhetspolicyPage() {
           </section>
 
           {/* Grundprinciper Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Våra grundprinciper" el="h2" className="text-4xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
@@ -124,7 +124,7 @@ export default function VerksamhetspolicyPage() {
           </section>
 
           {/* Kvalité Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="grid lg:grid-cols-2 gap-16 items-start">
                 <div>
@@ -162,7 +162,7 @@ export default function VerksamhetspolicyPage() {
           </section>
 
           {/* Arbetsmiljö Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="grid lg:grid-cols-2 gap-16 items-start">
                 <SubtleCard className="p-8 order-2 lg:order-1">
@@ -199,7 +199,7 @@ export default function VerksamhetspolicyPage() {
           </section>
 
           {/* Miljö Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="grid lg:grid-cols-2 gap-16 items-start">
                 <div>
@@ -246,7 +246,7 @@ export default function VerksamhetspolicyPage() {
           </section>
 
           {/* Contact Info Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <SubtleCard className="p-6">
@@ -255,7 +255,7 @@ export default function VerksamhetspolicyPage() {
                     <div>
                       <h3 className="font-semibold mb-2">Adress</h3>
                       <p className="text-muted-foreground text-sm">Förrådsvägen 15</p>
-                      <p className="text-muted-foreground text-sm">901 32 Umeå</p>
+                      <p className="text-muted-foreground text-sm">901 32 Västerbotten</p>
                       <button className="text-primary hover:underline text-xs mt-2">Se vägbeskrivning</button>
                     </div>
                   </div>

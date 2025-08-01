@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
-import { LifeBuoy, CheckCircle2, FilePlus, Search, Wrench, Check, Settings, UserPlus, HardDrive } from "lucide-react"
+import { LifeBuoy, CheckCircle2, FilePlus, Search, Wrench, Check, Settings, UserPlus, HardDrive, Users } from "lucide-react"
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -14,7 +14,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const includedServices = [
   {
     title: "Användarsupport & Felsökning",
-    icon: <LifeBuoy className="w-8 h-8 text-primary" />,
+    icon: <Users className="w-8 h-8 text-orange-600 dark:text-orange-400" />,
     points: [
       "Snabb hjälp via telefon, e-post & fjärrstyrning",
       "Lösning av problem med mjuk- & hårdvara",
@@ -23,7 +23,7 @@ const includedServices = [
   },
   {
     title: "Drift & Övervakning",
-    icon: <Settings className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>,
     points: [
       "Proaktiv övervakning av system & nätverk",
       "Installation & uppdatering av programvara",
@@ -32,7 +32,7 @@ const includedServices = [
   },
   {
     title: "Onboarding & Offboarding",
-    icon: <UserPlus className="w-8 h-8 text-primary" />,
+    icon: <UserPlus className="w-8 h-8 text-orange-600 dark:text-orange-400" />,
     points: [
       "Iordningställande av dator & konton för nyanställda",
       "Säker avslutning av konton & överlämning av data",
@@ -41,7 +41,7 @@ const includedServices = [
   },
   {
     title: "Hårdvaruhantering & Inköp",
-    icon: <HardDrive className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
     points: [
       "Rådgivning vid inköp av datorer & utrustning",
       "Installation & konfiguration på plats",
@@ -100,7 +100,7 @@ const faqItems = [
   },
   {
     question: "Kan jag få hjälp på plats?",
-    answer: "Absolut, vi erbjuder både fjärrsupport och tekniker på plats i hela Umeåregionen.",
+    answer: "Absolut, vi erbjuder både fjärrsupport och tekniker på plats i hela Västerbotten.",
   },
 ]
 
@@ -127,7 +127,7 @@ export default function ServicedeskPage() {
               <div className="relative z-10 text-left">
                 <p className="text-primary font-semibold">Din personliga IT-avdelning</p>
                 <AnimatedText
-                  text="Servicedesk i Umeå"
+                  text="Servicedesk i Västerbotten"
                   el="h1"
                   className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter mt-2"
                 />
@@ -168,7 +168,7 @@ export default function ServicedeskPage() {
           </section>
 
           {/* Services Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText
                 text="Vad ingår i vår Servicedesk?"
@@ -210,7 +210,7 @@ export default function ServicedeskPage() {
           </section>
 
           {/* Process Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Vår Arbetsprocess" el="h2" className="text-4xl font-bold mb-16 text-center" />
               <div className="relative max-w-2xl mx-auto">
@@ -240,7 +240,7 @@ export default function ServicedeskPage() {
           </section>
 
           {/* Experts Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Våra Supporttekniker" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -272,7 +272,7 @@ export default function ServicedeskPage() {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container max-w-3xl mx-auto">
               <AnimatedText
                 text="Vanliga frågor om vår Servicedesk"
@@ -291,7 +291,7 @@ export default function ServicedeskPage() {
           </section>
 
           {/* Final CTA Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto text-center">
               <AnimatedText text="Starta ett supportärende" el="h2" className="text-4xl font-bold mb-4" />
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">

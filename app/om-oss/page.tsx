@@ -65,7 +65,7 @@ const departments = [
       "Oliver Karlsson - Servicetekniker",
       "Robert Fransson - Tekniker",
       "Jacob Lundholm - Tekniker",
-      "Andreas Lundqvist - Verkstadschef Umeå",
+      "Andreas Lundqvist - Verkstadschef Västerbotten",
       "Martin Svarvare - Tekniker",
       "Kamil Dziwniel - Tekniker",
       "Urban Eriksson - Verkstadschef Skellefteå",
@@ -118,7 +118,7 @@ export default function OmOssPage() {
             {/* Mystical animated background - moved above image/gradient for visibility */}
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-6xl md:text-8xl font-extrabold mb-6" />
+              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-6xl md:text-8xl font-bold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -132,10 +132,10 @@ export default function OmOssPage() {
           </section>
 
           {/* About Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <AnimatedText text="Om StjärnaFyrkant Umeå" el="h2" className="text-4xl font-bold mb-6" />
+                <AnimatedText text="Om StjärnaFyrkant Västerbotten" el="h2" className="text-4xl font-bold mb-6" />
                 <div className="space-y-4 text-lg text-muted-foreground">
                   <p>
                     StjärnaFyrkant är ett driftbolag som tillhandahåller rätt teknik så att ni har rätt förutsättningar
@@ -166,7 +166,7 @@ export default function OmOssPage() {
           </section>
 
           {/* Teknikstress Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto text-center">
                 <AnimatedText text="Vi minskar teknikstress" el="h2" className="text-4xl font-bold mb-8" />
@@ -195,7 +195,7 @@ export default function OmOssPage() {
           </section>
 
           {/* ISO Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="text-center mb-16">
                 <AnimatedText text="ISO-arbete" el="h2" className="text-4xl font-bold mb-4" />
@@ -226,7 +226,7 @@ export default function OmOssPage() {
           </section>
 
           {/* Work With Us Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <AnimatedText text="Jobba med oss" el="h2" className="text-4xl font-bold mb-6" />
@@ -281,7 +281,7 @@ export default function OmOssPage() {
           </section>
 
           {/* Team Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Våra stjärnor" el="h2" className="text-4xl font-bold mb-16 text-center" />
               <div className="space-y-12">
@@ -310,16 +310,16 @@ export default function OmOssPage() {
           </section>
 
           {/* Contact Info Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid md:grid-cols-2 gap-16">
               <div>
-                <AnimatedText text="Besök oss" el="h2" className="text-4xl font-bold mb-8" />
+                <AnimatedText text="Besök oss" el="h2" className="text-4xl font-bold" />
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <MapPin className="w-6 h-6 text-primary mt-1" />
                     <div>
                       <p className="font-semibold">Förrådsvägen 15</p>
-                      <p className="text-muted-foreground">901 32 Umeå</p>
+                      <p className="text-muted-foreground">901 32 Västerbotten</p>
                       <button className="text-primary hover:underline text-sm">Se vägbeskrivning</button>
                     </div>
                   </div>

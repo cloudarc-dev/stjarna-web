@@ -3,8 +3,9 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
-import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
+import { GlareCard } from "@/components/ui/glare-card"
+import { ShineButton } from "@/components/ui/shine-button"
 import { Phone, Radio, Users, Search, Code, Rocket, MessageSquare } from "lucide-react"
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
@@ -14,22 +15,22 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const serviceCategories = [
   {
     title: "Telefonilösningar & Konferenssystem",
-    icon: <Phone className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>,
     description: "Mobiltelefoner, abonnemang, headset, moderna konferenssystem och IP-telefoni.",
   },
   {
     title: "Komradio & Täckningsförstärkning",
-    icon: <Radio className="w-8 h-8 text-primary" />,
+    icon: <Radio className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
     description: "Installationer för industri & räddningstjänst, inomhustäckning, repeaters och gruppkommunikation.",
   },
   {
     title: "Upphandling & Implementation",
-    icon: <Search className="w-8 h-8 text-primary" />,
+    icon: <Search className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
     description: "Behovsanalys, kravställning, projektledning och smidig driftsättning av nya system.",
   },
   {
     title: "Service & Support",
-    icon: <MessageSquare className="w-8 h-8 text-primary" />,
+    icon: <MessageSquare className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
     description: "Löpande serviceavtal, användarutbildning och snabb felsökning både på plats och distans.",
   },
 ]
@@ -82,13 +83,13 @@ export default function KommunikationsteknikPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-4 isolate">
+          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
             <MysticalBackground variant="hero" />
             <div className="relative z-10">
               <AnimatedText
-                text="Kommunikationsteknik i Umeå"
+                text="Kommunikationsteknik i Västerbotten"
                 el="h1"
                 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter"
               />
@@ -112,7 +113,7 @@ export default function KommunikationsteknikPage() {
           </section>
 
           {/* Services Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto grid lg:grid-cols-3 gap-16">
               <div className="lg:col-span-1 lg:sticky top-32 self-start">
                 <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-4xl font-bold mb-4" />
@@ -150,7 +151,7 @@ export default function KommunikationsteknikPage() {
           </section>
 
           {/* Cases Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Lokala Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -161,7 +162,7 @@ export default function KommunikationsteknikPage() {
                   </p>
                 </div>
                 <div className="p-8 border rounded-xl bg-background text-center">
-                  <h3 className="font-bold text-xl">Umeå Energi</h3>
+                  <h3 className="font-bold text-xl">Västerbotten Energi</h3>
                   <p className="text-muted-foreground mt-2">
                     IP-baserad växellösning med 350 anknytningar & headset-deployment.
                   </p>
@@ -177,7 +178,7 @@ export default function KommunikationsteknikPage() {
           </section>
 
           {/* Process Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -200,7 +201,7 @@ export default function KommunikationsteknikPage() {
           </section>
 
           {/* Experts & FAQ Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-5 gap-16">
               <div className="lg:col-span-2">
                 <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-8" />

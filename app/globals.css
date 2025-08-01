@@ -60,6 +60,33 @@
   }
 }
 
+/* Section gradient dividers - flat design approach */
+.section-gradient {
+  position: relative;
+}
+
+.section-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    hsl(var(--muted) / 0.15) 50%, 
+    transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .section-gradient::before {
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    hsl(var(--card) / 0.3) 50%, 
+    transparent 100%);
+}
+
 /* For InfiniteMovingCards */
 .scroller {
   animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;

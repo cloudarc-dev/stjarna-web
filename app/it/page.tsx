@@ -7,7 +7,7 @@ import { ShineButton } from "@/components/ui/shine-button"
 import { InteractiveGridBackground } from "@/components/ui/interactive-grid-background"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
-import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket } from "lucide-react"
+import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer } from "lucide-react"
 import Image from "next/image"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -15,7 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const serviceCategories = [
   {
     title: "IT-infrastruktur & nätverk",
-    icon: <Server className="w-8 h-8 text-primary" />,
+    icon: <Computer className="w-8 h-8 text-blue-600 dark:text-blue-400" />,
     points: [
       "Säker och skalbar nätverksdesign",
       "Installation och drift av servrar & arbetsstationer",
@@ -24,7 +24,7 @@ const serviceCategories = [
   },
   {
     title: "Molntjänster & Microsoft 365",
-    icon: <Cloud className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>,
     points: [
       "Migrering till molnet & hybridlösningar",
       "Microsoft 365 licenser & adoption",
@@ -33,21 +33,21 @@ const serviceCategories = [
   },
   {
     title: "IT-säkerhet & compliance",
-    icon: <ShieldCheck className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>,
     points: ["Brandväggar & hotdetektering", "GDPR-rådgivning & dataskydd", "Proaktiv övervakning & incidenthantering"],
   },
   {
     title: "Proaktiv IT-support & drift",
-    icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
+    icon: <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
     points: ["Fjärrsupport & övervakning dygnet runt", "Förebyggande underhåll", "Snabb felsökning & åtgärd"],
   },
 ]
 
 const processSteps = [
-  { icon: <Search size={32} />, title: "01. Behovsanalys & rådgivning" },
-  { icon: <Code size={32} />, title: "02. Design & implementation" },
-  { icon: <Users size={32} />, title: "03. Utbildning & överlämning" },
-  { icon: <Rocket size={32} />, title: "04. Löpande support & utveckling" },
+  { icon: <Search size={32} className="text-blue-600 dark:text-blue-400" />, title: "01. Behovsanalys & rådgivning" },
+  { icon: <Code size={32} className="text-blue-600 dark:text-blue-400" />, title: "02. Design & implementation" },
+  { icon: <Users size={32} className="text-blue-600 dark:text-blue-400" />, title: "03. Utbildning & överlämning" },
+  { icon: <Rocket size={32} className="text-blue-600 dark:text-blue-400" />, title: "04. Löpande support & utveckling" },
 ]
 
 const experts = [
@@ -90,13 +90,13 @@ export default function ITPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-4 isolate overflow-hidden">
+          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <InteractiveGridBackground />
-            <div className="relative z-10">
+            <div className="container mx-auto relative z-10">
               <p className="text-primary font-semibold">30+ års erfarenhet</p>
               <AnimatedText
-                text="IT-tjänster i Umeå"
+                text="IT-tjänster i Västerbotten"
                 el="h1"
                 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter mt-2"
               />
@@ -120,7 +120,7 @@ export default function ITPage() {
           </section>
 
           {/* Services Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-4xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
@@ -158,7 +158,7 @@ export default function ITPage() {
           </section>
 
           {/* Cases & Experts Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <AnimatedText text="Lokala Kundcase" el="h2" className="text-4xl font-bold mb-4" />
@@ -220,7 +220,7 @@ export default function ITPage() {
           </section>
 
           {/* Process Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -243,7 +243,7 @@ export default function ITPage() {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container max-w-3xl mx-auto">
               <AnimatedText
                 text="Vanliga frågor om IT-tjänster"

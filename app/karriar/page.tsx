@@ -106,7 +106,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Culture Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
@@ -143,7 +143,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Vad vi erbjuder" el="h2" className="text-4xl font-bold mb-16 text-center" />
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -167,7 +167,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Vision Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="flex items-center justify-center gap-4 mb-8">
@@ -199,7 +199,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Testimonial Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto">
                 <SubtleCard className="p-12 text-center">
@@ -227,7 +227,7 @@ export default function KarriarPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto text-center">
               <AnimatedText text="Redo att bli en del av teamet?" el="h2" className="text-4xl font-bold mb-6" />
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
@@ -244,7 +244,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Contact Info Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <SubtleCard className="p-6">
@@ -253,7 +253,7 @@ export default function KarriarPage() {
                     <div>
                       <h3 className="font-semibold mb-2">Adress</h3>
                       <p className="text-muted-foreground text-sm">Förrådsvägen 15</p>
-                      <p className="text-muted-foreground text-sm">901 32 Umeå</p>
+                      <p className="text-muted-foreground text-sm">901 32 Västerbotten</p>
                     </div>
                   </div>
                 </SubtleCard>

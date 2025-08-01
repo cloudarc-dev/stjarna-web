@@ -46,7 +46,7 @@ export default function KontaktPage() {
           </section>
 
           {/* Mission Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto text-center">
                 <AnimatedText
@@ -79,7 +79,7 @@ export default function KontaktPage() {
           </section>
 
           {/* Contact Form & Info Section */}
-          <section className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-2 gap-16">
               <div>
                 <AnimatedText text="Låt oss hjälpa dig!" el="h2" className="text-4xl font-bold mb-6" />
@@ -132,7 +132,7 @@ export default function KontaktPage() {
                       <div>
                         <h3 className="font-semibold mb-2">Besöksadress</h3>
                         <p className="text-muted-foreground">Förrådsvägen 15</p>
-                        <p className="text-muted-foreground">901 32 Umeå</p>
+                        <p className="text-muted-foreground">901 32 Västerbotten</p>
                         <button className="text-primary hover:underline text-sm mt-2">Se vägbeskrivning</button>
                       </div>
                     </div>
@@ -193,7 +193,7 @@ export default function KontaktPage() {
           </section>
 
           {/* Trust Section */}
-          <section className="py-24 md:py-32 border-t">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto text-center">
               <div className="flex items-center justify-center gap-4 mb-8">
                 <Shield className="w-12 h-12 text-primary" />

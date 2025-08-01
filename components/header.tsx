@@ -9,6 +9,7 @@ import Image from "next/image"
 import { AnimatedText } from "./ui/animated-text"
 import { ThemeToggle } from "./theme-toggle"
 import { ShineButton } from "./ui/shine-button"
+import { NavbarChat } from "./ui/navbar-chat"
 // Chat interface placeholder - to be implemented with UI-kit design
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
@@ -45,7 +46,7 @@ const LogoWithTheme = () => {
     >
       <Image
         src={isDark ? "/stjarnafyrkant-logo-inverterad-rgb-300x66.png" : "/stjarnafyrkant-logo-original-rgb-1.svg"}
-        alt="Stjärna Fyrkant Umeå"
+        alt="Stjärna Fyrkant Västerbotten"
         fill
         className="object-contain"
         priority
@@ -86,7 +87,7 @@ export function Header() {
 
         </nav>
         <div className="flex items-center gap-4">
-          {/* Chat interface placeholder - to be implemented with UI-kit design */}
+          <NavbarChat />
           <Link href="/#kontakt">
             <ShineButton className="hidden md:inline-flex !py-2 !px-6 !text-base">Kontakt</ShineButton>
           </Link>

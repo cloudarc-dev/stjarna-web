@@ -56,7 +56,7 @@ const services = [
 
 const cases = [
   {
-    title: "Umeå Taxi",
+    title: "Västerbotten Taxi",
     description:
       "Installation av alkolås och GPS-spårning för hela fordonsflottan, med integration mot centralsystem för fleet management.",
   },
@@ -147,7 +147,7 @@ export default function LandingPage() {
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
             <div className="relative z-10">
               <AnimatedText
-                text="StjärnaFyrkant Umeå"
+                text="StjärnaFyrkant Västerbotten"
                 el="h1"
                 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground"
               />
@@ -174,7 +174,7 @@ export default function LandingPage() {
           </section>
 
           {/* Services Section */}
-          <section id="tjanster" className="py-24 md:py-32 border-t">
+          <section id="tjanster" className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-1 lg:sticky lg:top-32">
@@ -232,7 +232,7 @@ export default function LandingPage() {
           </section>
 
           {/* Customer Cases Section */}
-          <section id="kundcase" className="py-24 md:py-32 border-t">
+          <section id="kundcase" className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Senaste Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -259,7 +259,7 @@ export default function LandingPage() {
           </section>
 
           {/* Process Section */}
-          <section id="process" className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section id="process" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Vår Process" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -283,7 +283,7 @@ export default function LandingPage() {
           </section>
 
           {/* Certifications Section */}
-          <section id="certifieringar" className="py-24 md:py-32 border-t">
+          <section id="certifieringar" className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Trygghet & Kvalitet" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
@@ -314,7 +314,7 @@ export default function LandingPage() {
           </section>
 
           {/* Experts Section */}
-          <section id="om-oss" className="py-24 md:py-32 border-t bg-gray-100 dark:bg-card/50">
+          <section id="om-oss" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
@@ -354,7 +354,7 @@ export default function LandingPage() {
           </section>
 
           {/* Final CTA Section */}
-          <section id="kontakt" className="py-24 md:py-32 border-t">
+          <section id="kontakt" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto text-center">
               <AnimatedText
                 text="Redo att utvecklas tillsammans med oss?"

@@ -15,6 +15,7 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { ChatInterface } from "@/components/ui/chat-interface"
 
 const seoTools = [
   {
@@ -134,51 +135,23 @@ export default function SEOImplementationPage() {
                       <h3 className="font-semibold">SEO Strategy Assistant</h3>
                       <p className="text-sm text-muted-foreground">Chat interface kommer snart - baserat på UI-kit design</p>
                     </div>
-                    <Badge variant="outline" className="ml-auto">KOMMER SNART</Badge>
+                    <Badge variant="outline" className="ml-auto">LIVE</Badge>
                   </div>
                 </div>
 
-                {/* Placeholder Content */}
-                <div className="flex-1 flex items-center justify-center p-6">
-                  <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                      <MessageSquare size={32} className="text-primary/50" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-2">Chat Interface Placeholder</h4>
-                      <p className="text-muted-foreground max-w-md">
-                        Här kommer det nya chattinterfacet att implementeras baserat på hemsidans UI-kit design.
-                        {selectedTool && (
-                          <span className="block mt-2 text-primary">
-                            Valt verktyg: {selectedTool}
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      <Badge variant="secondary">UI-Kit Design</Badge>
-                      <Badge variant="secondary">Konsistent Styling</Badge>
-                      <Badge variant="secondary">Stjärna Fyrkant Branding</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Placeholder Input */}
-                <div className="p-6 border-t border-border/20">
-                  <div className="flex gap-3 opacity-50">
-                    <Input
-                      placeholder="Chat interface kommer att implementeras här..."
-                      className="flex-1"
-                      disabled
-                    />
-                    <Button disabled>
-                      <Send size={16} />
-                    </Button>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Ny implementation baserad på UI-kit designsystem
-                  </p>
-                </div>
+                <ChatInterface
+                  embedded={true}
+                  context="seo"
+                  quickActions={[
+                    { label: "Keyword Research", query: "Hjälp mig hitta bästa keywords för Västerbotten" },
+                    { label: "Content Strategy", query: "Skapa AI-optimerat innehåll för våra tjänster" },
+                    { label: "Technical SEO", query: "Strukturerad data och schema markup" },
+                    { label: "Local SEO", query: "Optimera för lokala sökningar i Västerbotten" },
+                    { label: "AI Overviews", query: "Hur optimerar vi för Google AI Overviews?" },
+                    { label: "Competitor Analysis", query: "Analysera konkurrenter i vår bransch" }
+                  ]}
+                  className="border-0 shadow-none bg-transparent"
+                />
               </SubtleCard>
             </div>
           </div>
