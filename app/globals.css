@@ -16,6 +16,20 @@
     overflow-x: hidden;
   }
   
+  /* Prevent body scroll when mobile chat is open */
+  body.chat-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    body.chat-open {
+      overflow: auto;
+      position: static;
+    }
+  }
+  
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;

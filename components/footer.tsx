@@ -17,7 +17,7 @@ export function Footer() {
               className="h-11 w-auto dark:hidden"
             />
             <Image
-              src="/stjarnafyrkant-logo-inverterad-rgb-300x66.png"
+              src="/media/stjarnafyrkant-logo-inverterad-rgb-300x66.png"
               alt="StjärnaFyrkant Västerbotten"
               width={200}
               height={44}

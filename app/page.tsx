@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import {
   Computer,
   Truck,
@@ -20,6 +21,8 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { MysticalBackground } from "@/components/ui/mystical-background"
+import { UpsalesModal } from "@/components/upsales-modal"
+import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 
 import { ShineButton } from "@/components/ui/shine-button"
 import { ShineBadge } from "@/components/ui/shine-badge"
@@ -135,15 +138,18 @@ const experts = [
 ]
 
 export default function LandingPage() {
+  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+
   return (
     <>
+      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
           <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
-            <div className="absolute inset-0 overflow-hidden -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
             <div className="relative z-10">
               <AnimatedText
@@ -174,16 +180,16 @@ export default function LandingPage() {
           </section>
 
           {/* Services Section */}
-          <section id="tjanster" className="py-24 md:py-32 dark:border-t">
+          <section id="tjanster" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <div className="lg:col-span-1 lg:sticky lg:top-32">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+                <ParallaxScroll distance={320} className="lg:col-span-1 px-2 md:px-0 space-y-4">
                   <AnimatedText text="Våra Tjänster" el="h2" className="text-4xl font-bold mb-4" />
                   <p className="text-lg text-muted-foreground">
                     Helhetslösningar inom IT, fordon och kommunikation. Våra specialister hittar rätt lösning för dina
                     behov.
                   </p>
-                </div>
+                </ParallaxScroll>
                 <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
                   {services.map((service, i) => (
                     <motion.div
@@ -232,8 +238,9 @@ export default function LandingPage() {
           </section>
 
           {/* Customer Cases Section */}
-          <section id="kundcase" className="py-24 md:py-32 dark:border-t">
-            <div className="container mx-auto">
+          <section id="kundcase" className="py-24 md:py-32 dark:border-t relative">
+            <MysticalBackground variant="subtle" className="absolute inset-0" />
+            <div className="container mx-auto relative z-10">
               <AnimatedText text="Senaste Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <motion.div whileHover={{ y: -5, scale: 1.02 }} className="lg:row-span-2">
@@ -364,7 +371,7 @@ export default function LandingPage() {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
                 Kontakta oss för en kostnadsfri behovsanalys och låt oss skapa framtidens lösningar för er.
               </p>
-              <ShineButton>Starta Konversationen</ShineButton>
+              <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta oss</ShineButton>
             </div>
           </section>
         </main>

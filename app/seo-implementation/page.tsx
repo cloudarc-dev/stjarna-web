@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Zap, Target, TrendingUp, MessageSquare, Send, Copy, Check, Bot, User, Clock } from "lucide-react"
 import Link from "next/link"
-// Chat functionality removed - to be replaced with UI-kit based interface
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -15,7 +14,8 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { ChatInterface } from "@/components/ui/chat-interface"
+import { ChatInterface } from "@/components/chat-interface"
+
 
 const seoTools = [
   {
@@ -139,8 +139,8 @@ export default function SEOImplementationPage() {
                   </div>
                 </div>
 
+                {/* Chat interface - using global ChatInterface component */}
                 <ChatInterface
-                  embedded={true}
                   context="seo"
                   quickActions={[
                     { label: "Keyword Research", query: "Hjälp mig hitta bästa keywords för Västerbotten" },

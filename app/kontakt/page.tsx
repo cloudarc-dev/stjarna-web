@@ -1,22 +1,28 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { ShineButton } from "@/components/ui/shine-button"
+import { Button } from "@/components/ui/button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { MapPin, Clock, Phone, Mail, Shield } from "lucide-react"
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
+import { UpsalesModal } from "@/components/upsales-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 export default function KontaktPage() {
+  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+
   return (
     <>
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
+      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
@@ -118,7 +124,12 @@ export default function KontaktPage() {
                         placeholder="Berätta om ditt projekt eller dina behov..."
                       />
                     </div>
-                    <ShineButton className="w-full">Skicka meddelande</ShineButton>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <ShineButton className="flex-1">Skicka meddelande</ShineButton>
+                      <Button variant="outline" onClick={() => setIsUpsalesOpen(true)}>
+                        Alternativt kontaktformulär
+                      </Button>
+                    </div>
                   </form>
                 </SubtleCard>
               </div>

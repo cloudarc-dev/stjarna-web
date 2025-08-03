@@ -3,14 +3,29 @@ import { motion, AnimatePresence } from "framer-motion"
 import type React from "react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
-import { Menu, X, Computer, Truck, Signal, Users, ShoppingCart, Building2 } from "lucide-react"
+import { UpsalesModal } from "@/components/upsales-modal"
+import { Menu, X, Computer, Truck, Signal, Users, ShoppingCart, Building2, Bot } from "lucide-react"
 
 import Link from "next/link"
 import Image from "next/image"
 import { AnimatedText } from "./ui/animated-text"
 import { ThemeToggle } from "./theme-toggle"
 import { ShineButton } from "./ui/shine-button"
-import { NavbarChat } from "./ui/navbar-chat"
+
+
+const NavChatLauncher = () => (
+  <button
+    onClick={() => window.dispatchEvent(new Event("toggleChat"))}
+    className="relative group flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg shadow-primary/20 hover:shadow-xl transition-all duration-300 hover:from-primary/30 hover:to-primary/20 hover:text-primary-foreground backdrop-blur-sm border border-primary/20 rounded-lg"
+    aria-label="Öppna AI-chatt"
+  >
+    <Bot className="w-5 h-5 animate-pulse" />
+    <span className="font-medium text-sm">AI Chatt</span>
+    <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-ping opacity-75" />
+    <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full" />
+    <span className="absolute inset-0 rounded-lg backdrop-blur-md bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+  </button>
+)
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <Link href={href} className="relative group text-lg">
@@ -45,7 +60,7 @@ const LogoWithTheme = () => {
       className="relative h-12 w-48"
     >
       <Image
-        src={isDark ? "/stjarnafyrkant-logo-inverterad-rgb-300x66.png" : "/stjarnafyrkant-logo-original-rgb-1.svg"}
+        src={isDark ? "/media/stjarnafyrkant-logo-inverterad-rgb-300x66.png" : "/stjarnafyrkant-logo-original-rgb-1.svg"}
         alt="Stjärna Fyrkant Västerbotten"
         fill
         className="object-contain"
@@ -56,7 +71,9 @@ const LogoWithTheme = () => {
 }
 
 export function Header() {
+  const { theme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
   
   const navItems = [
     { name: "IT", href: "/it", icon: Computer },
@@ -72,6 +89,7 @@ export function Header() {
 
   return (
     <>
+      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 md:h-20 lg:h-24 max-w-screen-2xl items-center justify-between px-4 md:px-6">
           {/* Logo */}
@@ -97,17 +115,16 @@ export function Header() {
           
           {/* Right Side Actions */}
           <div className="flex items-center gap-2 md:gap-3 lg:gap-4">
-            {/* Chat - Always visible but responsive */}
-            <div className="scale-90 md:scale-100">
-              <NavbarChat />
-            </div>
+            
+            <NavChatLauncher />
             
             {/* Contact Button - Hidden on mobile */}
-            <Link href="/#kontakt" className="hidden md:block">
-              <ShineButton className="!py-2 !px-4 lg:!px-6 !text-sm lg:!text-base">
-                Kontakt
-              </ShineButton>
-            </Link>
+            <ShineButton 
+              onClick={() => setIsUpsalesOpen(true)}
+              className="hidden md:block !py-2 !px-4 lg:!px-6 !text-sm lg:!text-base"
+            >
+              Kontakt
+            </ShineButton>
             
             {/* Theme Toggle */}
             <div className="scale-90 md:scale-100">
@@ -214,13 +231,18 @@ export function Header() {
                 
                 {/* Bottom Actions */}
                 <div className="p-6 border-t border-border/40 space-y-4">
-                  <Link href="/#kontakt" onClick={closeMenu}>
-                    <ShineButton className="w-full !py-3 !text-base">
-                      Kontakta oss
-                    </ShineButton>
-                  </Link>
+                  <ShineButton 
+                    onClick={() => {
+                      closeMenu();
+                      setIsUpsalesOpen(true);
+                    }}
+                    className="w-full !py-3 !text-base"
+                  >
+                    Kontakta oss
+                  </ShineButton>
                   
                   <div className="flex items-center justify-center gap-4 pt-4">
+                    <NavChatLauncher />
                     <span className="text-sm text-muted-foreground">Tema:</span>
                     <ThemeToggle />
                   </div>

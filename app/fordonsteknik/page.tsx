@@ -81,12 +81,12 @@ export default function FordonsteknikPage() {
                   <AnimatedText
                     text="Fordonsteknik"
                     el="h1"
-                    className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                    className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                   <AnimatedText
                     text="i Västerbotten"
                     el="span"
-                    className="block text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                    className="block text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                 </div>
                 <motion.p
@@ -118,8 +118,8 @@ export default function FordonsteknikPage() {
                 {serviceCategories.map((category, i) => (
                   <motion.div
                     key={category.title}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1, type: "spring" }}
                     viewport={{ once: true, amount: 0.3 }}
                     className="flex"
@@ -171,19 +171,19 @@ export default function FordonsteknikPage() {
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
-              <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-                <div className="absolute top-12 left-0 w-full h-0.5 bg-border -translate-y-1/2 hidden lg:block" />
+              <div className="relative max-w-2xl mx-auto">
+                <div className="absolute left-8 top-0 h-full w-0.5 bg-border hidden md:block" />
                 {processSteps.map((step, i) => (
                   <motion.div
                     key={step.title}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.2, type: "spring" }}
                     viewport={{ once: true, amount: 0.5 }}
-                    className="relative flex flex-col items-center text-center p-6"
+                    className="relative flex items-start gap-8 mb-12 last:mb-0"
                   >
-                    <div className="bg-background p-4 rounded-full border-2 border-primary mb-4 z-10">{step.icon}</div>
-                    <h3 className="font-semibold text-lg">{step.title}</h3>
+                    <div className="w-16 h-16 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 flex-shrink-0">{step.icon}</div>
+                    <h3 className="font-semibold text-xl">{step.title}</h3>
                   </motion.div>
                 ))}
               </div>

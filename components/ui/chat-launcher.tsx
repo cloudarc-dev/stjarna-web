@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, Sparkles, X, Zap, Brain, Headphones, FileText } from "lucide-react"
-import { ChatInterface } from "./chat-interface"
 import { Button } from "./button"
 import { Badge } from "./badge"
 
@@ -34,21 +33,68 @@ export function ChatLauncher() {
   const handleQuickAction = (query: string) => {
     setIsOpen(true)
     setShowActions(false)
-    // The ChatInterface will handle the query through its quickActions prop
+    // In a real implementation, this would send the query to the chat backend
   }
 
   return (
     <>
       {/* Chat Interface */}
-      <ChatInterface
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        context="general"
-        quickActions={launcherActions.map(action => ({
-          label: action.label,
-          query: action.query
-        }))}
-      />
+      {/* Chat interface placeholder - using global chat system */}
+      {isOpen && (
+        <div className="fixed inset-0 md:bottom-4 lg:bottom-6 md:right-4 lg:right-6 md:top-auto md:left-auto w-full h-full md:w-auto md:h-auto md:max-w-md lg:max-w-lg xl:w-96 z-50">
+          <div className="h-full flex flex-col">
+            <div className="p-4 border-b border-border/20 flex items-center justify-between bg-background">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                  <MessageCircle size={16} className="text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">StjärnaFyrkant AI</h3>
+                  <p className="text-xs text-muted-foreground">Redo att hjälpa dig</p>
+                </div>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
+                <X size={16} />
+              </Button>
+            </div>
+
+            <div className="flex-grow overflow-y-auto p-4 space-y-4">
+              <div className="flex justify-start">
+                <div className="flex gap-2 max-w-[80%]">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle size={12} className="text-primary" />
+                  </div>
+                  <div className="rounded-2xl px-3 py-2 bg-muted text-foreground rounded-tl-none">
+                    <p className="text-sm">Hej! Jag är din AI-assistent. Hur kan jag hjälpa dig?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 border-t border-border/20 bg-background">
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex-grow justify-start text-muted-foreground"
+                  onClick={toggleActions}
+                >
+                  Snabbåtgärder...
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => {
+                    window.location.href = "/chat"
+                  }}
+                >
+                  Öppna chatt
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Quick Actions Menu */}
       <AnimatePresence>

@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
@@ -9,6 +10,7 @@ import { LifeBuoy, CheckCircle2, FilePlus, Search, Wrench, Check, Settings, User
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { UpsalesModal } from "@/components/upsales-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const includedServices = [
@@ -105,9 +107,12 @@ const faqItems = [
 ]
 
 export default function ServicedeskPage() {
+  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+
   return (
     <>
-      {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
+      <MysticalBackground />
+      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -115,7 +120,7 @@ export default function ServicedeskPage() {
           <section className="relative min-h-[80vh] flex items-center px-4">
             <div className="absolute inset-0 overflow-hidden -z-10">
               <Image
-                src="/placeholder.svg?height=1080&width=1920"
+                src="/media/global-object.png"
                 alt="Ljust och modernt kontor"
                 fill
                 className="object-cover"
@@ -146,7 +151,7 @@ export default function ServicedeskPage() {
                   transition={{ delay: 1.5, duration: 0.8 }}
                   className="mt-10"
                 >
-                  <ShineButton>Kontakta vår Servicedesk</ShineButton>
+                  <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta vår Servicedesk</ShineButton>
                 </motion.div>
               </div>
               <div className="hidden lg:block">
@@ -298,7 +303,7 @@ export default function ServicedeskPage() {
                 Lokal partner inom IT, fordonsteknik och kommunikation. Vi hjälper dig att skapa en stabil teknisk
                 infrastruktur.
               </p>
-              <ShineButton>Kontakta oss nu</ShineButton>
+              <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta oss nu</ShineButton>
             </div>
           </section>
         </main>
