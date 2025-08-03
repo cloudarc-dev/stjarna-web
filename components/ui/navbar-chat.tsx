@@ -64,7 +64,7 @@ export function NavbarChat() {
 
   return (
     <>
-      {/* Chat Interface - Positioned for navbar */}
+      {/* Chat Interface - Responsive positioning */}
       <ChatInterface
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -73,7 +73,7 @@ export function NavbarChat() {
           label: action.label,
           query: action.query
         }))}
-        className="fixed top-24 right-6 w-96 z-40"
+        className="fixed inset-0 md:top-20 lg:top-24 md:right-4 lg:right-6 md:bottom-4 lg:bottom-6 md:left-auto md:w-auto md:h-auto md:max-w-md lg:max-w-lg xl:w-96 z-40"
       />
 
       {/* Quick Actions Dropdown */}
@@ -84,7 +84,7 @@ export function NavbarChat() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 25 }}
-            className="absolute top-full right-0 mt-2 w-72 bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-2xl z-50"
+            className="absolute top-full right-0 mt-2 w-64 md:w-72 bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-2xl z-50"
           >
             <div className="p-4">
               <div className="flex items-center justify-between mb-4">
@@ -145,18 +145,18 @@ export function NavbarChat() {
           )}
         </AnimatePresence>
 
-        {/* Main Button Group */}
+        {/* Main Button Group - Responsive */}
         <div className="flex items-center">
-          {/* Chat Button */}
+          {/* Chat Button - Responsive sizing */}
           <motion.button
             onClick={toggleChat}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative h-10 px-4 bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 border border-primary/20 hover:border-primary/30 rounded-l-lg transition-all duration-200 flex items-center gap-2 group"
+            className="relative h-8 md:h-9 lg:h-10 px-2 md:px-3 lg:px-4 bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 border border-primary/20 hover:border-primary/30 rounded-l-lg transition-all duration-200 flex items-center gap-1 md:gap-2 group"
           >
             <div className="relative">
-              <MessageCircle className="w-4 h-4 text-primary" />
-              {/* Sparkle Effect */}
+              <MessageCircle className="w-3 h-3 md:w-4 md:h-4 text-primary" />
+              {/* Sparkle Effect - Hidden on mobile for performance */}
               <motion.div
                 animate={{
                   scale: [0, 1, 0],
@@ -167,26 +167,27 @@ export function NavbarChat() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -top-1 -right-1"
+                className="absolute -top-1 -right-1 hidden md:block"
               >
                 <Sparkles className="w-2 h-2 text-yellow-500" />
               </motion.div>
             </div>
-            <span className="text-sm font-medium text-primary">AI Chat</span>
+            <span className="text-xs md:text-sm font-medium text-primary hidden sm:inline">AI Chat</span>
+            <span className="text-xs md:text-sm font-medium text-primary sm:hidden">AI</span>
           </motion.button>
 
-          {/* Dropdown Button */}
+          {/* Dropdown Button - Responsive sizing */}
           <motion.button
             onClick={toggleDropdown}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="h-10 px-2 bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 border-l-0 border border-primary/20 hover:border-primary/30 rounded-r-lg transition-all duration-200 flex items-center"
+            className="h-8 md:h-9 lg:h-10 px-1 md:px-2 bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 border-l-0 border border-primary/20 hover:border-primary/30 rounded-r-lg transition-all duration-200 flex items-center"
           >
             <motion.div
               animate={{ rotate: showDropdown ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
-              <ChevronDown className="w-3 h-3 text-primary" />
+              <ChevronDown className="w-2 h-2 md:w-3 md:h-3 text-primary" />
             </motion.div>
           </motion.button>
         </div>

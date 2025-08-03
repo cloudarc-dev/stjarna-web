@@ -147,45 +147,47 @@ export function ChatInterface({
       }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
-      className={`${embedded ? 'w-full' : 'fixed bottom-6 right-6 w-96 z-50'} ${className}`}
+      className={`${embedded ? 'w-full' : 'fixed inset-0 md:bottom-4 lg:bottom-6 md:right-4 lg:right-6 md:top-auto md:left-auto w-full h-full md:w-auto md:h-auto md:max-w-md lg:max-w-lg xl:w-96 z-50'} ${className}`}
     >
-      <div className="bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden">
-        {/* Chat Header */}
-        <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b border-border/30 p-4">
+      <div className="bg-card/95 backdrop-blur-xl border-0 md:border border-border/50 rounded-none md:rounded-2xl shadow-2xl overflow-hidden h-full md:h-auto flex flex-col">
+        {/* Chat Header - Mobile optimized */}
+        <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b border-border/30 p-3 md:p-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <div className="relative">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
-                  <AIAssistantIcon />
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
+                  <div className="scale-75 md:scale-100">
+                    <AIAssistantIcon />
+                  </div>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-card animate-pulse" />
+                <div className="absolute -bottom-0.5 -right-0.5 md:-bottom-1 md:-right-1 w-2 h-2 md:w-3 md:h-3 bg-emerald-500 rounded-full border border-card md:border-2 animate-pulse" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">StjärnaFyrkant AI</h3>
-                <p className="text-xs text-muted-foreground">
+                <h3 className="font-semibold text-xs md:text-sm">StjärnaFyrkant AI</h3>
+                <p className="text-[10px] md:text-xs text-muted-foreground">
                   {context === "seo" ? "SEO Expert" : "Smart Assistent"}
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5 md:gap-1">
               {!embedded && (
                 <>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setIsMinimized(!isMinimized)}
-                    className="h-7 w-7 p-0 hover:bg-primary/10"
+                    className="h-6 w-6 md:h-7 md:w-7 p-0 hover:bg-primary/10"
                   >
-                    {isMinimized ? <Maximize2 className="w-3 h-3" /> : <Minimize2 className="w-3 h-3" />}
+                    {isMinimized ? <Maximize2 className="w-2.5 h-2.5 md:w-3 md:h-3" /> : <Minimize2 className="w-2.5 h-2.5 md:w-3 md:h-3" />}
                   </Button>
                   {onClose && (
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={onClose}
-                      className="h-7 w-7 p-0 hover:bg-red-100 dark:hover:bg-red-900"
+                      className="h-6 w-6 md:h-7 md:w-7 p-0 hover:bg-red-100 dark:hover:bg-red-900"
                     >
-                      <X className="w-3 h-3" />
+                      <X className="w-2.5 h-2.5 md:w-3 md:h-3" />
                     </Button>
                   )}
                 </>
@@ -201,12 +203,13 @@ export function ChatInterface({
               animate={{ height: "auto" }}
               exit={{ height: 0 }}
               transition={{ duration: 0.3 }}
+              className="flex flex-col flex-1 md:flex-none"
             >
-              {/* Quick Actions */}
+              {/* Quick Actions - Mobile optimized */}
               {quickActions.length > 0 && (
-                <div className="p-4 border-b border-border/20">
-                  <p className="text-xs font-medium mb-3 text-muted-foreground">Snabbval:</p>
-                  <div className="grid grid-cols-1 gap-2">
+                <div className="p-3 md:p-4 border-b border-border/20">
+                  <p className="text-[10px] md:text-xs font-medium mb-2 md:mb-3 text-muted-foreground">Snabbval:</p>
+                  <div className="grid grid-cols-1 gap-1.5 md:gap-2">
                     {quickActions.map((action, index) => (
                       <motion.button
                         key={action.label}
@@ -214,7 +217,7 @@ export function ChatInterface({
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                         onClick={() => handleQuickAction(action.query)}
-                        className="text-left p-2 text-xs bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-lg transition-all duration-200 hover:scale-[1.02]"
+                        className="text-left p-2 md:p-2.5 text-[10px] md:text-xs bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-lg transition-all duration-200 hover:scale-[1.02]"
                       >
                         {action.label}
                       </motion.button>
@@ -223,8 +226,8 @@ export function ChatInterface({
                 </div>
               )}
 
-              {/* Messages */}
-              <div className={`${embedded ? 'h-64' : 'h-80'} overflow-y-auto p-4 space-y-4`}>
+              {/* Messages - Fullscreen on mobile */}
+              <div className={`${embedded ? 'h-48 md:h-64' : 'flex-1 md:h-72 lg:h-80'} overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4`}>
                 <AnimatePresence>
                   {messages.map((message) => (
                     <motion.div
@@ -236,45 +239,47 @@ export function ChatInterface({
                       className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
                     >
                       {message.role === "assistant" && (
-                        <div className="w-6 h-6 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                          <AIAssistantIcon />
+                        <div className="w-5 h-5 md:w-6 md:h-6 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 md:mt-1">
+                          <div className="scale-75 md:scale-100">
+                            <AIAssistantIcon />
+                          </div>
                         </div>
                       )}
                       
-                      <div className={`group max-w-[80%] ${message.role === "user" ? "order-2" : ""}`}>
+                      <div className={`group max-w-[85%] md:max-w-[80%] ${message.role === "user" ? "order-2" : ""}`}>
                         <div
-                          className={`relative p-3 rounded-xl shadow-sm ${
+                          className={`relative p-2.5 md:p-3 rounded-xl shadow-sm ${
                             message.role === "user"
                               ? "bg-gradient-to-br from-primary to-primary/90 text-white ml-auto"
                               : "bg-gradient-to-br from-muted/50 to-muted/30 border border-border/30"
                           }`}
                         >
-                          <p className="text-sm leading-relaxed">{message.content}</p>
+                          <p className="text-xs md:text-sm leading-relaxed">{message.content}</p>
                           
-                          {/* Message Actions */}
-                          <div className={`absolute top-1 ${message.role === "user" ? "left-1" : "right-1"} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                          {/* Message Actions - Hidden on mobile for space */}
+                          <div className={`absolute top-1 ${message.role === "user" ? "left-1" : "right-1"} opacity-0 group-hover:opacity-100 transition-opacity hidden md:block`}>
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => copyMessage(message.content)}
-                              className="h-5 w-5 p-0 hover:bg-black/10"
+                              className="h-4 w-4 md:h-5 md:w-5 p-0 hover:bg-black/10"
                             >
-                              <Copy className="w-2.5 h-2.5" />
+                              <Copy className="w-2 h-2 md:w-2.5 md:h-2.5" />
                             </Button>
                           </div>
                         </div>
                         
-                        <div className={`flex items-center gap-2 mt-1 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-                          <span className="text-xs text-muted-foreground">
+                        <div className={`flex items-center gap-1 md:gap-2 mt-1 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+                          <span className="text-[10px] md:text-xs text-muted-foreground">
                             {message.timestamp.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" })}
                           </span>
                           {message.role === "assistant" && (
-                            <div className="flex gap-1">
-                              <Button variant="ghost" size="sm" className="h-4 w-4 p-0 hover:bg-emerald-100 dark:hover:bg-emerald-900">
-                                <ThumbsUp className="w-2.5 h-2.5" />
+                            <div className="flex gap-0.5 md:gap-1">
+                              <Button variant="ghost" size="sm" className="h-3 w-3 md:h-4 md:w-4 p-0 hover:bg-emerald-100 dark:hover:bg-emerald-900">
+                                <ThumbsUp className="w-2 h-2 md:w-2.5 md:h-2.5" />
                               </Button>
-                              <Button variant="ghost" size="sm" className="h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900">
-                                <ThumbsDown className="w-2.5 h-2.5" />
+                              <Button variant="ghost" size="sm" className="h-3 w-3 md:h-4 md:w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900">
+                                <ThumbsDown className="w-2 h-2 md:w-2.5 md:h-2.5" />
                               </Button>
                             </div>
                           )}
@@ -333,9 +338,9 @@ export function ChatInterface({
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input Area */}
-              <div className="border-t border-border/20 p-4">
-                <div className="flex gap-2">
+              {/* Input Area - Mobile optimized */}
+              <div className="border-t border-border/20 p-3 md:p-4">
+                <div className="flex gap-1.5 md:gap-2">
                   <div className="flex-1 relative">
                     <Input
                       ref={inputRef}
@@ -343,42 +348,47 @@ export function ChatInterface({
                       onChange={(e) => setInput(e.target.value)}
                       onKeyPress={(e) => e.key === "Enter" && handleSend()}
                       placeholder={context === "seo" ? "Fråga om SEO, keywords, content..." : "Skriv ditt meddelande..."}
-                      className="pr-8 h-9 text-sm bg-background/50 border-border/50 focus:border-primary/50 rounded-lg"
+                      className="pr-7 md:pr-8 h-8 md:h-9 text-xs md:text-sm bg-background/50 border-border/50 focus:border-primary/50 rounded-lg"
                     />
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setIsRecording(!isRecording)}
-                      className={`absolute right-1 top-1 h-7 w-7 p-0 ${isRecording ? "text-red-500 animate-pulse" : "text-muted-foreground"}`}
+                      className={`absolute right-0.5 md:right-1 top-0.5 md:top-1 h-6 w-6 md:h-7 md:w-7 p-0 ${isRecording ? "text-red-500 animate-pulse" : "text-muted-foreground"}`}
                     >
-                      <VoiceIcon isRecording={isRecording} />
+                      <div className="scale-75 md:scale-100">
+                        <VoiceIcon isRecording={isRecording} />
+                      </div>
                     </Button>
                   </div>
                   <Button
                     onClick={handleSend}
                     disabled={!input.trim() || isTyping}
                     size="sm"
-                    className="h-9 px-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105"
+                    className="h-8 md:h-9 px-2 md:px-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105"
                   >
-                    <SendIcon />
+                    <div className="scale-75 md:scale-100">
+                      <SendIcon />
+                    </div>
                   </Button>
                 </div>
                 
-                <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="text-xs px-2 py-0.5">
+                <div className="flex items-center justify-between mt-2 md:mt-3 text-[10px] md:text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1 md:gap-2">
+                    <Badge variant="secondary" className="text-[9px] md:text-xs px-1.5 md:px-2 py-0.5">
                       AI-Powered
                     </Badge>
-                    <span>• Säker</span>
+                    <span className="hidden sm:inline">• Säker</span>
                   </div>
                   <Button 
                     variant="ghost" 
                     size="sm" 
                     onClick={clearChat}
-                    className="h-5 text-xs hover:text-primary p-0"
+                    className="h-4 md:h-5 text-[9px] md:text-xs hover:text-primary p-0"
                   >
-                    <RotateCcw className="w-3 h-3 mr-1" />
-                    Rensa
+                    <RotateCcw className="w-2.5 h-2.5 md:w-3 md:h-3 mr-0.5 md:mr-1" />
+                    <span className="hidden sm:inline">Rensa</span>
+                    <span className="sm:hidden">↻</span>
                   </Button>
                 </div>
               </div>
