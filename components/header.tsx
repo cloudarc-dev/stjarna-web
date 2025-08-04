@@ -16,14 +16,10 @@ import { ShineButton } from "./ui/shine-button"
 const NavChatLauncher = () => (
   <button
     onClick={() => window.dispatchEvent(new Event("toggleChat"))}
-    className="relative group flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg shadow-primary/20 hover:shadow-xl transition-all duration-300 hover:from-primary/30 hover:to-primary/20 hover:text-primary-foreground backdrop-blur-sm border border-primary/20 rounded-lg"
+    className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 text-primary shadow-lg shadow-primary/20 hover:shadow-xl transition-all duration-300 hover:from-primary/30 hover:to-primary/20 hover:text-primary-foreground backdrop-blur-sm border border-primary/20 rounded-lg"
     aria-label="Öppna AI-chatt"
   >
     <Bot className="w-5 h-5 animate-pulse" />
-    <span className="font-medium text-sm">AI Chatt</span>
-    <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-ping opacity-75" />
-    <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full" />
-    <span className="absolute inset-0 rounded-lg backdrop-blur-md bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
   </button>
 )
 
