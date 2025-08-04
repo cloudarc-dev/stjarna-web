@@ -134,7 +134,7 @@ export default function OmOssPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
+          <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center px-4">
             <div className="absolute inset-0 overflow-hidden -z-10">
               <Image
                 src="/placeholder.svg?height=1080&width=1920"
@@ -147,12 +147,12 @@ export default function OmOssPage() {
             {/* Mystical animated background - moved above image/gradient for visibility */}
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-6xl md:text-8xl font-bold mb-6" />
+              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
-                className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
+                className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
               >
                 Med rätt teknik, en lokal närvaro och ett stort, hållbart ansvar hjälper vi Västerbottens företag att
                 utvecklas. Tillsammans bygger vi framtidens, starkare Västerbotten.
