@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer utilities {
+  .heading-hero {
+    @apply text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight;
+  }
+  .heading-section {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  .heading-subsection {
+    @apply text-2xl sm:text-3xl md:text-4xl font-semibold;
+  }
+
   .text-balance {
     text-wrap: balance;
   }

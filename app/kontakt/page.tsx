@@ -38,7 +38,7 @@ export default function KontaktPage() {
             </div>
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-6xl md:text-8xl font-extrabold mb-6" />
+              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

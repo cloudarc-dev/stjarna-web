@@ -19,7 +19,7 @@ export const SubtleCard = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
         ref={ref}
         onMouseMove={handleMouseMove}
         className={cn(
-          "group relative p-4 md:p-6 lg:p-8 rounded-xl border border-border bg-card/60 backdrop-blur-sm transition-all duration-300 ease-in-out hover:border-primary/30",
+          "group relative p-4 md:p-6 lg:p-8 rounded-xl border border-border bg-card/60 backdrop-blur-sm overflow-hidden transition-all duration-300 ease-in-out hover:border-primary/30 ",
           className,
         )}
         style={

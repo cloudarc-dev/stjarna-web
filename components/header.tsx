@@ -23,11 +23,18 @@ const NavChatLauncher = () => (
   </button>
 )
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <Link href={href} className="relative group text-lg">
-    {children}
-    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
-  </Link>
+const NavLink = ({ href, external=false, children }: { href: string; external?: boolean; children: React.ReactNode }) => (
+  external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="relative group text-base md:text-lg">
+      {children}
+      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
+    </a>
+  ) : (
+    <Link href={href} className="relative group text-base md:text-lg">
+      {children}
+      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
+    </Link>
+  )
 )
 
 const LogoWithTheme = () => {
@@ -76,7 +83,7 @@ export function Header() {
     { name: "Fordonsteknik", href: "/fordonsteknik", icon: Truck },
     { name: "Kommunikationsteknik", href: "/kommunikationsteknik", icon: Signal },
     { name: "Servicedesk", href: "/servicedesk", icon: Users },
-    { name: "Shop", href: "/shop", icon: ShoppingCart },
+    { name: "Shop", href: "https://stjarna.shop/", icon: ShoppingCart, external: true },
     { name: "Om oss", href: "/om-oss", icon: Building2 },
   ]
 
@@ -104,7 +111,7 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.1, type: "spring", stiffness: 100 }}
               >
-                <NavLink href={item.href}>{item.name}</NavLink>
+                <NavLink href={item.href} external={item.external}>{item.name}</NavLink>
               </motion.div>
             ))}
           </nav>
@@ -114,13 +121,15 @@ export function Header() {
             
             <NavChatLauncher />
             
-            {/* Contact Button - Hidden on mobile */}
-            <ShineButton 
-              onClick={() => setIsUpsalesOpen(true)}
-              className="hidden md:block !py-2 !px-4 lg:!px-6 !text-sm lg:!text-base"
-            >
-              Kontakt
-            </ShineButton>
+            {/* Support Button - Hidden on mobile */}
+            <Link href="/servicedesk" className="hidden md:block">
+              <ShineButton
+                className="!py-2 !px-4 lg:!px-6 !text-sm lg:!text-base"
+              >
+                Support
+              </ShineButton>
+            </Link>
+
             
             {/* Theme Toggle */}
             <div className="scale-90 md:scale-100">
@@ -227,15 +236,6 @@ export function Header() {
                 
                 {/* Bottom Actions */}
                 <div className="p-6 border-t border-border/40 space-y-4">
-                  <ShineButton 
-                    onClick={() => {
-                      closeMenu();
-                      setIsUpsalesOpen(true);
-                    }}
-                    className="w-full !py-3 !text-base"
-                  >
-                    Kontakta oss
-                  </ShineButton>
                   
                   <div className="flex items-center justify-center gap-4 pt-4">
                     <NavChatLauncher />

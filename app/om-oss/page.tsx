@@ -4,8 +4,11 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { SubtleCard } from "@/components/ui/subtle-card"
+import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Award, Leaf, Users, MapPin, Clock, Phone, Mail } from "lucide-react"
+import { Award, Leaf, Users, MapPin, Clock, Phone, } from "lucide-react"
+import { useState } from "react"
+import { UpsalesModal } from "@/upsalesmodul"
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -59,17 +62,16 @@ const departments = [
   {
     name: "Fordonsteknik",
     members: [
-      "Robin Lindahl - Tekniker",
-      "Aron Hallberg - Service- & fordonsteknik",
+      "Aron Hallberg - Servicetekniker",
       "Per Söderlind - Servicetekniker",
       "Oliver Karlsson - Servicetekniker",
-      "Robert Fransson - Tekniker",
-      "Jacob Lundholm - Tekniker",
-      "Andreas Lundqvist - Verkstadschef Västerbotten",
-      "Martin Svarvare - Tekniker",
-      "Kamil Dziwniel - Tekniker",
+      "Robert Fransson - Fordonstekniker",
+      "Jacob Lundholm - Fordonstekniker",
+      "Andreas Lundqvist - Verkstadschef Umeå",
+      "Martin Svarvare - Fordonstekniker",
+      "Kamil Dziwniel - Fordonstekniker",
       "Urban Eriksson - Verkstadschef Skellefteå",
-      "Stefan Malmgren - Tekniker",
+      "Stefan Malmgren - Fordonstekniker",
     ],
   },
   {
@@ -80,24 +82,51 @@ const departments = [
       "Lucas Englund - Butikssäljare",
       "Theo Salqvist - Butikssäljare",
       "Patric Junes - Kundansvarig",
-      "Urban Spetz - Kundansvarig",
+      "Urban Spetz - Industriförsäljning",
       "Andreas Lindfors - Kundansvarig",
       "Anton Forsberg - Kundansvarig",
       "Mattias Rigertzon - Kundansvarig",
-      "Sebastian A. Bjuhr - Säljchef",
+      "Anders Skogebrandt - Säljare e-handel",
       "Radion Golubenko - Kundansvarig",
       "Oscar Wiklund - Avdelningschef E-handel",
-      "Anders Skogebrandt - Marknad & försäljning",
-      "Joakim Silén - Kundansvarig & Platschef Skellefteå",
     ],
   },
   {
     name: "Ledning",
-    members: ["Lin Haspel - Vice VD & KMA", "Niklas Bjuhr - VD"],
+    members: [
+      "Lin Haspel - Vice VD & KMA",
+      "Niklas Bjuhr - VD",
+      "Joakim Silén - Platschef Skellefteå",
+      "Sebastian A. Bjuhr - Säljchef & Marknad",
+    ],
   },
 ]
 
 export default function OmOssPage() {
+  const [upsalesOpen, setUpsalesOpen] = useState(false);
+  const locations = [
+    {
+      city: "Umeå",
+      address: "Förrådsvägen 15, 901 32 Umeå",
+      phone: "090-70 44 70",
+      hours: [
+        "Helgfria vardagar 07:00 - 17:00",
+        "Dag före röd dag 07:00 - 15:00",
+        "Avvikande v. 28-31: 08:00 - 16:00",
+      ],
+    },
+    {
+      city: "Skellefteå",
+      address: "Företagsvägen 1, 931 57 Skellefteå",
+      phone: "0910-71 12 20",
+      hours: [
+        "Helgfria vardagar 08:00 - 17:00 (fre 08:00 - 16:00)",
+        "Dag före röd dag 07:00 - 15:00",
+        "Stängt v. 29-30",
+      ],
+    },
+  ];
+
   return (
     <>
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
@@ -162,35 +191,6 @@ export default function OmOssPage() {
                   className="rounded-xl shadow-2xl"
                 />
               </motion.div>
-            </div>
-          </section>
-
-          {/* Teknikstress Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto">
-              <div className="max-w-4xl mx-auto text-center">
-                <AnimatedText text="Vi minskar teknikstress" el="h2" className="text-4xl font-bold mb-8" />
-                <div className="text-lg text-muted-foreground space-y-4">
-                  <p>
-                    Arbetsmiljöupplysningen beskriver Teknikstress ganska väl: "Tekniken underlättar vårt arbete då
-                    information blir lättare att nå och dela. Tyvärr kan tekniken även ha negativa effekter. Mängden
-                    information kan upplevas som stressande och svår att sortera."
-                  </p>
-                  <p>
-                    "Känslan av att behöva vara tillgänglig och snabb att återkoppla skapar en konstant press. Dessutom
-                    kan irritation uppstå när tekniken strular och du tvingas vänta."
-                  </p>
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="text-2xl font-semibold text-primary"
-                  >
-                    Tur nog kan det förebyggas. Vi minskar teknikstress.
-                  </motion.p>
-                </div>
-              </div>
             </div>
           </section>
 
@@ -311,57 +311,47 @@ export default function OmOssPage() {
 
           {/* Contact Info Section */}
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto grid md:grid-cols-2 gap-16">
-              <div>
-                <AnimatedText text="Besök oss" el="h2" className="text-4xl font-bold" />
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-primary mt-1" />
-                    <div>
-                      <p className="font-semibold">Förrådsvägen 15</p>
-                      <p className="text-muted-foreground">901 32 Västerbotten</p>
-                      <button className="text-primary hover:underline text-sm">Se vägbeskrivning</button>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Phone className="w-6 h-6 text-primary" />
-                    <p>090-70 44 70</p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-primary" />
-                    <p>umea@stjarnafyrkant.se</p>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Clock className="w-6 h-6 text-primary mt-1" />
-                    <div>
-                      <p className="font-semibold">Öppettider</p>
-                      <p className="text-muted-foreground">Mån-fre: 07:00-17:00</p>
-                      <p className="text-sm text-muted-foreground">(Dag före röd dag 07:00-15:00)</p>
-                      <p className="text-sm text-muted-foreground">Avvikande tider under v. 28-31: 08:00-16:00</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, type: "spring" }}
-                  viewport={{ once: true }}
-                >
-                  <Image
-                    src="/placeholder.svg?height=400&width=400"
-                    alt="StjärnaFyrkant kontor"
-                    width={400}
-                    height={400}
-                    className="rounded-xl shadow-2xl"
-                  />
-                </motion.div>
+            <div className="container mx-auto">
+              <AnimatedText text="Besök oss" el="h2" className="text-4xl font-bold mb-16 text-center" />
+              <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                {locations.map((loc, i) => (
+                  <motion.div
+                    key={loc.city}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, duration: 0.8 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    <GlareCard className="p-8 flex flex-col gap-4 bg-card/80 backdrop-blur-sm h-full">
+                      <h3 className="text-2xl font-bold text-primary mb-2">{loc.city}</h3>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-primary mt-0.5" />
+                        <p>{loc.address}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Phone className="w-5 h-5 text-primary" />
+                        <p>{loc.phone}</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="space-y-1 text-sm text-muted-foreground">
+                          {loc.hours.map((h) => (
+                            <p key={h}>{h}</p>
+                          ))}
+                        </div>
+                      </div>
+                      <ShineButton onClick={() => setUpsalesOpen(true)} className="mt-auto w-full !py-2">
+                        Skicka meddelande
+                      </ShineButton>
+                    </GlareCard>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
         </main>
-        <Footer />
+        <UpsalesModal open={upsalesOpen} onClose={() => setUpsalesOpen(false)} />
+<Footer />
       </div>
     </>
   )

@@ -41,12 +41,12 @@ const services = [
       "Säker, skalbar IT för företag. Vi hanterar allt från nätverk och säkerhet till molntjänster och support.",
   },
   {
-    icon: <Truck size={32} />,
-    href: "/fordonsteknik", // Fordonsteknik
+    icon: <LifeBuoy size={32} />,
+    href: "/servicedesk", // Personlig Support
 
-    title: "Fordonsteknik",
+    title: "Personlig Support",
     description:
-      "Modern teknik för fordon. Vi installerar och servar allt från alkolås till kommunikationsradio och fordonsinredning.",
+      "Vi finns här för dig och din verksamhet med en pålitlig och effektiv supportavdelning.",
   },
   {
     icon: <Signal size={32} />,
@@ -59,19 +59,19 @@ const services = [
 
 const cases = [
   {
-    title: "Umeå Taxi",
+    title: "Komatsu Forest",
     description:
-      "Installation av alkolås och GPS-spårning för hela fordonsflottan, med integration mot centralsystem för fleet management.",
+      "Upphandling och projektledning av en ny lösning för företagstelefonin.",
   },
   {
-    title: "Bygg & Transport AB",
+    title: "Tectel i Vindeln",
     description:
-      "Komplett bilinredning och arbetsbelysning för servicebilar, tillsammans med fullskaligt IT-stöd för mobila arbetare.",
+      "Anpassad fordonsinredning för ett mer effektivt fältarbete.",
   },
   {
-    title: "Räddningstjänsten Västerbotten",
+    title: "Electrum Automation",
     description:
-      "Kommunikationsradio och varningssystem i utryckningsfordon med integration mot centrala ledningssystem.",
+      "Total översyn av IT-infrastruktur med projektplanering för kommande 3 år.",
   },
 ]
 
@@ -97,22 +97,32 @@ const processSteps = [
   {
     icon: <Search size={32} />,
     title: "01. Behovsanalys",
-    description: "Vi börjar med att förstå dina behov och krav genom en noggrann analys.",
+    description: "Vi behöver först förstå era faktiska behov och krav genom en noggrann analys tillsammans.",
+  },
+  {
+    icon: <FileCheck2 size={32} />,
+    title: "02. Kvalificering",
+    description: "Vi avgör tillsammans om vi är rätt partner för era behov.",
   },
   {
     icon: <Brush size={32} />,
-    title: "02. Design & Lösningsförslag",
-    description: "Baserat på analysen tar vi fram ett anpassat lösningsförslag med tydlig specifikation.",
+    title: "03. Lösningsförslag",
+    description: "Baserat på analysen tar vi fram ett anpassat lösningsförslag med ett tydligt värde.",
+  },
+  {
+    icon: <FileCheck2 size={32} />,
+    title: "04. Affärsförslag",
+    description: "Vi kommer överens om ett konkret affärsförslag.",
   },
   {
     icon: <Code size={32} />,
-    title: "03. Implementation & Utbildning",
-    description: "Vi installerar, konfigurerar och testar lösningen enligt plan och utbildar er personal.",
+    title: "05. Implementationsprojekt",
+    description: "Vi sätter upp ett projekt för en framgångsrik implementation med nödvändiga tester och utbildning.",
   },
   {
-    icon: <Rocket size={32} />,
-    title: "04. Support & Utveckling",
-    description: "Efter lansering erbjuder vi löpande support, underhåll och vidareutveckling.",
+    icon: <LifeBuoy size={32} />,
+    title: "06. Support & Utveckling",
+    description: "Efter projektets slut erbjuder vi löpande support, underhåll och vidareutveckling.",
   },
 ]
 
@@ -155,7 +165,7 @@ export default function LandingPage() {
               <AnimatedText
                 text="StjärnaFyrkant Västerbotten"
                 el="h1"
-                className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-foreground"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground"
               />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -165,7 +175,7 @@ export default function LandingPage() {
               >
                 <Typewriter
                   text={["IT-Lösningar", "Fordonsteknik", "Kommunikationsteknik"]}
-                  className="text-4xl sm:text-5xl md:text-7xl text-primary"
+                  className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-primary"
                 />
               </motion.div>
               <motion.div
@@ -184,7 +194,7 @@ export default function LandingPage() {
             <div className="container mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
                 <ParallaxScroll distance={320} className="lg:col-span-1 px-2 md:px-0 space-y-4">
-                  <AnimatedText text="Våra Tjänster" el="h2" className="text-4xl font-bold mb-4" />
+                  <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
                   <p className="text-lg text-muted-foreground">
                     Helhetslösningar inom IT, fordon och kommunikation. Våra specialister hittar rätt lösning för dina
                     behov.
@@ -241,7 +251,7 @@ export default function LandingPage() {
           <section id="kundcase" className="py-24 md:py-32 dark:border-t relative">
             <MysticalBackground variant="subtle" className="absolute inset-0" />
             <div className="container mx-auto relative z-10">
-              <AnimatedText text="Senaste Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Senaste Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <motion.div whileHover={{ y: -5, scale: 1.02 }} className="lg:row-span-2">
                   <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[24rem]">
@@ -268,7 +278,7 @@ export default function LandingPage() {
           {/* Process Section */}
           <section id="process" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Process" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår Process" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
                 <div className="absolute top-12 left-0 w-full h-0.5 bg-border -translate-y-1/2 hidden lg:block" />
                 {processSteps.map((step, i) => (
@@ -292,7 +302,7 @@ export default function LandingPage() {
           {/* Certifications Section */}
           <section id="certifieringar" className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Trygghet & Kvalitet" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Trygghet & Kvalitet" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
                 {certifications.map((cert, i) => (
                   <motion.div
@@ -323,7 +333,7 @@ export default function LandingPage() {
           {/* Experts Section */}
           <section id="om-oss" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
                 {experts.map((expert, i) => (
                   <motion.div
@@ -366,7 +376,7 @@ export default function LandingPage() {
               <AnimatedText
                 text="Redo att utvecklas tillsammans med oss?"
                 el="h2"
-                className="text-4xl font-bold mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
               />
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
                 Kontakta oss för en kostnadsfri behovsanalys och låt oss skapa framtidens lösningar för er.

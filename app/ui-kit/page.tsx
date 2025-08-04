@@ -51,7 +51,7 @@ export default function UiKitPage() {
             <AnimatedText
               text="Kinetic & Luminous"
               el="h1"
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-primary"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-primary"
             />
             <AnimatedText
               text="Ett levande designsystem byggt för framtiden."
@@ -153,10 +153,17 @@ export default function UiKitPage() {
                 <Type />
               </AnimatedText>
               <div className="space-y-6 bg-card/50 p-8 rounded-lg border">
+                <p className="text-sm text-muted-foreground">Använd våra standardklasser för rubriker:</p>
+                <div className="space-y-4">
+                  <h1 className="heading-hero">.heading-hero</h1>
+                  <h2 className="heading-section">.heading-section</h2>
+                  <h3 className="heading-subsection">.heading-subsection</h3>
+                </div>
+                <hr className="my-6 border-border" />
                 <p className="text-sm text-muted-foreground">Font: Open Sans</p>
                 <AnimatedText text="H1: Kinetic & Luminous" el="h1" className="text-5xl font-extrabold" />
-                <AnimatedText text="H2: Ett levande designsystem" el="h2" className="text-4xl font-bold" />
-                <AnimatedText text="H3: Byggt för framtiden" el="h3" className="text-3xl font-semibold" />
+                <AnimatedText text="H2: Ett levande designsystem" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" />
+                <AnimatedText text="H3: Byggt för framtiden" el="h3" className="text-2xl sm:text-3xl md:text-4xl font-semibold" />
                 <p className="text-lg max-w-prose">
                   Detta är brödtext (18px). Genom banbrytande teknik och prisvinnande design bygger vi upplevelser som
                   engagerar, konverterar och består. Varje interaktion är genomtänkt.

@@ -6,7 +6,7 @@ import { AnimatedText } from "@/components/ui/animated-text"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Shield, Radio, Wrench, Truck, Search, Code, Users, Rocket } from "lucide-react"
+import { Shield, Radio, Wrench, Truck, Search, Code, Rocket, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -35,23 +35,39 @@ const serviceCategories = [
 ]
 
 const processSteps = [
-  { icon: <Search size={32} />, title: "01. Behovsanalys och kravställning" },
-  { icon: <Code size={32} />, title: "02. Designfas och lösningsförslag" },
-  { icon: <Users size={32} />, title: "03. Implementation och utbildning" },
-  { icon: <Rocket size={32} />, title: "04. Kontinuerlig support och utveckling" },
+  { icon: <Search size={32} />, title: "01. Behovsanalys" },
+  { icon: <Code size={32} />, title: "02. Lösningsförslag" },
+  { icon: <FileCheck2 size={32} />, title: "03. Affärsförslag" },
+  { icon: <Wrench size={32} />, title: "04. Installation" },
+  { icon: <Rocket size={32} />, title: "05. Eftermarknad" },
+]
+
+const cases = [
+  {
+    title: "Västerbotten Taxi",
+    description: "Installation av alkolås och GPS-spårning för hela fordonsflottan.",
+  },
+  {
+    title: "Skellefteå Buss",
+    description: "Komplett bilinredning och arbetsbelysning för servicebilar.",
+  },
+  {
+    title: "Räddningstjänsten Västerbotten",
+    description: "Kommunikationsradio och varningssystem i utryckningsfordon.",
+  },
 ]
 
 const experts = [
   {
-    name: "Anna Karlsson",
-    title: "Fordonsingenjör & projektledare",
-    certs: ["Dräger-certifierad", "Hytera Partner"],
+    name: "Urban Eriksson",
+    title: "Lösningsspecialist",
+    certs: ["Komradio", "Taxi", "Alkolås"],
     avatar: "/placeholder.svg?height=100&width=100",
   },
   {
-    name: "Johan Berg",
-    title: "Installationsexpert",
-    certs: ["Sortimo Partner"],
+    name: "Robert Fransson",
+    title: "Fordonstekniker",
+    certs: ["Installationer", "Taxi", "Alkolås"],
     avatar: "/placeholder.svg?height=100&width=100",
   },
 ]
@@ -81,12 +97,12 @@ export default function FordonsteknikPage() {
                   <AnimatedText
                     text="Fordonsteknik"
                     el="h1"
-                    className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                   <AnimatedText
                     text="i Västerbotten"
                     el="span"
-                    className="block text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
+                    className="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                 </div>
                 <motion.p
@@ -113,8 +129,8 @@ export default function FordonsteknikPage() {
           {/* Services Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-4xl font-bold mb-16 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-center" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
                 {serviceCategories.map((category, i) => (
                   <motion.div
                     key={category.title}
@@ -143,26 +159,14 @@ export default function FordonsteknikPage() {
           {/* Cases Section */}
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Lokala Kundcase" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Lokala Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <motion.div whileHover={{ y: -5 }} className="p-8 border rounded-xl bg-background">
-                  <h3 className="font-bold text-xl">Västerbotten Taxi</h3>
-                  <p className="text-muted-foreground mt-2">
-                    Installation av alkolås och GPS-spårning för hela fordonsflottan.
-                  </p>
-                </motion.div>
-                <motion.div whileHover={{ y: -5 }} className="p-8 border rounded-xl bg-background">
-                  <h3 className="font-bold text-xl">Skellefteå Buss</h3>
-                  <p className="text-muted-foreground mt-2">
-                    Komplett bilinredning och arbetsbelysning för servicebilar.
-                  </p>
-                </motion.div>
-                <motion.div whileHover={{ y: -5 }} className="p-8 border rounded-xl bg-background">
-                  <h3 className="font-bold text-xl">Räddningstjänsten Västerbotten</h3>
-                  <p className="text-muted-foreground mt-2">
-                    Kommunikationsradio och varningssystem i utryckningsfordon.
-                  </p>
-                </motion.div>
+                {cases.map((c) => (
+                  <motion.div whileHover={{ y: -5 }} key={c.title} className="p-8 border rounded-xl bg-background">
+                    <h3 className="font-bold text-xl">{c.title}</h3>
+                    <p className="text-muted-foreground mt-2">{c.description}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
@@ -170,7 +174,7 @@ export default function FordonsteknikPage() {
           {/* Process Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="relative max-w-2xl mx-auto">
                 <div className="absolute left-8 top-0 h-full w-0.5 bg-border hidden md:block" />
                 {processSteps.map((step, i) => (
@@ -193,7 +197,7 @@ export default function FordonsteknikPage() {
           {/* Experts Section */}
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {experts.map((expert) => (
                   <motion.div whileHover={{ scale: 1.02 }} key={expert.name}>

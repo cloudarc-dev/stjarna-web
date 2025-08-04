@@ -7,7 +7,7 @@ import { ShineButton } from "@/components/ui/shine-button"
 import { InteractiveGridBackground } from "@/components/ui/interactive-grid-background"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
-import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer } from "lucide-react"
+import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer, Brush, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -39,26 +39,28 @@ const serviceCategories = [
   {
     title: "Proaktiv IT-support & drift",
     icon: <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
-    points: ["Fjärrsupport & övervakning dygnet runt", "Förebyggande underhåll", "Snabb felsökning & åtgärd"],
+    points: ["Fjärrsupport & övervakning", "Förebyggande underhåll", "Snabb felsökning & incidenthantering"],
   },
 ]
 
 const processSteps = [
-  { icon: <Search size={32} className="text-blue-600 dark:text-blue-400" />, title: "01. Behovsanalys & rådgivning" },
-  { icon: <Code size={32} className="text-blue-600 dark:text-blue-400" />, title: "02. Design & implementation" },
-  { icon: <Users size={32} className="text-blue-600 dark:text-blue-400" />, title: "03. Utbildning & överlämning" },
-  { icon: <Rocket size={32} className="text-blue-600 dark:text-blue-400" />, title: "04. Löpande support & utveckling" },
+  { icon: <Search size={32} className="text-blue-600 dark:text-blue-400" />, title: "01. Inventering" },
+  { icon: <Search size={32} className="text-blue-600 dark:text-blue-400" />, title: "02. Behovsanalys" },
+  { icon: <Brush size={32} className="text-blue-600 dark:text-blue-400" />, title: "03. Lösningsförslag" },
+  { icon: <FileCheck2 size={32} className="text-blue-600 dark:text-blue-400" />, title: "04. Affärsförslag" },
+  { icon: <Code size={32} className="text-blue-600 dark:text-blue-400" />, title: "05. Implementationsprojekt" },
+  { icon: <Rocket size={32} className="text-blue-600 dark:text-blue-400" />, title: "06. Support & utveckling" },
 ]
 
 const experts = [
   {
-    name: "Sara Lindgren",
+    name: "Erik Damber",
     title: "Moln- & Microsoft 365-specialist",
-    certs: ["Microsoft Certified", "GDPR-expert"],
+    certs: ["WatchGuard Certified, Serverinfrastruktur"],
     avatar: "/placeholder.svg?height=100&width=100",
   },
   {
-    name: "Erik Svensson",
+    name: "Daniel Bennervall",
     title: "IT-säkerhetsexpert",
     certs: ["CompTIA Security+", "Fortinet NSE"],
     avatar: "/placeholder.svg?height=100&width=100",
@@ -94,11 +96,11 @@ export default function ITPage() {
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <InteractiveGridBackground />
             <div className="container mx-auto relative z-10">
-              <p className="text-primary font-semibold">30+ års erfarenhet</p>
+              <p className="text-primary font-semibold">40+ års erfarenhet</p>
               <AnimatedText
                 text="IT-tjänster i Västerbotten"
                 el="h1"
-                className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter mt-2"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mt-2"
               />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -122,11 +124,11 @@ export default function ITPage() {
           {/* Services Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-4xl font-bold mb-4 text-center" />
+              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
                 Helhetslösningar som täcker allt från nätverk till moln & säkerhet.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
                 {serviceCategories.map((category, i) => (
                   <motion.div
                     key={category.title}
@@ -161,7 +163,7 @@ export default function ITPage() {
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <AnimatedText text="Lokala Kundcase" el="h2" className="text-4xl font-bold mb-4" />
+                <AnimatedText text="Lokala Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
                 <p className="text-lg text-muted-foreground mb-8">
                   Se hur vi har hjälpt företag i regionen med skalbara IT-lösningar.
                 </p>
@@ -173,21 +175,21 @@ export default function ITPage() {
                     </p>
                   </div>
                   <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Byggbolag Västerbotten</h3>
+                    <h3 className="font-bold text-lg">Umia</h3>
                     <p className="text-muted-foreground">
-                      Implementering av trådlöst nätverk och backup-lösning i hela verksamheten.
+                      Nationellt ansvar för samtliga kontors IT-infrastruktur, Microsoft 365 och säkerhet.
                     </p>
                   </div>
                   <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Redovisningsbyrå</h3>
+                    <h3 className="font-bold text-lg">Umeå Mark & VA</h3>
                     <p className="text-muted-foreground">
-                      Kontinuerlig IT-support och GDPR-rådgivning för växande SMB.
+                      Utveckling av samarbetsfunktioner, säkerhet, lagring och nätverk.
                     </p>
                   </div>
                 </div>
               </div>
               <div>
-                <AnimatedText text="Våra Experter" el="h2" className="text-4xl font-bold mb-8" />
+                <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
                 <div className="space-y-8">
                   {experts.map((expert) => (
                     <SubtleCard key={expert.name} className="p-6 flex items-center gap-6">
@@ -222,7 +224,7 @@ export default function ITPage() {
           {/* Process Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="relative max-w-2xl mx-auto">
                 <div className="absolute left-8 top-0 h-full w-0.5 bg-border hidden md:block" />
                 {processSteps.map((step, i) => (
@@ -248,7 +250,7 @@ export default function ITPage() {
               <AnimatedText
                 text="Vanliga frågor om IT-tjänster"
                 el="h2"
-                className="text-4xl font-bold mb-8 text-center"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center"
               />
               <Accordion type="single" collapsible className="w-full">
                 {faqItems.map((item, i) => (
