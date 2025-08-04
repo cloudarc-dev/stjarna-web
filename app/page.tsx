@@ -33,7 +33,20 @@ import { Typewriter } from "@/components/ui/typewriter"
 
 const services = [
   {
-    icon: <Computer size={32} />,
+    icon: (
+      <motion.div 
+        className="relative"
+        whileHover={{ rotate: [0, 360] }}
+        transition={{ duration: 0.6 }}
+      >
+        <Computer size={32} className="text-blue-600 dark:text-blue-400" />
+        <motion.div 
+          className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      </motion.div>
+    ),
     href: "/it", // IT-tjänster
 
     title: "IT-tjänster",
@@ -41,15 +54,29 @@ const services = [
       "Säker, skalbar IT för företag. Vi hanterar allt från nätverk och säkerhet till molntjänster och support.",
   },
   {
-    icon: <LifeBuoy size={32} />,
-    href: "/servicedesk", // Personlig Support
+    icon: (
+      <motion.div
+        whileHover={{ y: [-2, -6, -2, 0] }}
+        transition={{ duration: 0.4 }}
+      >
+        <Truck size={32} className="text-green-600 dark:text-green-400" />
+      </motion.div>
+    ),
+    href: "/fordonsteknik", // Fordonsteknik
 
-    title: "Personlig Support",
+    title: "Fordonsteknik",
     description:
-      "Vi finns här för dig och din verksamhet med en pålitlig och effektiv supportavdelning.",
+      "Skräddarsydd fordonsutrustning och installationer för effektivt fältarbete.",
   },
   {
-    icon: <Signal size={32} />,
+    icon: (
+      <motion.div
+        whileHover={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 0.3 }}
+      >
+        <Signal size={32} className="text-purple-600 dark:text-purple-400" />
+      </motion.div>
+    ),
     href: "/kommunikationsteknik", // Kommunikationsteknik
 
     title: "Kommunikationsteknik",
@@ -217,11 +244,11 @@ export default function LandingPage() {
                           >
                             {service.icon}
                           </motion.div>
-                          <h3 className="text-2xl font-semibold">{service.title}</h3>
+                          <h3 className="text-xl sm:text-2xl font-semibold">{service.title}</h3>
                         </div>
                         <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
                         <Link href={service.href} passHref legacyBehavior>
-                          <Button as="a" variant="outline" className="mt-auto bg-transparent">
+                          <Button variant="outline" className="mt-auto bg-transparent">
                             Läs mer <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
                         </Link>
@@ -236,10 +263,15 @@ export default function LandingPage() {
                   >
                     <SubtleCard className="p-8 flex flex-col h-full bg-card/80">
                       <LifeBuoy size={32} className="text-primary mb-4" />
-                      <h3 className="text-2xl font-semibold">Personlig Support</h3>
-                      <p className="text-muted-foreground mt-2">
+                      <h3 className="text-xl sm:text-2xl font-semibold">Personlig Support</h3>
+                      <p className="text-muted-foreground mt-2 mb-4">
                         Vi finns här för dig. Snabb och personlig hjälp när du behöver det som mest.
                       </p>
+                      <Link href="/servicedesk" legacyBehavior passHref>
+                        <Button variant="outline" className="bg-transparent">
+                          Gå till Support <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
                     </SubtleCard>
                   </motion.div>
                 </div>
@@ -261,13 +293,13 @@ export default function LandingPage() {
                 </motion.div>
                 <motion.div whileHover={{ y: -5, scale: 1.02 }}>
                   <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-2xl font-semibold">{cases[1].title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[1].title}</h3>
                     <p className="text-muted-foreground mt-2">{cases[1].description}</p>
                   </GlareCard>
                 </motion.div>
                 <motion.div whileHover={{ y: -5, scale: 1.02 }}>
                   <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-2xl font-semibold">{cases[2].title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[2].title}</h3>
                     <p className="text-muted-foreground mt-2">{cases[2].description}</p>
                   </GlareCard>
                 </motion.div>
@@ -351,7 +383,7 @@ export default function LandingPage() {
                         height={100}
                         className="rounded-full mb-4 border-2 border-primary"
                       />
-                      <h3 className="text-2xl font-semibold">{expert.name}</h3>
+                      <h3 className="text-xl sm:text-2xl font-semibold">{expert.name}</h3>
                       <p className="text-primary font-medium">{expert.title}</p>
                       <div className="mt-4 flex flex-wrap justify-center gap-2">
                         {expert.certs.map((cert) => (

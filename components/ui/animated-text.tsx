@@ -33,17 +33,17 @@ export function AnimatedText({ text, el: Wrapper = "p", className, children }: A
       y: 0,
       transition: {
         type: "spring" as const,
-        damping: 12,
-        stiffness: 100,
+        damping: 20,
+        stiffness: 300,
       },
     },
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 10,
       transition: {
         type: "spring" as const,
-        damping: 12,
-        stiffness: 100,
+        damping: 20,
+        stiffness: 300,
       },
     },
   }
