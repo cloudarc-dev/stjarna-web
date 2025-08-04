@@ -250,9 +250,9 @@ export function ChatLauncher() {
               className="fixed inset-0 md:bottom-4 lg:bottom-8 md:right-4 lg:right-8 md:top-auto md:left-auto w-full md:w-auto md:h-[600px] lg:h-[700px] md:max-w-lg lg:max-w-xl xl:w-[480px] z-50 overscroll-none"
               onClick={(e) => e.stopPropagation()}
             >
-              <SubtleCard className="h-full flex flex-col">
+              <SubtleCard className="p-4 md:p-6 h-full flex flex-col">
                 {/* Header */}
-                <div className="p-6 border-b border-border/20">
+                <div className="p-3 md:p-5 border-b border-border/20">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                       <MessageCircle size={20} className="text-primary" />
@@ -289,7 +289,7 @@ export function ChatLauncher() {
                 </div>
 
                 {/* Messages container */}
-                <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-6">
                   {messages.map((message) => (
                     <div 
                       key={message.id} 
@@ -319,7 +319,7 @@ export function ChatLauncher() {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="px-6 py-4 border-t border-border/20">
+                <div className="px-4 py-3 md:px-6 md:py-4 border-t border-border/20">
                   <div className="flex gap-2 overflow-x-auto pb-2">
                     {launcherActions.map((action, index) => {
                       const Icon = action.icon
@@ -342,7 +342,7 @@ export function ChatLauncher() {
                 </div>
 
                 {/* Input area */}
-                <div className="p-6 border-t border-border/20">
+                <div className="p-4 md:p-6 border-t border-border/20">
                   <div className="flex gap-3">
                     <Input
                       ref={inputRef}

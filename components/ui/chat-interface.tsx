@@ -107,7 +107,7 @@ function ChatWindow({ embedded }: { embedded: boolean }) {
   return (
     <div className="flex flex-col w-full h-full">
       {/* Header */}
-      <div className="p-6 border-b border-border/20">
+      <div className="p-3 md:p-5 border-b border-border/20">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
             <MessageSquare size={20} className="text-primary" />
@@ -121,7 +121,7 @@ function ChatWindow({ embedded }: { embedded: boolean }) {
       </div>
 
       {/* Messages container */}
-      <div className="flex-grow overflow-y-auto p-6 space-y-6">
+      <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-6">
         <AnimatePresence>
           {messages.map((message) => (
             <motion.div
@@ -162,7 +162,7 @@ function ChatWindow({ embedded }: { embedded: boolean }) {
 
       {/* Quick Actions */}
       {!embedded && (
-        <div className="px-6 py-4 border-t border-border/20">
+        <div className="px-4 py-3 md:px-6 md:py-4 border-t border-border/20">
           <div className="flex gap-2 overflow-x-auto pb-2">
             {quickActions.map((action, index) => (
               <SubtleCard 
@@ -183,7 +183,7 @@ function ChatWindow({ embedded }: { embedded: boolean }) {
       )}
 
       {/* Input area */}
-      <div className="p-6 border-t border-border/20">
+      <div className="p-4 md:p-6 border-t border-border/20">
         <div className="flex gap-3">
           <Input
             value={inputValue}
@@ -291,7 +291,7 @@ export function ChatInterface({ embedded = false, className = "", showLauncher =
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className={containerClasses}
           >
-            <div className="flex flex-col w-full h-full bg-card border border-border rounded-none md:rounded-xl shadow-2xl">
+            <div className="flex flex-col w-full h-full bg-background md:bg-card md:border md:border-border rounded-none md:rounded-xl shadow-none md:shadow-2xl">
               <ChatWindow embedded={embedded} />
             </div>
           </motion.div>
