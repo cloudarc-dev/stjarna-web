@@ -20,7 +20,7 @@ import { Footer } from "@/components/footer"
 import { GlareCard } from "@/components/ui/glare-card"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { AnimatedText } from "@/components/ui/animated-text"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { UpsalesModal } from "@/components/upsales-modal"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Floating3DObjects } from "@/components/ui/floating-3d-objects"
@@ -186,7 +186,7 @@ export default function LandingPage() {
         <main className="flex-grow">
           {/* Hero Section */}
           <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4 overflow-hidden">
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
             <Floating3DObjects />
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
@@ -284,7 +284,7 @@ export default function LandingPage() {
 
           {/* Customer Cases Section */}
           <section id="kundcase" className="py-24 md:py-32 dark:border-t relative">
-            <MysticalBackground variant="subtle" className="absolute inset-0" />
+            <OptimizedBackground variant="subtle" className="absolute inset-0" />
             <div className="container mx-auto relative z-10">
               <AnimatedText text="Senaste Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
