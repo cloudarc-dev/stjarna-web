@@ -2,8 +2,8 @@
 import { motion, AnimatePresence } from "framer-motion"
 import type React from "react"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import { UpsalesModal } from "@/components/upsales-modal"
+import { useEffect, useState, useMemo } from "react"
+import dynamic from "next/dynamic"
 import { Menu, X, Computer, Truck, Signal, Users, ShoppingCart, Building2, Bot } from "lucide-react"
 
 import Link from "next/link"
@@ -11,6 +11,11 @@ import Image from "next/image"
 import { AnimatedText } from "./ui/animated-text"
 import { ThemeToggle } from "./theme-toggle"
 import { ShineButton } from "./ui/shine-button"
+
+// Lazy load UpsalesModal
+const UpsalesModal = dynamic(() => import("@/components/upsales-modal").then(mod => ({ default: mod.UpsalesModal })), {
+  ssr: false
+})
 
 
 const NavChatLauncher = () => (
@@ -45,23 +50,12 @@ const LogoWithTheme = () => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    // Return a placeholder during SSR to avoid hydration mismatch
-    return (
-      <div className="h-12 w-48 bg-muted animate-pulse rounded" />
-    )
-  }
-
   const currentTheme = theme === 'system' ? systemTheme : theme
   const isDark = currentTheme === 'dark'
 
+  // Always show logo immediately - no fade animation
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-      className="relative h-12 w-48"
-    >
+    <div className="relative h-12 w-48">
       <Image
         src={isDark ? "/media/stjarnafyrkant-logo-inverterad-rgb-300x66.png" : "/stjarnafyrkant-logo-original-rgb-1.svg"}
         alt="Stjärna Fyrkant Västerbotten"
@@ -69,23 +63,24 @@ const LogoWithTheme = () => {
         className="object-contain"
         priority
       />
-    </motion.div>
+    </div>
   )
 }
+
+// Memoize nav items to prevent re-creation
+const NAV_ITEMS = [
+  { name: "IT", href: "/it", icon: Computer },
+  { name: "Fordonsteknik", href: "/fordonsteknik", icon: Truck },
+  { name: "Kommunikationsteknik", href: "/kommunikationsteknik", icon: Signal },
+  { name: "Servicedesk", href: "/servicedesk", icon: Users },
+  { name: "Shop", href: "https://stjarna.shop/", icon: ShoppingCart, external: true },
+  { name: "Om oss", href: "/om-oss", icon: Building2 },
+] as const
 
 export function Header() {
   const { theme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
-  
-  const navItems = [
-    { name: "IT", href: "/it", icon: Computer },
-    { name: "Fordonsteknik", href: "/fordonsteknik", icon: Truck },
-    { name: "Kommunikationsteknik", href: "/kommunikationsteknik", icon: Signal },
-    { name: "Servicedesk", href: "/servicedesk", icon: Users },
-    { name: "Shop", href: "https://stjarna.shop/", icon: ShoppingCart, external: true },
-    { name: "Om oss", href: "/om-oss", icon: Building2 },
-  ]
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
@@ -104,7 +99,7 @@ export function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navItems.map((item, i) => (
+            {NAV_ITEMS.map((item, i) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
@@ -210,7 +205,7 @@ export function Header() {
                 {/* Navigation Links */}
                 <nav className="flex-1 px-6 py-8">
                   <div className="space-y-2">
-                    {navItems.map((item, i) => (
+                    {NAV_ITEMS.map((item, i) => (
                       <motion.div
                         key={item.name}
                         initial={{ opacity: 0, x: 50 }}
