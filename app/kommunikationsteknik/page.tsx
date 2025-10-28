@@ -117,11 +117,13 @@ export default function KommunikationsteknikPage() {
                 <AnimatedText
                   text="Kommunikationsteknik"
                   el="h1"
+                  animationType="soft"
                   className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-none"
                 />
                 <AnimatedText
                   text="i Västerbotten"
                   el="span"
+                  animationType="soft"
                   className="block text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-none"
                 />
               </div>

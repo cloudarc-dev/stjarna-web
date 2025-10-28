@@ -97,11 +97,13 @@ export default function FordonsteknikPage() {
                   <AnimatedText
                     text="Fordonsteknik"
                     el="h1"
+                    animationType="soft"
                     className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                   <AnimatedText
                     text="i Västerbotten"
                     el="span"
+                    animationType="soft"
                     className="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                 </div>

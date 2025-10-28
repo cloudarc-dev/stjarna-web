@@ -147,7 +147,7 @@ export default function OmOssPage() {
             {/* Mystical animated background - moved above image/gradient for visibility */}
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <AnimatedText text="Vässa din verksamhet" el="h1" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
+              <AnimatedText text="Vässa din verksamhet" el="h1" animationType="soft" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

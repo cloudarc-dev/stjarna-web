@@ -84,7 +84,7 @@ export default function KarriarPage() {
                   <span className="text-primary font-semibold">Nominerad till Årets Arbetsgivare 2023</span>
                 </div>
               </motion.div>
-              <AnimatedText text="Jobba med oss" el="h1" className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" />
+              <AnimatedText text="Jobba med oss" el="h1" animationType="soft" className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

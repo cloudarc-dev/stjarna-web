@@ -192,6 +192,7 @@ export default function LandingPage() {
               <AnimatedText
                 text="StjärnaFyrkant Västerbotten"
                 el="h1"
+                animationType="soft"
                 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground"
               />
               <motion.div

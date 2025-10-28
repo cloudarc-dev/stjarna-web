@@ -68,11 +68,13 @@ export default function SEOImplementationPage() {
               <AnimatedText
                 text="SEO Implementation Lab"
                 el="h1"
+                animationType="soft"
                 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-primary mb-6"
               />
               <AnimatedText
                 text="Experimentera och bygg din SEO-strategi med AI-assistans"
                 el="p"
+                animationType="soft"
                 className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
               />
               <Link href="/seo-plan">

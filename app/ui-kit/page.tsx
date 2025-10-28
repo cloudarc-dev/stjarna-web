@@ -51,11 +51,13 @@ export default function UiKitPage() {
             <AnimatedText
               text="Kinetic & Luminous"
               el="h1"
+              animationType="soft"
               className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-primary"
             />
             <AnimatedText
               text="Ett levande designsystem byggt för framtiden."
               el="p"
+              animationType="soft"
               className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
             />
             <motion.div 

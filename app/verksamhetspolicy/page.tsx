@@ -71,6 +71,7 @@ export default function VerksamhetspolicyPage() {
               <AnimatedText
                 text="Verksamhetspolicy (KMA)"
                 el="h1"
+                animationType="soft"
                 className="text-5xl md:text-7xl font-extrabold mb-6"
               />
               <motion.p
@@ -87,7 +88,7 @@ export default function VerksamhetspolicyPage() {
           {/* Grundprinciper Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Våra grundprinciper" el="h2" className="text-4xl font-bold mb-4 text-center" />
+              <AnimatedText text="Våra grundprinciper" el="h2" animationType="soft" className="text-4xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
                 Vi står för service, ärlighet och kvalité och dessa värdeord ska vara utgångspunkten i allt vi säger och
                 gör.

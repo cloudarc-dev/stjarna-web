@@ -8,9 +8,10 @@ interface AnimatedTextProps {
   text: string
   el?: keyof JSX.IntrinsicElements
   className?: string
+  animationType?: "standard" | "soft"
 }
 
-export function AnimatedText({ text, el: Wrapper = "p", className, children }: AnimatedTextProps) {
+export function AnimatedText({ text, el: Wrapper = "p", className, children, animationType = "standard" }: AnimatedTextProps) {
   const headingTags = ["h1", "h2", "h3", "h4", "h5", "h6"] as const
   const isHeading = headingTags.includes(Wrapper as typeof headingTags[number])
   const gradientClass = isHeading && Wrapper !== "h1" && Wrapper !== "h2"
@@ -27,7 +28,30 @@ export function AnimatedText({ text, el: Wrapper = "p", className, children }: A
     }),
   }
 
-  const child: Variants = {
+  // Standard animation variants (more pronounced)
+  const childStandard: Variants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring" as const,
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  }
+
+  // Soft animation variants (gentler)
+  const childSoft: Variants = {
     visible: {
       opacity: 1,
       y: 0,
@@ -47,6 +71,8 @@ export function AnimatedText({ text, el: Wrapper = "p", className, children }: A
       },
     },
   }
+
+  const child = animationType === "soft" ? childSoft : childStandard
 
   return (
     <Wrapper className={cn("font-display overflow-hidden", defaultWeight, gradientClass, className)}>

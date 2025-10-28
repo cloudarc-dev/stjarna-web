@@ -100,6 +100,7 @@ export default function ITPage() {
               <AnimatedText
                 text="IT-tjänster i Västerbotten"
                 el="h1"
+                animationType="soft"
                 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mt-2"
               />
               <motion.p
