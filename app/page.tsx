@@ -23,7 +23,7 @@ import { AnimatedText } from "@/components/ui/animated-text"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { UpsalesModal } from "@/components/upsales-modal"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
-import { Floating3DObjects } from "@/components/ui/floating-3d-objects"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 
 import { ShineButton } from "@/components/ui/shine-button"
 import { ShineBadge } from "@/components/ui/shine-badge"
@@ -185,17 +185,15 @@ export default function LandingPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4 overflow-hidden">
+          <section className="relative min-h-[90vh] flex items-center justify-center text-center px-4 overflow-hidden">
             <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
-            <Floating3DObjects />
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
-            <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
-            <div className="relative z-10">
-              <AnimatedText
+            <div className="relative z-10 max-w-6xl mx-auto">
+              <PaintableTextBrushV2
                 text="StjärnaFyrkant Västerbotten"
                 el="h1"
-                animationType="soft"
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground"
+                paintColor="#fedb00"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold tracking-tighter text-foreground mb-6"
               />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

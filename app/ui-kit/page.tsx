@@ -20,9 +20,8 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GlareCard } from "@/components/ui/glare-card"
 import { SubtleCard } from "@/components/ui/subtle-card"
-import { InteractiveGridBackground } from "@/components/ui/interactive-grid-background"
 import { AnimatedText } from "@/components/ui/animated-text"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { ShineButton } from "@/components/ui/shine-button"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -45,7 +44,7 @@ export default function UiKitPage() {
       <div className="relative z-10 flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow container mx-auto px-4 md:px-6 py-8 md:py-16">
-          <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+          <OptimizedBackground variant="minimal" className="absolute inset-0 z-0" />
           {/* Hero Section */}
           <div className="text-center my-16">
             <AnimatedText
@@ -1208,30 +1207,6 @@ export default function UiKitPage() {
                       </div>
                     </form>
                   </SubtleCard>
-                </div>
-              </div>
-            </section>
-
-            {/* Backgrounds Section */}
-            <section>
-              <AnimatedText
-                text="Dynamiska Bakgrunder"
-                el="h2"
-                className="text-4xl font-bold mb-8 flex items-center gap-4"
-              >
-                <Grid />
-              </AnimatedText>
-              <div className="max-w-2xl mx-auto">
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4">Interactive Grid</h3>
-                  <div className="h-80 rounded-lg border relative overflow-hidden">
-                    <InteractiveGridBackground />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <p className="text-muted-foreground bg-background/50 px-4 py-2 rounded-full backdrop-blur-sm">
-                        Rör musen över ytan
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </section>

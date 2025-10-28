@@ -4,11 +4,12 @@ import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { LifeBuoy, CheckCircle2, FilePlus, Search, Wrench, Check, Settings, UserPlus, HardDrive, Users } from "lucide-react"
 import Image from "next/image"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { UpsalesModal } from "@/components/upsales-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -111,7 +112,6 @@ export default function ServicedeskPage() {
 
   return (
     <>
-      <MysticalBackground />
       <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
@@ -127,14 +127,14 @@ export default function ServicedeskPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
             </div>
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative z-10 text-left">
                 <p className="text-primary font-semibold">Din personliga IT-avdelning</p>
-                <AnimatedText
+                <PaintableTextBrushV2
                   text="Servicedesk i Västerbotten"
                   el="h1"
-                  animationType="soft"
+                  paintColor="#fedb00"
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mt-2 leading-tight"
                 />
                 <motion.p

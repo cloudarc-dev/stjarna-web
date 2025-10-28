@@ -3,12 +3,13 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Shield, Radio, Wrench, Truck, Search, Code, Rocket, FileCheck2 } from "lucide-react"
 import Image from "next/image"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const serviceCategories = [
@@ -90,20 +91,20 @@ export default function FordonsteknikPage() {
               />
               <div className="absolute inset-0 bg-black/60" />
             </div>
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="container mx-auto relative z-10">
               <div className="max-w-4xl">
                 <div className="space-y-2">
-                  <AnimatedText
+                  <PaintableTextBrushV2
                     text="Fordonsteknik"
+                    paintColor="#22c55e"
                     el="h1"
-                    animationType="soft"
                     className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
-                  <AnimatedText
+                  <PaintableTextBrushV2
                     text="i Västerbotten"
-                    el="span"
-                    animationType="soft"
+                    paintColor="#22c55e"
+                    el="h1"
                     className="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground leading-none"
                   />
                 </div>

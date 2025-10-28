@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Button } from "@/components/ui/button"
@@ -63,7 +63,7 @@ export default function SEOImplementationPage() {
         <main className="flex-grow container mx-auto px-4 py-16">
           {/* Hero Section */}
           <div className="relative mb-16">
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="minimal" className="absolute inset-0 z-0" />
             <div className="text-center relative z-10">
               <AnimatedText
                 text="SEO Implementation Lab"

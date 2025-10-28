@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
@@ -10,7 +11,7 @@ import { Award, Leaf, Users, MapPin, Clock, Phone, } from "lucide-react"
 import { useState } from "react"
 import { UpsalesModal } from "@/upsalesmodul"
 import Image from "next/image"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const isoCards = [
@@ -145,9 +146,9 @@ export default function OmOssPage() {
               <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
             </div>
             {/* Mystical animated background - moved above image/gradient for visibility */}
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="minimal" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <AnimatedText text="Vässa din verksamhet" el="h1" animationType="soft" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
+              <PaintableTextBrushV2 text="Vässa din verksamhet" paintColor="#fedb00" el="h1" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

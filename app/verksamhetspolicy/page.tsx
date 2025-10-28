@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { Heart, Shield, Award, Leaf, Users, Target, MapPin, Clock, Phone, Mail } from "lucide-react"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const principles = [

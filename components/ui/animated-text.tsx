@@ -75,12 +75,18 @@ export function AnimatedText({ text, el: Wrapper = "p", className, children, ani
   const child = animationType === "soft" ? childSoft : childStandard
 
   return (
-    <Wrapper className={cn("font-display overflow-hidden", defaultWeight, gradientClass, className)}>
-      <motion.span variants={container} initial="hidden" animate="visible" aria-label={text}>
+    <Wrapper className={cn("font-display", defaultWeight, gradientClass, className)}>
+      <motion.span
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        aria-label={text}
+        className="block overflow-hidden py-2"
+      >
         {text.split(" ").map((word, index) => (
           <span key={index} className="inline-block mr-[0.25em]">
             {word.split("").map((char, charIndex) => (
-              <motion.span key={charIndex} className="inline-block pb-1" variants={child}>
+              <motion.span key={charIndex} className="inline-block pb-2" variants={child}>
                 {char}
               </motion.span>
             ))}

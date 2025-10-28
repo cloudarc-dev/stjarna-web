@@ -3,12 +3,13 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
 import { ShineButton } from "@/components/ui/shine-button"
 import { Phone, Radio, Users, Search, Code, Rocket, MessageSquare, FileCheck2 } from "lucide-react"
 import Image from "next/image"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -111,19 +112,19 @@ export default function KommunikationsteknikPage() {
           <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
-            <MysticalBackground variant="hero" />
+            <OptimizedBackground variant="hero" />
             <div className="relative z-10">
               <div className="space-y-2">
-                <AnimatedText
+                <PaintableTextBrushV2
                   text="Kommunikationsteknik"
                   el="h1"
-                  animationType="soft"
+                  paintColor="#a855f7"
                   className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-none"
                 />
-                <AnimatedText
+                <PaintableTextBrushV2
                   text="i Västerbotten"
-                  el="span"
-                  animationType="soft"
+                  el="h1"
+                  paintColor="#a855f7"
                   className="block text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground leading-none"
                 />
               </div>

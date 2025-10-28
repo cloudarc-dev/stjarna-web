@@ -3,12 +3,13 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, MapPin, Clock, Phone, Mail } from "lucide-react"
 import Image from "next/image"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const benefits = [
@@ -71,7 +72,7 @@ export default function KarriarPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
             </div>
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <OptimizedBackground variant="minimal" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -84,7 +85,7 @@ export default function KarriarPage() {
                   <span className="text-primary font-semibold">Nominerad till Årets Arbetsgivare 2023</span>
                 </div>
               </motion.div>
-              <AnimatedText text="Jobba med oss" el="h1" animationType="soft" className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" />
+              <PaintableTextBrushV2 text="Jobba med oss" paintColor="#fedb00" el="h1" className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

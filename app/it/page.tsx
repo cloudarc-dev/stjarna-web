@@ -3,9 +3,9 @@ import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
+import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
-import { InteractiveGridBackground } from "@/components/ui/interactive-grid-background"
-import { MysticalBackground } from "@/components/ui/mystical-background"
+import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer, Brush, FileCheck2 } from "lucide-react"
 import Image from "next/image"
@@ -93,14 +93,13 @@ export default function ITPage() {
         <main className="flex-grow">
           {/* Hero Section */}
           <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
-            <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
-            <InteractiveGridBackground />
+            <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="container mx-auto relative z-10">
               <p className="text-primary font-semibold">40+ års erfarenhet</p>
-              <AnimatedText
+              <PaintableTextBrushV2
                 text="IT-tjänster i Västerbotten"
                 el="h1"
-                animationType="soft"
+                paintColor="#3b82f6"
                 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mt-2"
               />
               <motion.p
