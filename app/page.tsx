@@ -23,6 +23,7 @@ import { AnimatedText } from "@/components/ui/animated-text"
 import { MysticalBackground } from "@/components/ui/mystical-background"
 import { UpsalesModal } from "@/components/upsales-modal"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
+import { Floating3DObjects } from "@/components/ui/floating-3d-objects"
 
 import { ShineButton } from "@/components/ui/shine-button"
 import { ShineBadge } from "@/components/ui/shine-badge"
@@ -184,8 +185,9 @@ export default function LandingPage() {
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
+          <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4 overflow-hidden">
             <MysticalBackground variant="hero" className="absolute inset-0 z-0" />
+            <Floating3DObjects />
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
             <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,hsl(var(--primary)/0.1),transparent)]" />
             <div className="relative z-10">
