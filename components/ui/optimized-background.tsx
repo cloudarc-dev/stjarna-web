@@ -1,16 +1,18 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo, useRef, useCallback, memo } from "react"
 
 interface OptimizedBackgroundProps {
   variant?: "hero" | "subtle" | "minimal"
   className?: string
 }
 
-export function OptimizedBackground({ variant = "subtle", className = "" }: OptimizedBackgroundProps) {
+function OptimizedBackgroundComponent({ variant = "subtle", className = "" }: OptimizedBackgroundProps) {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
   const [isClient, setIsClient] = useState(false)
+  const lastUpdateRef = useRef(0)
+  const rafRef = useRef<number>()
 
   // Performance detection
   const performanceLevel = useMemo(() => {
@@ -28,10 +30,30 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
   // Particle count based on variant and performance - MUST be before any returns
   const particleCount = useMemo(() => {
     if (performanceLevel === "minimal") return 0
-    if (variant === "hero") return performanceLevel === "high" ? 20 : 10
-    if (variant === "subtle") return performanceLevel === "high" ? 8 : 4
+    if (variant === "hero") return performanceLevel === "high" ? 15 : 8
+    if (variant === "subtle") return performanceLevel === "high" ? 6 : 3
     return 0
   }, [variant, performanceLevel])
+
+  // Throttled mouse move handler - max 20 updates per second
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now()
+    if (now - lastUpdateRef.current < 50) return // Throttle to 20fps
+
+    lastUpdateRef.current = now
+
+    // Cancel any pending animation frame
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current)
+    }
+
+    rafRef.current = requestAnimationFrame(() => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      })
+    })
+  }, [])
 
   useEffect(() => {
     setIsClient(true)
@@ -39,19 +61,14 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
     // Only track mouse on hero variant with high performance
     if (variant !== "hero" || performanceLevel === "minimal") return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      // Throttle updates for better performance
-      requestAnimationFrame(() => {
-        setMousePosition({
-          x: (e.clientX / window.innerWidth) * 100,
-          y: (e.clientY / window.innerHeight) * 100,
-        })
-      })
-    }
-
     window.addEventListener("mousemove", handleMouseMove, { passive: true })
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [variant, performanceLevel])
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
+  }, [variant, performanceLevel, handleMouseMove])
 
   if (!isClient) return null
 
@@ -66,7 +83,8 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
       <div
         className="absolute inset-0 opacity-30"
         style={{
-          background: `radial-gradient(ellipse 80% 80% at ${mousePosition.x}% ${mousePosition.y}%, hsl(var(--primary) / 0.1), transparent 50%)`
+          background: `radial-gradient(ellipse 80% 80% at ${mousePosition.x}% ${mousePosition.y}%, hsl(var(--primary) / 0.1), transparent 50%)`,
+          willChange: renderHero ? 'background' : 'auto'
         }}
       />
 
@@ -170,7 +188,7 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
         />
       ))}
 
-      {/* Realistic lens flare - hero only */}
+      {/* Realistic lens flare - hero only, optimized to 3 elements */}
       {renderHero && performanceLevel !== "minimal" && (
         <>
           {/* Main light source glow */}
@@ -182,6 +200,7 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
               transform: "translate(-50%, -50%)",
               background: `radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, hsl(var(--primary) / 0.12) 30%, transparent 70%)`,
               filter: "blur(40px)",
+              willChange: 'transform, opacity'
             }}
             animate={{
               scale: [1, 1.1, 1],
@@ -194,16 +213,17 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
             }}
           />
 
-          {/* Chromatic lens flare artifacts - realistic colors */}
+          {/* Chromatic lens flare artifacts - optimized to 2 most impactful colors */}
           {/* Purple/Blue artifact */}
           <motion.div
             className="absolute w-32 h-32 rounded-full pointer-events-none"
             style={{
-              left: `${mousePosition.x + (50 - mousePosition.x) * 0.3}%`,
-              top: `${mousePosition.y + (50 - mousePosition.y) * 0.3}%`,
+              left: `${mousePosition.x + (50 - mousePosition.x) * 0.35}%`,
+              top: `${mousePosition.y + (50 - mousePosition.y) * 0.35}%`,
               transform: "translate(-50%, -50%)",
               background: `radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, rgba(138, 43, 226, 0.05) 50%, transparent 80%)`,
               filter: "blur(20px)",
+              willChange: 'opacity'
             }}
             animate={{
               opacity: [0.3, 0.5, 0.3],
@@ -215,66 +235,25 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
             }}
           />
 
-          {/* Green artifact */}
+          {/* Pink/Magenta artifact with green tint */}
           <motion.div
-            className="absolute w-24 h-24 rounded-full pointer-events-none"
+            className="absolute w-36 h-36 rounded-full pointer-events-none"
             style={{
-              left: `${mousePosition.x + (50 - mousePosition.x) * 0.5}%`,
-              top: `${mousePosition.y + (50 - mousePosition.y) * 0.5}%`,
+              left: `${mousePosition.x + (50 - mousePosition.x) * 0.65}%`,
+              top: `${mousePosition.y + (50 - mousePosition.y) * 0.65}%`,
               transform: "translate(-50%, -50%)",
-              background: `radial-gradient(circle, rgba(0, 255, 127, 0.15) 0%, rgba(0, 255, 127, 0.03) 50%, transparent 80%)`,
-              filter: "blur(15px)",
-            }}
-            animate={{
-              opacity: [0.25, 0.4, 0.25],
-            }}
-            transition={{
-              duration: 2.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.3,
-            }}
-          />
-
-          {/* Pink/Magenta artifact */}
-          <motion.div
-            className="absolute w-40 h-40 rounded-full pointer-events-none"
-            style={{
-              left: `${mousePosition.x + (50 - mousePosition.x) * 0.7}%`,
-              top: `${mousePosition.y + (50 - mousePosition.y) * 0.7}%`,
-              transform: "translate(-50%, -50%)",
-              background: `radial-gradient(circle, rgba(255, 105, 180, 0.18) 0%, rgba(255, 105, 180, 0.04) 50%, transparent 80%)`,
-              filter: "blur(25px)",
-            }}
-            animate={{
-              opacity: [0.2, 0.35, 0.2],
-            }}
-            transition={{
-              duration: 3.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.6,
-            }}
-          />
-
-          {/* Subtle orange/amber glow */}
-          <motion.div
-            className="absolute w-28 h-28 rounded-full pointer-events-none"
-            style={{
-              left: `${mousePosition.x + (50 - mousePosition.x) * 0.15}%`,
-              top: `${mousePosition.y + (50 - mousePosition.y) * 0.15}%`,
-              transform: "translate(-50%, -50%)",
-              background: `radial-gradient(circle, rgba(255, 165, 0, 0.15) 0%, rgba(255, 165, 0, 0.03) 50%, transparent 80%)`,
-              filter: "blur(18px)",
+              background: `radial-gradient(circle, rgba(255, 105, 180, 0.18) 0%, rgba(0, 255, 127, 0.08) 40%, transparent 80%)`,
+              filter: "blur(22px)",
+              willChange: 'opacity'
             }}
             animate={{
               opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: 2.2,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.9,
+              delay: 0.5,
             }}
           />
         </>
@@ -282,3 +261,6 @@ export function OptimizedBackground({ variant = "subtle", className = "" }: Opti
     </div>
   )
 }
+
+// Memoize to prevent unnecessary re-renders
+export const OptimizedBackground = memo(OptimizedBackgroundComponent)

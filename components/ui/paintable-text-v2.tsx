@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useState, useRef } from "react"
+import { useState, useRef, useMemo, useCallback, memo } from "react"
 import { cn } from "@/lib/utils"
 
 interface PaintableTextBrushProps {
@@ -11,31 +11,36 @@ interface PaintableTextBrushProps {
   el?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p"
 }
 
-// NEXT LEVEL entrance + paintable effect
-export function PaintableTextBrushV2({
+// NEXT LEVEL entrance + paintable effect - OPTIMIZED
+function PaintableTextBrushV2Component({
   text,
   className = "",
   paintColor = "#fedb00",
   el: Wrapper = "h1"
 }: PaintableTextBrushProps) {
-  const [paintedChars, setPaintedChars] = useState<Map<string, boolean>>(new Map())
+  // Use Set instead of Map for better performance
+  const [paintedChars, setPaintedChars] = useState<Set<string>>(new Set())
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, amount: 0.2 })
 
-  const handleMouseMove = (wordIndex: number, charIndex: number) => {
+  // Memoize the handleMouseMove callback
+  const handleMouseMove = useCallback((wordIndex: number, charIndex: number) => {
     const key = `${wordIndex}-${charIndex}`
     setPaintedChars(prev => {
-      const newMap = new Map(prev)
-      newMap.set(key, true)
-      return newMap
+      if (prev.has(key)) return prev // No update needed
+      const newSet = new Set(prev)
+      newSet.add(key)
+      return newSet
     })
-  }
+  }, [])
 
-  const resetPaint = () => {
-    setPaintedChars(new Map())
-  }
+  // Memoize the resetPaint callback
+  const resetPaint = useCallback(() => {
+    setPaintedChars(new Set())
+  }, [])
 
-  const words = text.split(" ")
+  // Memoize words array to prevent re-splitting on every render
+  const words = useMemo(() => text.split(" "), [text])
 
   return (
     <Wrapper
@@ -47,13 +52,14 @@ export function PaintableTextBrushV2({
         <span key={wordIndex} className="inline-block mr-[0.25em] relative">
           {word.split("").map((char, charIndex) => {
             const key = `${wordIndex}-${charIndex}`
-            const isPainted = paintedChars.get(key)
+            const isPainted = paintedChars.has(key)
             const totalIndex = wordIndex * 10 + charIndex
 
             return (
               <motion.span
                 key={charIndex}
                 className="inline-block relative overflow-visible"
+                style={{ willChange: isInView ? 'auto' : 'transform, opacity, filter' }}
                 onMouseEnter={() => handleMouseMove(wordIndex, charIndex)}
                 // EPIC ENTRANCE ANIMATION
                 initial={{
@@ -174,3 +180,6 @@ export function PaintableTextBrushV2({
     </Wrapper>
   )
 }
+
+// Memoize to prevent unnecessary re-renders
+export const PaintableTextBrushV2 = memo(PaintableTextBrushV2Component)

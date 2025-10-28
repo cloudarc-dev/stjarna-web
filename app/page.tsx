@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import dynamic from "next/dynamic"
 import {
   Computer,
   Truck,
@@ -21,7 +22,6 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
-import { UpsalesModal } from "@/components/upsales-modal"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 
@@ -31,6 +31,11 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { Typewriter } from "@/components/ui/typewriter"
+
+// Lazy load UpsalesModal - only loads when needed
+const UpsalesModal = dynamic(() => import("@/components/upsales-modal").then(mod => ({ default: mod.UpsalesModal })), {
+  ssr: false
+})
 
 const services = [
   {
@@ -282,7 +287,6 @@ export default function LandingPage() {
 
           {/* Customer Cases Section */}
           <section id="kundcase" className="py-24 md:py-32 dark:border-t relative">
-            <OptimizedBackground variant="subtle" className="absolute inset-0" />
             <div className="container mx-auto relative z-10">
               <AnimatedText text="Senaste Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
