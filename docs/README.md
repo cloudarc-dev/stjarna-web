@@ -13,6 +13,7 @@ docs/
 │   ├── service-colors.md             # Färgsystem
 │   └── image-management.md           # Bildhantering
 └── guides/                            # Utvecklingsguider
+    ├── email-integration.md          # 📧 Email-integration (VIKTIGT!)
     ├── adding-new-service.md         # Lägg till ny tjänst
     ├── updating-experts.md           # Uppdatera experter
     └── deploying.md                  # Deployment
@@ -25,6 +26,7 @@ docs/
 - [Hantera bilder](./modules/image-management.md)
 
 ### För utvecklare
+- **[📧 Email-integration (GÖR DETTA FÖRST!)](./guides/email-integration.md)**
 - [Formulärsystem](./modules/form-system.md)
 - [Lägg till ny tjänst](./guides/adding-new-service.md)
 - [Deployment](./guides/deploying.md)

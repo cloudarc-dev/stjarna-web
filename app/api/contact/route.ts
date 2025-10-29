@@ -27,8 +27,21 @@ export async function POST(request: NextRequest) {
     // Build email content
     const emailContent = buildEmailContent(config, data)
 
-    // TODO: Implement actual email sending
-    // For now, we'll log to console and return success
+    // ⚠️ TODO: IMPLEMENT EMAIL SENDING
+    //
+    // Formulären fungerar och vet redan vart de ska skicka mail!
+    // Men mailen skickas inte på riktigt ännu - de loggas bara här nedan.
+    //
+    // 📧 Följ guiden: /docs/guides/email-integration.md
+    //
+    // Snabbstart:
+    // 1. Skapa konto på Resend.com (gratis)
+    // 2. Få API-nyckel
+    // 3. npm install resend
+    // 4. Ersätt denna sektion med Resend-kod (se guiden)
+    //
+    // Tar ca 15 minuter - sen funkar allt!
+    //
     console.log('=== EMAIL TO SEND ===')
     console.log('To:', config.email)
     console.log('Subject:', config.subject)
