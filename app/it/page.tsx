@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -7,10 +8,10 @@ import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
+import { FormModal } from "@/components/form-modal"
 import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer, Brush, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-// ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const serviceCategories = [
   {
@@ -85,9 +86,11 @@ const faqItems = [
 ]
 
 export default function ITPage() {
+  const [isFormOpen, setIsFormOpen] = useState(false)
+
   return (
     <>
-      {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
+      <FormModal open={isFormOpen} onClose={() => setIsFormOpen(false)} formType="it-support" />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -116,7 +119,7 @@ export default function ITPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton>Boka kostnadsfri IT-genomgång</ShineButton>
+                <ShineButton onClick={() => setIsFormOpen(true)}>Boka kostnadsfri IT-genomgång</ShineButton>
               </motion.div>
             </div>
           </section>
