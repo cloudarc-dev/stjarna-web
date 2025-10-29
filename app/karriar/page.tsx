@@ -65,7 +65,7 @@ export default function KarriarPage() {
           <section className="relative min-h-[80vh] flex items-center justify-center text-center px-4">
             <div className="absolute inset-0 overflow-hidden -z-10">
               <Image
-                src="/placeholder.svg?height=1080&width=1920"
+                src="/media/Karriär.jpeg"
                 alt="Glada medarbetare på StjärnaFyrkant"
                 fill
                 className="object-cover opacity-20"
@@ -211,7 +211,7 @@ export default function KarriarPage() {
                   </blockquote>
                   <div className="flex items-center justify-center gap-4">
                     <Image
-                      src="/placeholder.svg?height=80&width=80"
+                      src="/media/kund/nina-karlsson.jpeg"
                       alt="Nina Karlsson"
                       width={80}
                       height={80}

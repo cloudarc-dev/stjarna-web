@@ -78,16 +78,16 @@ const processSteps = [
 
 const experts = [
   {
-    name: "Linnea Nyström",
-    title: "Servicedesk-ansvarig",
-    certs: ["ITIL Foundation", "Microsoft 365 Certified"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Konny Larsson",
+    title: "Servicedesk IT",
+    certs: ["IT & Företagstelefoni"],
+    avatar: "/media/team/konny-larsson.jpg",
   },
   {
-    name: "Petter Andersson",
-    title: "Supporttekniker",
-    certs: ["CompTIA A+", "Network+"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Anneli Bogardi",
+    title: "Backoffice",
+    certs: ["Företagstelefoni"],
+    avatar: "/media/team/anneli-bogardi.jpg",
   },
 ]
 
@@ -162,7 +162,7 @@ export default function ServicedeskPage() {
                   transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
                 >
                   <Image
-                    src="/placeholder.svg?height=500&width=500"
+                    src="/media/Servicedesk.JPG"
                     alt="Vänlig supporttekniker med headset"
                     width={500}
                     height={500}

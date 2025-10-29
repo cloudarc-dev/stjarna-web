@@ -60,16 +60,16 @@ const cases = [
 
 const experts = [
   {
-    name: "Urban Eriksson",
-    title: "Lösningsspecialist",
-    certs: ["Komradio", "Taxi", "Alkolås"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Robin Carlström",
+    title: "Fordonstekniker",
+    certs: ["Taxi", "Alkolås"],
+    avatar: "/media/team/robin-carlstrom.jpg",
   },
   {
-    name: "Robert Fransson",
+    name: "Jacob Lundholm",
     title: "Fordonstekniker",
-    certs: ["Installationer", "Taxi", "Alkolås"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    certs: ["Inredning", "Taxi", "Alkolås"],
+    avatar: "/media/team/jacob-lundholm.jpg",
   },
 ]
 

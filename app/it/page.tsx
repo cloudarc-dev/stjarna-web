@@ -55,15 +55,15 @@ const processSteps = [
 const experts = [
   {
     name: "Erik Damber",
-    title: "Moln- & Microsoft 365-specialist",
-    certs: ["WatchGuard Certified, Serverinfrastruktur"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    title: "Konsult",
+    certs: ["Microsoft 365", "Intune", "Säkerhet"],
+    avatar: "/media/team/erik-damber.jpg",
   },
   {
     name: "Daniel Bennervall",
-    title: "IT-säkerhetsexpert",
-    certs: ["CompTIA Security+", "Fortinet NSE"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    title: "Konsult",
+    certs: ["Microsoft 365", "Företagsnätverk", "Serverdrift"],
+    avatar: "/media/team/daniel-bennervall.jpg",
   },
 ]
 

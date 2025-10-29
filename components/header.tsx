@@ -4,7 +4,7 @@ import type React from "react"
 import { useTheme } from "next-themes"
 import { useEffect, useState, useMemo } from "react"
 import dynamic from "next/dynamic"
-import { Menu, X, Computer, Truck, Signal, Users, ShoppingCart, Building2, Bot } from "lucide-react"
+import { Menu, X, Computer, Truck, Signal, Phone, Users, ShoppingCart, Building2, Bot } from "lucide-react"
 
 import Link from "next/link"
 import Image from "next/image"
@@ -50,10 +50,25 @@ const LogoWithTheme = () => {
     setMounted(true)
   }, [])
 
+  // Prevent hydration mismatch by not rendering theme-dependent logo until mounted
+  if (!mounted) {
+    // Return a placeholder that matches SSR
+    return (
+      <div className="relative h-12 w-48">
+        <Image
+          src="/stjarnafyrkant-logo-original-rgb-1.svg"
+          alt="Stjärna Fyrkant Västerbotten"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+    )
+  }
+
   const currentTheme = theme === 'system' ? systemTheme : theme
   const isDark = currentTheme === 'dark'
 
-  // Always show logo immediately - no fade animation
   return (
     <div className="relative h-12 w-48">
       <Image
@@ -71,8 +86,8 @@ const LogoWithTheme = () => {
 const NAV_ITEMS = [
   { name: "IT", href: "/it", icon: Computer },
   { name: "Fordonsteknik", href: "/fordonsteknik", icon: Truck },
-  { name: "Kommunikationsteknik", href: "/kommunikationsteknik", icon: Signal },
-  { name: "Servicedesk", href: "/servicedesk", icon: Users },
+  { name: "Kommunikation", href: "/kommunikationsteknik", icon: Signal },
+  { name: "Företagstelefoni", href: "/foretagstelefoni", icon: Phone },
   { name: "Shop", href: "https://stjarna.shop/", icon: ShoppingCart, external: true },
   { name: "Om oss", href: "/om-oss", icon: Building2 },
 ] as const

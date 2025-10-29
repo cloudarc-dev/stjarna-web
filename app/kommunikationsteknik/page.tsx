@@ -15,24 +15,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const serviceCategories = [
   {
-    title: "Telefoni & Konferenssystem",
-    icon: <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>,
-    description: "Mobiltelefoner, abonnemang, headset, moderna system för digitala möten och företagsväxel.",
-  },
-  {
-    title: "Gruppkommunikation & Täckningsförstärkning",
+    title: "Traditionell Komradio",
     icon: <Radio className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
-    description: "Traditionell komradio och modern kommunikation i mobilen, mobiltäckning, repeaters och hörselskydd.",
+    description: "Professionella radiosystem för pålitlig kommunikation i tuffa miljöer och avlägsna områden.",
   },
   {
-    title: "Upphandling & Implementation",
-    icon: <Search className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
-    description: "Behovsanalys, kravställning, kostnadsbesparingar och projektledning för nya system och avtal.",
-  },
-  {
-    title: "Service & Support",
+    title: "Modern Mobilkommunikation",
     icon: <MessageSquare className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
-    description: "Löpande serviceavtal, användarutbildning och felsökning på plats och distans.",
+    description: "GroupTalk och push-to-talk över 4G/5G – komradions enkelhet i din smartphone.",
+  },
+  {
+    title: "Täckningsförstärkning",
+    icon: <Search className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
+    description: "Mobiltäckning, repeaters och signalförstärkare för optimal täckning inomhus och utomhus.",
+  },
+  {
+    title: "Hörselskydd & Tillbehör",
+    icon: <Users className="w-8 h-8 text-purple-600 dark:text-purple-400" />,
+    description: "3M Peltor kommunikationssystem och hörselskydd för säker kommunikation i bullriga miljöer.",
   },
 ]
 
@@ -47,52 +47,57 @@ const processSteps = [
 
 const experts = [
   {
-    name: "Urban Spetz",
-    title: "Kommunikationsexpert",
-    certs: ["Täckningsförstärkning", "Komradio", "GroupTalk", "3M Peltor"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Urban Eriksson",
+    title: "Verkstadschef Skellefteå",
+    certs: ["Komradio", "Täckningsförstärkning"],
+    avatar: "/media/team/urban-eriksson.jpg",
   },
   {
-    name: "Radion Golubenko",
-    title: "Företagstelefoni-specialist",
-    certs: ["Upphandling", "Abonnemang", "Företagsväxel", "Hårdvara"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Urban Spetz",
+    title: "Industriförsäljning",
+    certs: ["Komradio", "GroupTalk", "Täckningsförstärkning"],
+    avatar: "/media/team/urban-spetz.jpg",
   },
 ];
 
 const cases = [
   {
-    title: "Komatsu Forest",
-    description: "Upphandling och projektledning av en ny lösning för företagstelefonin.",
-  },
-  {
-    title: "Diös Fastigheter",
-    description: "Hårdvara som tjänst och system för inventarie­hantering.",
-  },
-  {
     title: "Northvolt",
     description: "Helhetslösning för grupp­kommunikation & säkerhet – brygga komradio med modern teknik.",
-  },
-  {
-    title: "Västerbotten Energi",
-    description: "IP-baserad växellösning med 350 anknytningar & headset-deployment.",
   },
   {
     title: "Logistik AB Norr",
     description: "Fleet-kommunikation via 4G/5G för samtliga transportfordon.",
   },
+  {
+    title: "Skellefteå Kraft",
+    description: "Radiokommunikation och täckningsförstärkning för kraftledningsunderhåll.",
+  },
+  {
+    title: "Svevia",
+    description: "Push-to-talk system för snabb kommunikation mellan vägarbetslag.",
+  },
+  {
+    title: "Komatsu Forest",
+    description: "Robust komradio och hörselskydd för skogsmaskinsförare.",
+  },
 ]
 
 const faqItems = [
   {
-    question: "Kan ni hjälpa till med upphandling av operatörsavtal?",
+    question: "Vad är skillnaden mellan traditionell komradio och GroupTalk?",
     answer:
-      "Ja, vi analyserar era samtalsmönster och behov för att förhandla fram det bästa och mest kostnadseffektiva avtalet för er.",
+      "Traditionell komradio använder dedikerade frekvenser och fungerar utan mobilnät, perfekt för avlägsna områden. GroupTalk använder 4G/5G och ger komradions enkelhet i din smartphone med obegränsad räckvidd.",
   },
   {
-    question: "Erbjuder ni hyr- eller leasinglösningar?",
+    question: "Hur fungerar täckningsförstärkning?",
     answer:
-      "Absolut. Vi kan skräddarsy flexibla finansieringslösningar för både hård- och mjukvara som passar er budget.",
+      "Vi installerar repeaters och signalförstärkare som förbättrar mobiltäckningen inomhus och i svårtillgängliga områden. Detta säkerställer pålitlig kommunikation även där operatörernas nät är svagt.",
+  },
+  {
+    question: "Varför behöver vi specialiserat hörselskydd?",
+    answer:
+      "I bullriga miljöer som skogsbruk, industri och bygg behövs hörselskydd som både dämpar farligt buller OCH tillåter tydlig radiokommunikation. 3M Peltor-system integreras direkt med era radioapparater.",
   },
   {
     question: "Hur fungerar supporten efter installation?",
@@ -134,7 +139,7 @@ export default function KommunikationsteknikPage() {
                 transition={{ delay: 1, duration: 0.8 }}
                 className="max-w-3xl mx-auto mt-6 text-lg text-muted-foreground"
               >
-                Från mobil & VoIP till komradio – framtidssäkra lösningar som förbättrar samarbetet och ökar säkerheten.
+                Från traditionell komradio till modern GroupTalk – pålitlig kommunikation för tuffa miljöer och krävande arbete.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -142,18 +147,18 @@ export default function KommunikationsteknikPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton>Boka kostnadsfri kommunikationsanalys</ShineButton>
+                <ShineButton>Boka kostnadsfri radiokonsultation</ShineButton>
               </motion.div>
             </div>
           </section>
 
-          {/* Services Section */}
+          {/* Services Section - Different layout from foretagstelefoni */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto grid lg:grid-cols-3 gap-16">
               <ParallaxScroll distance={320} className="lg:col-span-1 space-y-4">
-                <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
+                <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
                 <p className="text-lg text-muted-foreground">
-                  Helhetslösningar inom kommunikation – vi hjälper er hela vägen.
+                  Komplett radiokommunikation – från klassisk komradio till modern push-to-talk.
                 </p>
               </ParallaxScroll>
               <div className="lg:col-span-2 grid grid-cols-1 gap-8 justify-items-center">
@@ -167,8 +172,8 @@ export default function KommunikationsteknikPage() {
                   >
                     <SubtleCard className="p-8 group">
                       <div className="flex items-center gap-6">
-                        <motion.div 
-                          className="bg-primary/10 p-4 rounded-lg"
+                        <motion.div
+                          className="bg-purple-500/10 p-4 rounded-lg"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                         >
                           {category.icon}
@@ -230,17 +235,24 @@ export default function KommunikationsteknikPage() {
                 <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
                 <div className="space-y-8">
                   {experts.map((expert) => (
-                    <SubtleCard key={expert.name} className="p-6 flex items-center gap-6">
+                    <SubtleCard key={expert.name} className="p-6 flex items-start gap-6">
                       <Image
                         src={expert.avatar || "/placeholder.svg"}
                         alt={`Porträtt av ${expert.name}`}
                         width={80}
                         height={80}
-                        className="rounded-full border-2 border-primary"
+                        className="rounded-full border-2 border-purple-500"
                       />
                       <div>
                         <h3 className="text-xl font-semibold">{expert.name}</h3>
-                        <p className="text-primary font-medium text-sm">{expert.title}</p>
+                        <p className="text-purple-600 dark:text-purple-400 font-medium text-sm mb-2">{expert.title}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {expert.certs.map((cert) => (
+                            <span key={cert} className="text-xs bg-purple-500/10 text-purple-600 dark:text-purple-400 px-2 py-1 rounded">
+                              {cert}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </SubtleCard>
                   ))}

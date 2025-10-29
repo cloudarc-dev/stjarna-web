@@ -13,7 +13,6 @@ import {
   Search,
   Brush,
   Code,
-  Rocket,
   ArrowRight,
 } from "lucide-react"
 import { Header } from "@/components/header"
@@ -40,21 +39,20 @@ const UpsalesModal = dynamic(() => import("@/components/upsales-modal").then(mod
 const services = [
   {
     icon: (
-      <motion.div 
+      <motion.div
         className="relative"
         whileHover={{ rotate: [0, 360] }}
         transition={{ duration: 0.6 }}
       >
         <Computer size={32} className="text-blue-600 dark:text-blue-400" />
-        <motion.div 
+        <motion.div
           className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
       </motion.div>
     ),
-    href: "/it", // IT-tjänster
-
+    href: "/it",
     title: "IT-tjänster",
     description:
       "Säker, skalbar IT för företag. Vi hanterar allt från nätverk och säkerhet till molntjänster och support.",
@@ -68,8 +66,7 @@ const services = [
         <Truck size={32} className="text-green-600 dark:text-green-400" />
       </motion.div>
     ),
-    href: "/fordonsteknik", // Fordonsteknik
-
+    href: "/fordonsteknik",
     title: "Fordonsteknik",
     description:
       "Skräddarsydd fordonsutrustning och installationer för effektivt fältarbete.",
@@ -83,10 +80,24 @@ const services = [
         <Signal size={32} className="text-purple-600 dark:text-purple-400" />
       </motion.div>
     ),
-    href: "/kommunikationsteknik", // Kommunikationsteknik
-
-    title: "Kommunikationsteknik",
-    description: "Smarta kommunikationslösningar. Vi hjälper dig med allt från komradio till telefoni och nätverk.",
+    href: "/kommunikationsteknik",
+    title: "Kommunikation",
+    description: "Radiokommunikation och GroupTalk – pålitliga lösningar för tuffa miljöer och krävande arbete.",
+  },
+  {
+    icon: (
+      <motion.div
+        whileHover={{ rotate: [0, 10, -10, 0] }}
+        transition={{ duration: 0.4 }}
+      >
+        <svg className="w-8 h-8 text-teal-600 dark:text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+      </motion.div>
+    ),
+    href: "/foretagstelefoni",
+    title: "Företagstelefoni",
+    description: "Moderna telefoni­lösningar – från mobiltelefoner och VoIP till konferenssystem och växlar.",
   },
 ]
 
@@ -207,7 +218,7 @@ export default function LandingPage() {
                 className="mt-4 h-20 md:h-24 flex items-center justify-center"
               >
                 <Typewriter
-                  text={["IT-Lösningar", "Fordonsteknik", "Kommunikationsteknik"]}
+                  text={["IT-Lösningar", "Fordonsteknik", "Radiokommunikation", "Företagstelefoni"]}
                   className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-primary"
                 />
               </motion.div>
@@ -222,65 +233,71 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Services Section */}
+          {/* Services Section - 2+2+1 Layout */}
           <section id="tjanster" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-                <ParallaxScroll distance={320} className="lg:col-span-1 px-2 md:px-0 space-y-4">
-                  <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
-                  <p className="text-lg text-muted-foreground">
-                    Helhetslösningar inom IT, fordon och kommunikation. Våra specialister hittar rätt lösning för dina
-                    behov.
-                  </p>
-                </ParallaxScroll>
-                <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {services.map((service, i) => (
-                    <motion.div
-                      key={service.title}
-                      initial={{ opacity: 0, y: 50 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1, type: "spring" }}
-                      viewport={{ once: true, amount: 0.3 }}
-                    >
-                      <SubtleCard className="p-8 flex flex-col h-full group">
-                        <div className="flex items-center gap-4 mb-4">
-                          <motion.div 
-                            className="bg-primary/10 p-3 rounded-lg"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                          >
-                            {service.icon}
-                          </motion.div>
-                          <h3 className="text-xl sm:text-2xl font-semibold">{service.title}</h3>
-                        </div>
-                        <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
-                        <Link href={service.href} passHref legacyBehavior>
-                          <Button variant="outline" className="mt-auto bg-transparent">
-                            Läs mer <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </Link>
-                      </SubtleCard>
-                    </motion.div>
-                  ))}
+              <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
+              <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
+                Helhetslösningar inom IT, fordonsteknik, radiokommunikation och företagstelefoni. Våra specialister hittar rätt lösning för dina behov.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                {/* First 4 service cards in 2x2 grid */}
+                {services.map((service, i) => (
                   <motion.div
+                    key={service.title}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, type: "spring" }}
+                    transition={{ delay: i * 0.1, type: "spring" }}
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <SubtleCard className="p-8 flex flex-col h-full bg-card/80">
-                      <LifeBuoy size={32} className="text-primary mb-4" />
-                      <h3 className="text-xl sm:text-2xl font-semibold">Personlig Support</h3>
-                      <p className="text-muted-foreground mt-2 mb-4">
-                        Vi finns här för dig. Snabb och personlig hjälp när du behöver det som mest.
-                      </p>
-                      <Link href="/servicedesk" legacyBehavior passHref>
-                        <Button variant="outline" className="bg-transparent">
-                          Gå till Support <ArrowRight className="ml-2 h-4 w-4" />
+                    <SubtleCard className="p-8 flex flex-col h-full group">
+                      <div className="flex items-center gap-4 mb-4">
+                        <motion.div
+                          className="bg-primary/10 p-3 rounded-lg"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          {service.icon}
+                        </motion.div>
+                        <h3 className="text-xl sm:text-2xl font-semibold">{service.title}</h3>
+                      </div>
+                      <p className="text-muted-foreground mb-6 flex-grow">{service.description}</p>
+                      <Link href={service.href} passHref legacyBehavior>
+                        <Button variant="outline" className="mt-auto bg-transparent">
+                          Läs mer <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </Link>
                     </SubtleCard>
                   </motion.div>
-                </div>
+                ))}
+
+                {/* Personlig Support card - full width on last row */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="md:col-span-2"
+                >
+                  <SubtleCard className="p-8 flex flex-col md:flex-row items-center gap-6 bg-card/80">
+                    <div className="flex items-center gap-6 flex-1">
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <LifeBuoy size={40} className="text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl sm:text-3xl font-semibold mb-2">Personlig Support</h3>
+                        <p className="text-muted-foreground">
+                          Vi finns här för dig. Snabb och personlig hjälp när du behöver det som mest.
+                        </p>
+                      </div>
+                    </div>
+                    <Link href="/servicedesk" legacyBehavior passHref>
+                      <Button variant="outline" className="bg-transparent shrink-0">
+                        Gå till Support <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </SubtleCard>
+                </motion.div>
               </div>
             </div>
           </section>
@@ -316,20 +333,23 @@ export default function LandingPage() {
           <section id="process" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <AnimatedText text="Vår Process" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-                <div className="absolute top-12 left-0 w-full h-0.5 bg-border -translate-y-1/2 hidden lg:block" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {processSteps.map((step, i) => (
                   <motion.div
                     key={step.title}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.2, type: "spring" }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    className="relative flex flex-col items-center text-center p-6"
+                    transition={{ delay: i * 0.15, type: "spring" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="relative"
                   >
-                    <div className="bg-background p-4 rounded-full border-2 border-primary mb-4 z-10">{step.icon}</div>
-                    <h3 className="font-semibold text-lg">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+                    <SubtleCard className="p-8 flex flex-col items-center text-center h-full">
+                      <div className="bg-primary/10 p-4 rounded-full mb-4">
+                        {step.icon}
+                      </div>
+                      <h3 className="font-semibold text-xl mb-3">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground">{step.description}</p>
+                    </SubtleCard>
                   </motion.div>
                 ))}
               </div>

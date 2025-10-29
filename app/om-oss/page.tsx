@@ -7,7 +7,7 @@ import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Award, Leaf, Users, MapPin, Clock, Phone, } from "lucide-react"
+import { Award, Leaf, Users, MapPin, Clock, Phone, ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { UpsalesModal } from "@/upsalesmodul"
 import Image from "next/image"
@@ -185,13 +185,81 @@ export default function OmOssPage() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/media/Om oss.jpg"
                   alt="StjärnaFyrkant team"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-2xl"
                 />
               </motion.div>
+            </div>
+          </section>
+
+          {/* Work With Us Section - Moved up for visibility */}
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <AnimatedText text="Jobba med oss" el="h2" className="text-4xl font-bold mb-6" />
+                <div className="space-y-4 text-lg text-muted-foreground">
+                  <p>
+                    Hjärtat i vår verksamhet är våra medarbetare och som anställd hos oss får du dela dina dagar med
+                    riktigt duktiga och härliga kollegor som alla drivs av att göra det där lilla extra – både för våra
+                    kunder och varandra.
+                  </p>
+                  <p>
+                    Tillsammans skapar vi en arbetsplats som präglas av öppenhet, gemenskap, eget ansvar och där alla
+                    medarbetare ska ha en möjlighet att växa, utvecklas och få vara med och påverka.
+                  </p>
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="mt-8 p-6 bg-primary/10 rounded-xl border border-primary/20"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <Award className="w-8 h-8 text-primary" />
+                    <div>
+                      <h3 className="font-bold text-lg">Nominerad till</h3>
+                      <p className="text-primary font-semibold">Årets Arbetsgivare 2023!</p>
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="mt-8"
+                >
+                  <a href="/karriar">
+                    <ShineButton className="w-full">
+                      Se lediga tjänster <ArrowRight className="ml-2 h-4 w-4" />
+                    </ShineButton>
+                  </a>
+                </motion.div>
+              </div>
+              <SubtleCard className="p-8">
+                <blockquote className="text-lg italic text-muted-foreground mb-4">
+                  "Vi har tillsammans hittat nya vägar framåt, utvecklat och kommit på lösningar för att effektivisera
+                  och optimera. De finns alltid nära till hands när vi behöver dem och ger en service i Stjärnklass.
+                  Hela deras team är på alerten och ger ett väldigt trevligt bemötande."
+                </blockquote>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/media/kund/nina-karlsson.jpeg"
+                    alt="Nina Karlsson"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="font-semibold">Nina Karlsson</p>
+                    <p className="text-sm text-muted-foreground">FD Inköpsansvarig, Edukatus</p>
+                  </div>
+                </div>
+              </SubtleCard>
             </div>
           </section>
 
@@ -223,61 +291,6 @@ export default function OmOssPage() {
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </section>
-
-          {/* Work With Us Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <AnimatedText text="Jobba med oss" el="h2" className="text-4xl font-bold mb-6" />
-                <div className="space-y-4 text-lg text-muted-foreground">
-                  <p>
-                    Hjärtat i vår verksamhet är våra medarbetare och som anställd hos oss får du dela dina dagar med
-                    riktigt duktiga och härliga kollegor som alla drivs av att göra det där lilla extra – både för våra
-                    kunder och varandra.
-                  </p>
-                  <p>
-                    Tillsammans skapar vi en arbetsplats som präglas av öppenhet, gemenskap, eget ansvar och där alla
-                    medarbetare ska ha en möjlighet att växa, utvecklas och få vara med och påverka.
-                  </p>
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="mt-8 p-6 bg-primary/10 rounded-xl border border-primary/20"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <Award className="w-8 h-8 text-primary" />
-                    <div>
-                      <h3 className="font-bold text-lg">Nominerad till</h3>
-                      <p className="text-primary font-semibold">Årets Arbetsgivare 2023!</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-              <SubtleCard className="p-8">
-                <blockquote className="text-lg italic text-muted-foreground mb-4">
-                  "Vi har tillsammans hittat nya vägar framåt, utvecklat och kommit på lösningar för att effektivisera
-                  och optimera. De finns alltid nära till hands när vi behöver dem och ger en service i Stjärnklass.
-                  Hela deras team är på alerten och ger ett väldigt trevligt bemötande."
-                </blockquote>
-                <div className="flex items-center gap-4">
-                  <Image
-                    src="/placeholder.svg?height=60&width=60"
-                    alt="Nina Karlsson"
-                    width={60}
-                    height={60}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <p className="font-semibold">Nina Karlsson</p>
-                    <p className="text-sm text-muted-foreground">FD Inköpsansvarig, Edukatus</p>
-                  </div>
-                </div>
-              </SubtleCard>
             </div>
           </section>
 

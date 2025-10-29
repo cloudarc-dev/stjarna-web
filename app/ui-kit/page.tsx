@@ -458,7 +458,7 @@ export default function UiKitPage() {
                 </motion.div>
 
                 {/* Kommunikationsteknik Service Icon */}
-                <motion.div 
+                <motion.div
                   className="flex flex-col items-center p-6 rounded-lg bg-card/30 hover:bg-purple-50 dark:hover:bg-purple-950/20 transition-colors group cursor-pointer border border-transparent hover:border-purple-200 dark:hover:border-purple-800/30"
                   whileHover={{ scale: 1.05, y: -4 }}
                 >
@@ -470,6 +470,23 @@ export default function UiKitPage() {
                     <Signal size={32} className="text-purple-600 dark:text-purple-400" />
                   </motion.div>
                   <span className="text-xs font-medium text-center text-purple-600 dark:text-purple-400">Kommunikation</span>
+                </motion.div>
+
+                {/* Företagstelefoni Service Icon */}
+                <motion.div
+                  className="flex flex-col items-center p-6 rounded-lg bg-card/30 hover:bg-teal-50 dark:hover:bg-teal-950/20 transition-colors group cursor-pointer border border-transparent hover:border-teal-200 dark:hover:border-teal-800/30"
+                  whileHover={{ scale: 1.05, y: -4 }}
+                >
+                  <motion.div
+                    className="mb-3"
+                    whileHover={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <svg className="w-8 h-8 text-teal-600 dark:text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                  </motion.div>
+                  <span className="text-xs font-medium text-center text-teal-600 dark:text-teal-400">Företagstelefoni</span>
                 </motion.div>
 
                 {/* Servicedesk Service Icon */}

@@ -40,17 +40,30 @@ export const serviceColors = {
     glow: "shadow-purple-500/20",
     name: "Kommunikationsteknik"
   },
+  foretagstelefoni: {
+    primary: "from-teal-500 to-teal-600",
+    light: "from-teal-100 to-teal-200",
+    accent: "bg-teal-500",
+    border: "border-teal-200",
+    text: "text-teal-600",
+    bg: "bg-teal-50",
+    darkBg: "dark:bg-teal-950/20",
+    darkBorder: "dark:border-teal-800/30",
+    darkText: "dark:text-teal-400",
+    glow: "shadow-teal-500/20",
+    name: "Företagstelefoni"
+  },
   servicedesk: {
     primary: "from-orange-500 to-orange-600",
     light: "from-orange-100 to-orange-200",
-    accent: "bg-orange-500", 
+    accent: "bg-orange-500",
     border: "border-orange-200",
     text: "text-orange-600",
     bg: "bg-orange-50",
     darkBg: "dark:bg-orange-950/20",
     darkBorder: "dark:border-orange-800/30",
     darkText: "dark:text-orange-400",
-    glow: "shadow-orange-500/20", 
+    glow: "shadow-orange-500/20",
     name: "Servicedesk"
   },
   general: {
@@ -78,8 +91,9 @@ export function getServiceColors(service: ServiceType) {
 // Helper function to detect service from pathname
 export function getServiceFromPath(pathname: string): ServiceType {
   if (pathname.includes('/it')) return 'it'
-  if (pathname.includes('/fordonsteknik')) return 'fordonsteknik' 
+  if (pathname.includes('/fordonsteknik')) return 'fordonsteknik'
   if (pathname.includes('/kommunikationsteknik')) return 'kommunikationsteknik'
+  if (pathname.includes('/foretagstelefoni')) return 'foretagstelefoni'
   if (pathname.includes('/servicedesk')) return 'servicedesk'
   return 'general'
 }
