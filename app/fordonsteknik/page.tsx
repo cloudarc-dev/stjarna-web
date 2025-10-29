@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -10,6 +11,8 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { Shield, Radio, Wrench, Truck, Search, Code, Rocket, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
+import { FormModal } from "@/components/form-modal"
+import { FormType } from "@/lib/form-config"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const serviceCategories = [
@@ -74,8 +77,21 @@ const experts = [
 ]
 
 export default function FordonsteknikPage() {
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [currentFormType, setCurrentFormType] = useState<FormType>('fordon')
+
+  const handleOpenForm = (formType: FormType) => {
+    setCurrentFormType(formType)
+    setIsFormOpen(true)
+  }
+
   return (
     <>
+      <FormModal
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        formType={currentFormType}
+      />
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
@@ -123,7 +139,9 @@ export default function FordonsteknikPage() {
                   transition={{ delay: 1.5, duration: 0.8 }}
                   className="mt-10"
                 >
-                  <ShineButton>Boka kostnadsfri behovsanalys</ShineButton>
+                  <ShineButton onClick={() => handleOpenForm('fordon')}>
+                    Boka kostnadsfri behovsanalys
+                  </ShineButton>
                 </motion.div>
               </div>
             </div>

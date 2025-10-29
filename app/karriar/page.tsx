@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -10,6 +11,7 @@ import { GlareCard } from "@/components/ui/glare-card"
 import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, MapPin, Clock, Phone, Mail } from "lucide-react"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
+import { FormModal } from "@/components/form-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const benefits = [
@@ -55,8 +57,15 @@ const values = [
 ]
 
 export default function KarriarPage() {
+  const [isFormOpen, setIsFormOpen] = useState(false)
+
   return (
     <>
+      <FormModal
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        formType="jobbansoekan"
+      />
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
@@ -101,7 +110,7 @@ export default function KarriarPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton>Se lediga tjänster</ShineButton>
+                <ShineButton onClick={() => setIsFormOpen(true)}>Se lediga tjänster</ShineButton>
               </motion.div>
             </div>
           </section>
@@ -236,8 +245,11 @@ export default function KarriarPage() {
                 även om du inte ser en specifik tjänst som passar dig.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <ShineButton>Se lediga tjänster</ShineButton>
-                <ShineButton className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <ShineButton onClick={() => setIsFormOpen(true)}>Se lediga tjänster</ShineButton>
+                <ShineButton
+                  onClick={() => setIsFormOpen(true)}
+                  className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
                   Skicka spontanansökan
                 </ShineButton>
               </div>

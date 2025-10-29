@@ -13,17 +13,21 @@ import { Label } from "@/components/ui/label"
 import { MapPin, Clock, Phone, Mail, Shield } from "lucide-react"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
-import { UpsalesModal } from "@/components/upsales-modal"
+import { FormModal } from "@/components/form-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 export default function KontaktPage() {
-  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+  const [isFormOpen, setIsFormOpen] = useState(false)
 
   return (
     <>
+      <FormModal
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        formType="general"
+      />
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
-      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
@@ -126,8 +130,10 @@ export default function KontaktPage() {
                       />
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <ShineButton className="flex-1">Skicka meddelande</ShineButton>
-                      <Button variant="outline" onClick={() => setIsUpsalesOpen(true)}>
+                      <ShineButton className="flex-1" onClick={() => setIsFormOpen(true)}>
+                        Skicka meddelande
+                      </ShineButton>
+                      <Button variant="outline" onClick={() => setIsFormOpen(true)}>
                         Alternativt kontaktformulär
                       </Button>
                     </div>

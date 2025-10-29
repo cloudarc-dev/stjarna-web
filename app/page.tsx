@@ -31,8 +31,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Typewriter } from "@/components/ui/typewriter"
 
-// Lazy load UpsalesModal - only loads when needed
-const UpsalesModal = dynamic(() => import("@/components/upsales-modal").then(mod => ({ default: mod.UpsalesModal })), {
+// Lazy load FormModal - only loads when needed
+const FormModal = dynamic(() => import("@/components/form-modal").then(mod => ({ default: mod.FormModal })), {
   ssr: false
 })
 
@@ -192,11 +192,17 @@ const experts = [
 ]
 
 export default function LandingPage() {
-  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [currentFormType, setCurrentFormType] = useState<'projekt' | 'general'>('projekt')
+
+  const handleOpenForm = (formType: 'projekt' | 'general') => {
+    setCurrentFormType(formType)
+    setIsFormOpen(true)
+  }
 
   return (
     <>
-      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
+      <FormModal open={isFormOpen} onClose={() => setIsFormOpen(false)} formType={currentFormType} />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -226,9 +232,15 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2, duration: 0.8 }}
-                className="mt-10"
+                className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <ShineButton>Starta ett projekt</ShineButton>
+                <ShineButton onClick={() => handleOpenForm('projekt')}>Starta ett projekt</ShineButton>
+                <ShineButton
+                  onClick={() => handleOpenForm('general')}
+                  className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  Hör av dig
+                </ShineButton>
               </motion.div>
             </div>
           </section>
@@ -438,7 +450,7 @@ export default function LandingPage() {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
                 Kontakta oss för en kostnadsfri behovsanalys och låt oss skapa framtidens lösningar för er.
               </p>
-              <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta oss</ShineButton>
+              <ShineButton onClick={() => handleOpenForm('general')}>Kontakta oss</ShineButton>
             </div>
           </section>
         </main>

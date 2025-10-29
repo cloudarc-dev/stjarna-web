@@ -11,7 +11,7 @@ import { LifeBuoy, CheckCircle2, FilePlus, Search, Wrench, Check, Settings, User
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { UpsalesModal } from "@/components/upsales-modal"
+import { FormModal } from "@/components/form-modal"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const includedServices = [
@@ -108,11 +108,12 @@ const faqItems = [
 ]
 
 export default function ServicedeskPage() {
-  const [isUpsalesOpen, setIsUpsalesOpen] = useState(false)
+  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [currentFormType, setCurrentFormType] = useState<'it-support' | 'telefoni-support'>('it-support')
 
   return (
     <>
-      <UpsalesModal open={isUpsalesOpen} onClose={() => setIsUpsalesOpen(false)} />
+      <FormModal open={isFormOpen} onClose={() => setIsFormOpen(false)} formType={currentFormType} />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -152,7 +153,9 @@ export default function ServicedeskPage() {
                   transition={{ delay: 1.5, duration: 0.8 }}
                   className="mt-10"
                 >
-                  <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta vår Servicedesk</ShineButton>
+                  <ShineButton onClick={() => { setCurrentFormType('it-support'); setIsFormOpen(true); }}>
+                    Kontakta vår Servicedesk
+                  </ShineButton>
                 </motion.div>
               </div>
               <div className="hidden lg:block">
@@ -304,7 +307,9 @@ export default function ServicedeskPage() {
                 Lokal partner inom IT, fordonsteknik och kommunikation. Vi hjälper dig att skapa en stabil teknisk
                 infrastruktur.
               </p>
-              <ShineButton onClick={() => setIsUpsalesOpen(true)}>Kontakta oss nu</ShineButton>
+              <ShineButton onClick={() => { setCurrentFormType('it-support'); setIsFormOpen(true); }}>
+                Kontakta oss nu
+              </ShineButton>
             </div>
           </section>
         </main>

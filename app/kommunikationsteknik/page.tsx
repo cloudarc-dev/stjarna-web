@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -12,6 +13,7 @@ import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { FormModal } from "@/components/form-modal"
 
 const serviceCategories = [
   {
@@ -107,8 +109,15 @@ const faqItems = [
 ]
 
 export default function KommunikationsteknikPage() {
+  const [isFormOpen, setIsFormOpen] = useState(false)
+
   return (
     <>
+      <FormModal
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        formType="komradio"
+      />
       {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
@@ -147,7 +156,9 @@ export default function KommunikationsteknikPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton>Boka kostnadsfri radiokonsultation</ShineButton>
+                <ShineButton onClick={() => setIsFormOpen(true)}>
+                  Boka kostnadsfri radiokonsultation
+                </ShineButton>
               </motion.div>
             </div>
           </section>

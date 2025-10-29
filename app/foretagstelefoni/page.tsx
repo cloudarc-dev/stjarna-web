@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -10,6 +11,7 @@ import { Phone, Users, Search, Code, Rocket, MessageSquare, FileCheck2, Smartpho
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { FormModal } from "@/components/form-modal"
 
 const serviceCategories = [
   {
@@ -100,8 +102,15 @@ const faqItems = [
 ]
 
 export default function ForetagstelefoniPage() {
+  const [isFormOpen, setIsFormOpen] = useState(false)
+
   return (
     <>
+      <FormModal
+        open={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+        formType="foretagstelefoni"
+      />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -139,7 +148,9 @@ export default function ForetagstelefoniPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton>Boka kostnadsfri telefonikonsultation</ShineButton>
+                <ShineButton onClick={() => setIsFormOpen(true)}>
+                  Boka kostnadsfri telefonikonsultation
+                </ShineButton>
               </motion.div>
             </div>
           </section>
