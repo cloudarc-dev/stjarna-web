@@ -65,23 +65,15 @@ const experts = [
 const cases = [
   {
     title: "Northvolt",
-    description: "Helhetslösning för grupp­kommunikation & säkerhet – brygga komradio med modern teknik.",
+    description: "Helhetslösning för säker gruppkommunikation genom att brygga traditionell radio med GroupTalk, samt leverans och service av hörselskydd.",
   },
   {
-    title: "Logistik AB Norr",
-    description: "Fleet-kommunikation via 4G/5G för samtliga transportfordon.",
+    title: "Umeå Vatten och Avfall",
+    description: "Täckningsförstärkning för mobilnätet på 4G-frekvens i hela Hamrinstunneln för säker kommunikation under jord.",
   },
   {
-    title: "Skellefteå Kraft",
-    description: "Radiokommunikation och täckningsförstärkning för kraftledningsunderhåll.",
-  },
-  {
-    title: "Svevia",
-    description: "Push-to-talk system för snabb kommunikation mellan vägarbetslag.",
-  },
-  {
-    title: "Komatsu Forest",
-    description: "Robust komradio och hörselskydd för skogsmaskinsförare.",
+    title: "Boliden Mineral",
+    description: "Projektledning av infrastruktur för radionät samt leverans och service av DECT-telefoner och hörselskydd.",
   },
 ]
 
@@ -148,7 +140,7 @@ export default function KommunikationsteknikPage() {
                 transition={{ delay: 1, duration: 0.8 }}
                 className="max-w-3xl mx-auto mt-6 text-lg text-muted-foreground"
               >
-                Från traditionell komradio till modern GroupTalk – pålitlig kommunikation för tuffa miljöer och krävande arbete.
+                Traditionell och modern gruppkommunikation för ökad säkerhet i krävande arbete samt inomhustäckning för radio, GPS och mobilnätet.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -157,7 +149,7 @@ export default function KommunikationsteknikPage() {
                 className="mt-10"
               >
                 <ShineButton onClick={() => setIsFormOpen(true)}>
-                  Boka kostnadsfri radiokonsultation
+                  Boka kostnadsfri konsultation
                 </ShineButton>
               </motion.div>
             </div>
