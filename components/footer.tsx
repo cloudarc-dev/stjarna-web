@@ -172,14 +172,6 @@ export function Footer() {
       </div>
       <div className="container max-w-screen-2xl mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
         <p>&copy; {new Date().getFullYear()} StjärnaFyrkant Västerbotten. Alla rättigheter förbehållna.</p>
-        <div className="mt-4 md:mt-0 flex items-center gap-4">
-          <Link href="/seo-plan" className="hover:text-primary text-xs opacity-60">
-            SEO Plan
-          </Link>
-          <Link href="/ui-kit" className="hover:text-primary text-xs opacity-60">
-            UI-Kit
-          </Link>
-        </div>
       </div>
     </footer>
   )
