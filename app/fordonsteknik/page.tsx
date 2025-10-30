@@ -24,7 +24,7 @@ const serviceCategories = [
   {
     title: "Kommunikation & Digital Uppkoppling",
     icon: <Radio className="w-10 h-10 text-green-600 dark:text-green-400" />,
-    description: "Komradio, GPS-spårning och digitala körjournaler för en helt uppkopplad fordonspark.",
+    description: "Komradio, GPS-spårning och trådlöst nät ute i fält för en helt uppkopplad fordonspark.",
   },
   {
     title: "Fordonsinredning & Utrustning",
@@ -48,12 +48,12 @@ const processSteps = [
 
 const cases = [
   {
-    title: "Västerbotten Taxi",
-    description: "Installation av alkolås och GPS-spårning för hela fordonsflottan.",
+    title: "Holmen Wood Products",
+    description: "Kamerasystem från Motec för säkrare logistikarbete i Combiliftar inklusive installation on site.",
   },
   {
-    title: "Skellefteå Buss",
-    description: "Komplett bilinredning och arbetsbelysning för servicebilar.",
+    title: "Säll Entreprenad",
+    description: "Transportradios inklusive programmering och installation till entreprenadfordon.",
   },
   {
     title: "Räddningstjänsten Västerbotten",
