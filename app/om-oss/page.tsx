@@ -45,6 +45,7 @@ const departments = [
       "Anneli Bogardi - Backoffice",
       "Nathalie Bodén - Backoffice",
       "Jonas Karlsson - Backoffice",
+      "Linda Edlund - Ekonomi",
     ],
   },
   {
@@ -148,15 +149,14 @@ export default function OmOssPage() {
             {/* Mystical animated background - moved above image/gradient for visibility */}
             <OptimizedBackground variant="minimal" className="absolute inset-0 z-0" />
             <div className="relative z-10 max-w-4xl mx-auto">
-              <PaintableTextBrushV2 text="Vässa din verksamhet" paintColor="#fedb00" el="h1" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
+              <PaintableTextBrushV2 text="Personligt partnerskap" paintColor="#fedb00" el="h1" className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6" />
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
                 className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
               >
-                Med rätt teknik, en lokal närvaro och ett stort, hållbart ansvar hjälper vi Västerbottens företag att
-                utvecklas. Tillsammans bygger vi framtidens, starkare Västerbotten.
+                Med rätt teknik, en lokal närvaro och ett stort hållbart ansvar hjälper vi till att skapa framtidens starkare företagsmarknad.
               </motion.p>
             </div>
           </section>
@@ -168,13 +168,13 @@ export default function OmOssPage() {
                 <AnimatedText text="Om StjärnaFyrkant Västerbotten" el="h2" className="text-4xl font-bold mb-6" />
                 <div className="space-y-4 text-lg text-muted-foreground">
                   <p>
-                    StjärnaFyrkant är ett driftbolag som tillhandahåller rätt teknik så att ni har rätt förutsättningar
-                    att utveckla er verksamhet. Vi har verkat i Västerbotten med kompetens inom Kommunikations-,
-                    Informations- och Fordonsteknik i 40 år.
+                    Vi är en del av den nationella franchisen StjärnaFyrkant sedan 2003 och har arbetat lokalt i Västerbotten i över 40 år.
                   </p>
                   <p>
-                    Hos oss får du professionell service av högsta kvalité när du besöker vår butik, vår serviceverkstad
-                    och när vi besöker er ute på fält.
+                    Vårt uppdrag är att göra det enkelt för dig att driva verksamhet med rätt teknik på plats, oavsett om du befinner dig på kontoret, i fordonet eller ute på fält.
+                  </p>
+                  <p>
+                    Från första behovsanalys till implementation och löpande support är vi en partner som tar ansvar på riktigt.
                   </p>
                 </div>
               </div>
@@ -192,6 +192,75 @@ export default function OmOssPage() {
                   className="rounded-xl shadow-2xl"
                 />
               </motion.div>
+            </div>
+          </section>
+
+          {/* Därför väljer företag oss Section */}
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+            <div className="container mx-auto max-w-4xl">
+              <AnimatedText text="Därför väljer företag oss" el="h2" className="text-4xl font-bold mb-12 text-center" />
+              <div className="grid gap-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground">
+                    Personligt service och snabb hjälp när det verkligen behövs.
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground">
+                    Vår erfarenhet och breda erbjudande skapar färre kontaktytor för den dagliga driften.
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground">
+                    Egen verkstad och butik för tillgänglighet, installationer och reparationer.
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground">
+                    En smidig och anpassad köpupplevelse med leverans över hela Sverige.
+                  </p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground">
+                    Ärlig och professionell rådgivning med högsta kvalitet i fokus som ger faktisk nytta.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </section>
 
