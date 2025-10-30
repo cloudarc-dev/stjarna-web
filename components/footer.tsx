@@ -46,8 +46,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/foretagstelefoni" className="hover:text-primary">
+                  Företagstelefoni
+                </Link>
+              </li>
+              <li>
                 <Link href="/servicedesk" className="hover:text-primary">
-                  Servicedesk
+                  Support
                 </Link>
               </li>
             </ul>
