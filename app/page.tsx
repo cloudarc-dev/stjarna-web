@@ -82,7 +82,7 @@ const services = [
     ),
     href: "/kommunikationsteknik",
     title: "Kommunikation",
-    description: "Radiokommunikation och GroupTalk – pålitliga lösningar för tuffa miljöer och krävande arbete.",
+    description: "Traditionell och modern gruppkommunikation för ökad säkerhet i krävande arbete samt inomhustäckning för radio, GPS och mobilnätet.",
   },
   {
     icon: (
@@ -97,7 +97,7 @@ const services = [
     ),
     href: "/foretagstelefoni",
     title: "Företagstelefoni",
-    description: "Moderna telefoni­lösningar – från mobiltelefoner och VoIP till konferenssystem och växlar.",
+    description: "Moderna lösningar från paketerade mobiltelefoner och abonnemang till växlar, AI och headset.",
   },
 ]
 
@@ -105,17 +105,17 @@ const cases = [
   {
     title: "Komatsu Forest",
     description:
-      "Upphandling och projektledning av en ny lösning för företagstelefonin.",
+      "Upphandling och projektledning av en ny lösning för företagstelefonin med Microsoft Teams samt datanätsförbindelser till samtliga siter.",
   },
   {
-    title: "Tectel i Vindeln",
+    title: "Norrtech VVS",
     description:
-      "Anpassad fordonsinredning för ett mer effektivt fältarbete.",
+      "Anpassade fordonsinredningar till uppdaterad flotta för ett mer effektivt arbete ute i fält.",
   },
   {
-    title: "Electrum Automation",
+    title: "Railcare",
     description:
-      "Total översyn av IT-infrastruktur med projektplanering för kommande 3 år.",
+      "Paketerad hårdvara med livscykelhantering för drygt 200 anställda, samt intern avlastning med vår servicedesk för all support rörande företagstelefonin.",
   },
 ]
 
@@ -172,22 +172,22 @@ const processSteps = [
 
 const experts = [
   {
-    name: "Anna Karlsson",
-    title: "Fordonsingenjör & Projektledare",
-    certs: ["Dräger-certifierad", "Hytera Partner"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Erik Damber",
+    title: "Konsult",
+    certs: ["Microsoft 365", "Intune", "Säkerhet"],
+    avatar: "/media/team/erik-damber.jpg",
   },
   {
-    name: "Johan Berg",
-    title: "Installationsexpert",
-    certs: ["Sortimo Partner"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Robin Carlström",
+    title: "Fordonstekniker",
+    certs: ["Taxi", "Alkolås"],
+    avatar: "/media/team/robin-carlstrom.jpg",
   },
   {
-    name: "Maria Lindberg",
-    title: "IT-säkerhetsspecialist",
-    certs: ["CISSP", "Microsoft Certified"],
-    avatar: "/placeholder.svg?height=100&width=100",
+    name: "Konny Larsson",
+    title: "Servicedesk IT",
+    certs: ["IT & Företagstelefoni"],
+    avatar: "/media/team/konny-larsson.jpg",
   },
 ]
 
