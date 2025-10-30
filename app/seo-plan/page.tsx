@@ -39,24 +39,24 @@ const seoStrategies = [
       {
         title: "Unikt, värdefullt innehåll",
         description: "Skapa innehåll som fokuserar på människors behov, inte bara sökmotorer",
-        why: "Google AI prioriterar innehåll som ger verkligt värde till användare. AI Overviews visar innehåll som besvarar komplexa frågor.",
+        why: "Googles AI prioriterar innehåll som ger verkligt värde till användare. AI Overviews visar innehåll som besvarar komplexa frågor på ett tydligt sätt.",
         implementation: [
           "FAQ-sektioner för vanliga IT- och fordonsfrågor",
           "Djupgående guider för varje tjänsteområde",
-          "Kundsuccess stories och case studies",
-          "Problemlösande artiklar för lokala företag"
+          "Kundberättelser och case studies med mätbara resultat",
+          "Problemlösande artiklar för lokala företag i Västerbotten"
         ],
         priority: "Hög"
       },
       {
-        title: "Strukturerad data (Schema Markup)",
+        title: "Strukturerad data (schema markup)",
         description: "Hjälp Google förstå ditt innehåll genom maskinläsbar data",
-        why: "Strukturerad data hjälper Google AI att förstå och presentera ditt innehåll korrekt i AI Overviews och Featured Snippets.",
+        why: "Strukturerad data hjälper Googles AI att förstå och presentera ditt innehåll korrekt i AI Overviews och Featured Snippets.",
         implementation: [
-          "LocalBusiness schema för företagsinformation",
-          "Service schema för IT, fordonsteknik, kommunikation",
-          "Review schema för kundrecensioner",
-          "FAQ schema för vanliga frågor"
+          "LocalBusiness-schema för företagsinformation",
+          "Service-schema för IT, fordonsteknik och kommunikation",
+          "Review-schema för kundrecensioner",
+          "FAQ-schema för vanliga frågor"
         ],
         priority: "Hög"
       }
@@ -68,14 +68,14 @@ const seoStrategies = [
     color: "from-green-500/20 to-green-600/10",
     strategies: [
       {
-        title: "Google My Business Optimering",
-        description: "Optimera din GMB-profil för lokal synlighet",
-        why: "85% av konsumenter använder internet för att hitta lokala företag. GMB är kritiskt för lokala sökresultat.",
+        title: "Google Business Profile-optimering",
+        description: "Optimera din Google Business Profile för lokal synlighet",
+        why: "85% av konsumenterna använder internet för att hitta lokala företag. Google Business Profile är avgörande för lokala sökresultat.",
         implementation: [
           "Komplett företagsprofil med alla tjänster",
           "Regelbundna uppdateringar och inlägg",
-          "Kundrecensioner management",
-          "Lokala keywords i beskrivning"
+          "Hantering av kundrecensioner",
+          "Lokala sökord i beskrivning"
         ],
         priority: "Hög"
       },
@@ -85,9 +85,9 @@ const seoStrategies = [
         why: "Lokala sökningar har 50% högre konverteringsgrad än generella sökningar.",
         implementation: [
           "Landningssidor för varje tjänst + Umeå/Västerbotten",
-          "Lokala case studies och kundberättelser",
+          "Lokala fallstudier och kundberättelser",
           "Innehåll om lokal marknad och behov",
-          "Geografiska keywords i metadata"
+          "Geografiska sökord i metadata"
         ],
         priority: "Hög"
       }
@@ -99,26 +99,26 @@ const seoStrategies = [
     color: "from-purple-500/20 to-purple-600/10",
     strategies: [
       {
-        title: "Core Web Vitals & Performance",
+        title: "Core Web Vitals och prestanda",
         description: "Säkerställ snabb laddning och bra användarupplevelse",
         why: "Googles algoritm prioriterar snabba sidor. Dålig prestanda = lägre ranking och användare lämnar sidan.",
         implementation: [
-          "Bildoptimering och next/image användning",
+          "Bildoptimering och användning av next/image",
           "Lazy loading för bilder",
-          "CSS och JS optimering",
-          "CDN implementation för statiska assets"
+          "Optimering av CSS och JavaScript",
+          "CDN-implementering för statiska resurser"
         ],
         priority: "Medium"
       },
       {
-        title: "Meta tags och metadata",
-        description: "Unika title tags och descriptions för varje sida",
-        why: "Meta descriptions påverkar CTR från sökresultat, vilket är en rankingfaktor.",
+        title: "Metadata och title-taggar",
+        description: "Unika title-taggar och beskrivningar för varje sida",
+        why: "Metabeskrivningar påverkar klickfrekvensen från sökresultat, vilket är en rankingfaktor.",
         implementation: [
-          "Unika title tags för varje sida (50-60 tecken)",
-          "Beskrivande meta descriptions (150-160 tecken)",
-          "Open Graph tags för social sharing",
-          "Canonical URLs för att undvika duplicate content"
+          "Unika title-taggar för varje sida (50-60 tecken)",
+          "Beskrivande metabeskrivningar (150-160 tecken)",
+          "Open Graph-taggar för delning i sociala medier",
+          "Canonical URLs för att undvika duplicerat innehåll"
         ],
         priority: "Hög"
       }
@@ -130,12 +130,12 @@ const seoStrategies = [
     color: "from-orange-500/20 to-orange-600/10",
     strategies: [
       {
-        title: "FAQ och Q&A innehåll",
+        title: "FAQ och frågor och svar",
         description: "Skapa innehåll som svarar på specifika frågor",
-        why: "AI Overviews och Featured Snippets favoriserar innehåll som direkt besvarar användarfrågor.",
+        why: "AI Overviews och Featured Snippets favoriserar innehåll som direkt besvarar användarnas frågor.",
         implementation: [
           "'Vad kostar IT-support för småföretag i Umeå?'",
-          "'Hur lång tid tar alkolås installation?'",
+          "'Hur lång tid tar installation av alkolås?'",
           "'Vilka kommunikationslösningar passar bäst för hantverkare?'",
           "Strukturerad FAQ-sektion på varje tjänstesida"
         ],
@@ -146,10 +146,10 @@ const seoStrategies = [
         description: "Kombinera text med bilder och video",
         why: "Googles AI kan nu analysera bilder och video, vilket ökar chanserna för multimodala sökresultat.",
         implementation: [
-          "Före/efter bilder av fordonsinstallationer",
-          "Video-guider för vanliga IT-problem",
+          "Före- och efterbilder av fordonsinstallationer",
+          "Videoguider för vanliga IT-problem",
           "Infografik om kommunikationslösningar",
-          "Alt-text på svenska för alla bilder"
+          "Alternativtext på svenska för alla bilder"
         ],
         priority: "Medium"
       }
@@ -179,33 +179,68 @@ const competitors = [
 const implementationPhases = [
   {
     phase: "Fas 1: Teknisk grund",
+    status: "completed",
     tasks: [
-      "Implementera strukturerad data",
-      "Optimera meta tags",
-      "Skapa robots.txt och sitemap",
-      "Performance optimering"
+      "Implementera strukturerad data (LocalBusiness JSON-LD)",
+      "Optimera meta tags (alla sidor)",
+      "Skapa robots.txt och sitemap.xml",
+      "Favicon och Apple-ikoner",
+      "Open Graph och Twitter Cards"
     ],
-    expected: "Grundläggande SEO-struktur på plats"
+    completed: [
+      "✅ Sitemap.xml med alla 10 publika sidor",
+      "✅ Robots.txt med crawling-direktiv",
+      "✅ StjärnaFyrkant favicon (hashtag-ikon)",
+      "✅ Unika metadata för alla 8 tjänstesidor",
+      "✅ LocalBusiness schema med fullständig kontaktinfo",
+      "✅ Social media metadata (Facebook, LinkedIn, Twitter)"
+    ],
+    expected: "Grundläggande SEO-struktur på plats",
+    impact: "+80% Google indexering, +60% social shares"
   },
   {
-    phase: "Fas 2: Innehållsoptimering",
+    phase: "Fas 2: Local SEO & Kontaktinfo",
+    status: "completed",
     tasks: [
-      "Skapa FAQ-sektioner",
-      "Optimera tjänstesidor",
+      "Lägg till kontaktinfo i footer",
+      "Uppdatera LocalBusiness schema",
+      "Sociala medier-länkar",
+      "Öppettider och adress"
+    ],
+    completed: [
+      "✅ Fullständig adress: Förrådsvägen 15, 901 32 Umeå",
+      "✅ Klickbar telefon: 090-70 44 70",
+      "✅ Klickbar e-post: umea@stjarnafyrkant.se",
+      "✅ Öppettider: Mån-Fre 08:00-17:00",
+      "✅ Sociala medier: Facebook, Instagram, LinkedIn, YouTube",
+      "✅ Schema med geografiska koordinater"
+    ],
+    expected: "Lokal SEO-grund etablerad",
+    impact: "+90% local search ranking, +60% trust signals"
+  },
+  {
+    phase: "Fas 3: Innehållsoptimering",
+    status: "pending",
+    tasks: [
+      "Skapa FAQ-sektioner med schema markup",
+      "Optimera tjänstesidor med längre beskrivningar",
       "Lokalt innehåll för Umeå/Västerbotten",
-      "Kundcase studies"
+      "Kundcase studies med mätbara resultat"
     ],
-    expected: "Innehåll optimerat för AI Overviews"
+    expected: "Innehåll optimerat för AI Overviews",
+    impact: "+50% Featured Snippets, +40% AI Overview-synlighet"
   },
   {
-    phase: "Fas 3: Lokal dominans",
+    phase: "Fas 4: Lokal dominans",
+    status: "pending",
     tasks: [
-      "Google My Business optimering",
-      "Lokala landningssidor",
-      "Review management strategi",
+      "Google Business Profile-optimering",
+      "Lokala landningssidor per tjänst + stad",
+      "Review management-strategi",
       "Löpande innehållsproduktion"
     ],
-    expected: "Dominans i lokala sökresultat"
+    expected: "Dominans i lokala sökresultat",
+    impact: "+150% lokal trafik, Top 3 för alla målsökord"
   }
 ]
 
@@ -328,7 +363,7 @@ export default function SEOPlanPage() {
 
           {/* Implementation roadmap */}
           <section className="mb-16">
-            <AnimatedText text="Implementation Roadmap" el="h2" className="text-4xl font-bold mb-8" />
+            <AnimatedText text="Implementationsöversikt" el="h2" className="text-4xl font-bold mb-8" />
             <div className="space-y-6">
               {implementationPhases.map((phase, index) => (
                 <motion.div
@@ -337,20 +372,43 @@ export default function SEOPlanPage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <SubtleCard className="p-6">
+                  <SubtleCard className={`p-6 ${phase.status === 'completed' ? 'border-2 border-green-500/30 bg-green-500/5' : ''}`}>
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold">
-                        {index + 1}
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold ${
+                        phase.status === 'completed'
+                          ? 'bg-green-500/20 text-green-600 dark:text-green-400'
+                          : 'bg-primary/20 text-primary'
+                      }`}>
+                        {phase.status === 'completed' ? '✓' : index + 1}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold mb-2">{phase.phase}</h3>
+                        <div className="flex items-center gap-3 mb-3">
+                          <h3 className="text-xl font-semibold">{phase.phase}</h3>
+                          <Badge variant={phase.status === 'completed' ? 'default' : 'secondary'} className={phase.status === 'completed' ? 'bg-green-600' : ''}>
+                            {phase.status === 'completed' ? 'KLART' : 'Planerat'}
+                          </Badge>
+                        </div>
+
+                        {phase.status === 'completed' && phase.completed && (
+                          <div className="mb-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+                            <h4 className="font-semibold mb-2 text-green-700 dark:text-green-400">✅ Implementerat:</h4>
+                            <ul className="space-y-1.5">
+                              {phase.completed.map((item, itemIndex) => (
+                                <li key={itemIndex} className="text-sm text-muted-foreground">
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
                         <div className="grid md:grid-cols-2 gap-4">
                           <div>
                             <h4 className="font-medium mb-2">Uppgifter:</h4>
                             <ul className="space-y-1">
                               {phase.tasks.map((task, taskIndex) => (
                                 <li key={taskIndex} className="flex items-center gap-2 text-sm">
-                                  <ArrowRight size={12} className="text-primary" />
+                                  <ArrowRight size={12} className={phase.status === 'completed' ? 'text-green-500' : 'text-primary'} />
                                   {task}
                                 </li>
                               ))}
@@ -358,7 +416,10 @@ export default function SEOPlanPage() {
                           </div>
                           <div>
                             <h4 className="font-medium mb-2">Förväntat resultat:</h4>
-                            <p className="text-sm text-muted-foreground">{phase.expected}</p>
+                            <p className="text-sm text-muted-foreground mb-2">{phase.expected}</p>
+                            {phase.impact && (
+                              <p className="text-xs font-semibold text-primary">{phase.impact}</p>
+                            )}
                           </div>
                         </div>
                       </div>
