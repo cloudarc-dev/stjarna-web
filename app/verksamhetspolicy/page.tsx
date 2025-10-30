@@ -296,9 +296,6 @@ export default function VerksamhetspolicyPage() {
                   </div>
                 </SubtleCard>
               </div>
-              <div className="text-center mt-12">
-                <p className="text-sm text-muted-foreground">Producerad av Jo Kommunikation.</p>
-              </div>
             </div>
           </section>
         </main>
