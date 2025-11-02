@@ -288,59 +288,219 @@ export default function SEOPlanPage() {
               <Badge variant="secondary" className="text-sm">Umeåregionen</Badge>
               <Badge variant="secondary" className="text-sm">B2B-fokus</Badge>
             </div>
+
+            <div className="flex justify-center gap-3 mt-6">
+              <Link href="/dev" className="px-4 py-2 rounded-lg bg-card/50 border hover:bg-primary/10 transition-colors text-sm font-medium">
+                Developer Hub
+              </Link>
+              <Link href="/ui-kit" className="px-4 py-2 rounded-lg bg-card/50 border hover:bg-primary/10 transition-colors text-sm font-medium">
+                UI Kit
+              </Link>
+            </div>
           </div>
 
-          {/* Progress Summary */}
+          {/* Implementation Checklist - Detaljerad Status */}
           <section className="mb-16">
-            <SubtleCard className="p-8 bg-gradient-to-br from-green-500/10 to-blue-500/10 border-2 border-green-500/20">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <CheckCircle size={24} className="text-green-600 dark:text-green-400" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Implementationsstatus</h2>
-                  <p className="text-sm text-muted-foreground">3 av 5 faser slutförda</p>
-                </div>
-              </div>
+            <AnimatedText text="Implementation Checklist" el="h2" className="text-4xl font-bold mb-8 text-center" />
 
-              <div className="grid md:grid-cols-3 gap-6 mb-6">
-                <div className="text-center p-4 bg-background rounded-lg">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">17</div>
-                  <div className="text-sm text-muted-foreground">Filer skapade/uppdaterade</div>
-                </div>
-                <div className="text-center p-4 bg-background rounded-lg">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">23</div>
-                  <div className="text-sm text-muted-foreground">SEO-funktioner implementerade</div>
-                </div>
-                <div className="text-center p-4 bg-background rounded-lg">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">89%</div>
-                  <div className="text-sm text-muted-foreground">SEO-score (från 63%)</div>
-                </div>
-              </div>
+            {/* Progress Summary Cards */}
+            <div className="grid md:grid-cols-4 gap-4 mb-8">
+              <SubtleCard className="p-6 text-center bg-green-500/5 border-green-500/20">
+                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">3/5</div>
+                <div className="text-sm text-muted-foreground">Faser Slutförda</div>
+              </SubtleCard>
+              <SubtleCard className="p-6 text-center bg-green-500/5 border-green-500/20">
+                <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">23</div>
+                <div className="text-sm text-muted-foreground">SEO-funktioner</div>
+              </SubtleCard>
+              <SubtleCard className="p-6 text-center bg-blue-500/5 border-blue-500/20">
+                <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">89%</div>
+                <div className="text-sm text-muted-foreground">SEO Score</div>
+                <div className="text-xs text-green-600 dark:text-green-400 mt-1">+26% från start</div>
+              </SubtleCard>
+              <SubtleCard className="p-6 text-center bg-orange-500/5 border-orange-500/20">
+                <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">2</div>
+                <div className="text-sm text-muted-foreground">Faser Återstår</div>
+              </SubtleCard>
+            </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle size={16} className="text-green-600 dark:text-green-400 flex-shrink-0" />
-                  <span><strong>Fas 1:</strong> Sitemap, robots, favicon, metadata för alla sidor, LocalBusiness schema</span>
+            {/* Detailed Checklist */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* KLART Column */}
+              <SubtleCard className="p-6 bg-green-500/5 border-2 border-green-500/20">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                  <CheckCircle className="text-green-600 dark:text-green-400" />
+                  ✅ Implementerat & Klart
+                </h3>
+
+                <div className="space-y-4">
+                  {/* Fas 1 */}
+                  <div>
+                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Fas 1: Teknisk SEO-grund</h4>
+                    <ul className="space-y-1 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Sitemap.xml (14 publika sidor)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Robots.txt med crawling-direktiv</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Favicon (StjärnaFyrkant logga)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Unika meta tags för alla sidor</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Open Graph & Twitter Cards</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>LocalBusiness JSON-LD schema</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Fas 2 */}
+                  <div>
+                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Fas 2: Local SEO</h4>
+                    <ul className="space-y-1 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Kontaktinfo i footer (Umeå + Skellefteå)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Öppettider: Mån-Fre 08:00-17:00</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Sociala medier (FB, Instagram, LinkedIn, YouTube)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Geografiska koordinater i schema</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Fas 3 */}
+                  <div>
+                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Fas 3: Innehållsoptimering</h4>
+                    <ul className="space-y-1 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>FAQ-schema JSON-LD komponent</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>IT-sida: 6 SEO-optimerade frågor</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Fordonsteknik: 6 frågor + visuell FAQ</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Kommunikationsteknik: 6 FAQ-frågor</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Företagstelefoni: 6 FAQ-frågor</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Lokala sökord (Umeå, Västerbotten)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>Priser & svarstider i FAQ-svar</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle size={16} className="text-green-600 dark:text-green-400 flex-shrink-0" />
-                  <span><strong>Fas 2:</strong> Kontaktinfo i footer, öppettider, sociala medier, geografiska koordinater</span>
+              </SubtleCard>
+
+              {/* ÅTERSTÅR Column */}
+              <SubtleCard className="p-6 bg-orange-500/5 border-2 border-orange-500/20">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                  <Clock className="text-orange-600 dark:text-orange-400" />
+                  Återstår att Göra
+                </h3>
+
+                <div className="space-y-4">
+                  {/* Fas 4 */}
+                  <div>
+                    <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Fas 4: Innehållsexpansion</h4>
+                    <ul className="space-y-1 text-sm">
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>FAQ för Kommunikationsteknik-sidan</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>FAQ för Företagstelefoni-sidan</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Längre tjänstebeskrivningar (500+ ord)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Bloggsystem för lokalt innehåll</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Kundcase studies med mätbara resultat</span>
+                      </li>
+                    </ul>
+                    <div className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+                      Förväntat resultat: +60% organisk trafik
+                    </div>
+                  </div>
+
+                  {/* Fas 5 */}
+                  <div>
+                    <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Fas 5: Lokal Dominans</h4>
+                    <ul className="space-y-1 text-sm">
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Google Business Profile-optimering</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Lokala landningssidor (tjänst + stad)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Review management-strategi</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>Löpande innehållsproduktion</span>
+                      </li>
+                    </ul>
+                    <div className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+                      Förväntat resultat: Top 3 för alla målsökord i Västerbotten
+                    </div>
+                  </div>
+
+                  {/* Quick Wins */}
+                  <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                    <h5 className="font-semibold text-sm mb-2 text-yellow-700 dark:text-yellow-400">Quick Wins (1-2 veckor):</h5>
+                    <ul className="space-y-1 text-xs">
+                      <li>• Google Business Profile-verifiering</li>
+                      <li>• Lägg till FAQ på Kommunikation & Företagstelefoni</li>
+                      <li>• Be nöjda kunder om Google-recensioner</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle size={16} className="text-green-600 dark:text-green-400 flex-shrink-0" />
-                  <span><strong>Fas 3:</strong> FAQ-schema, 12 SEO-optimerade frågor, lokala sökord, Featured Snippets-optimering</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm opacity-60">
-                  <div className="w-4 h-4 border-2 border-muted rounded-full flex-shrink-0" />
-                  <span><strong>Fas 4:</strong> Fler FAQ-sektioner, bloggsystem, längre innehåll (planerat)</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm opacity-60">
-                  <div className="w-4 h-4 border-2 border-muted rounded-full flex-shrink-0" />
-                  <span><strong>Fas 5:</strong> Google Business Profile, lokala landningssidor, review management (planerat)</span>
-                </div>
-              </div>
-            </SubtleCard>
+              </SubtleCard>
+            </div>
           </section>
 
           {/* Varför SEO är kritiskt */}

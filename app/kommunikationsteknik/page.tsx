@@ -156,10 +156,25 @@ export default function KommunikationsteknikPage() {
           </section>
 
           {/* Services Section - Different layout from foretagstelefoni */}
+          {/* Cases Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
+            <div className="container mx-auto">
+              <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {cases.map((caseItem) => (
+                  <div key={caseItem.title} className="p-8 border rounded-xl bg-background text-center">
+                    <h3 className="font-bold text-xl">{caseItem.title}</h3>
+                    <p className="text-muted-foreground mt-2">{caseItem.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto grid lg:grid-cols-3 gap-16">
               <ParallaxScroll distance={320} className="lg:col-span-1 space-y-4">
-                <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
+                <AnimatedText text="Våra tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
                 <p className="text-lg text-muted-foreground">
                   Komplett radiokommunikation – från klassisk komradio till modern push-to-talk.
                 </p>
@@ -188,21 +203,6 @@ export default function KommunikationsteknikPage() {
                       </div>
                     </SubtleCard>
                   </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Cases Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto">
-              <AnimatedText text="Lokala Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((caseItem) => (
-                  <div key={caseItem.title} className="p-8 border rounded-xl bg-background text-center">
-                    <h3 className="font-bold text-xl">{caseItem.title}</h3>
-                    <p className="text-muted-foreground mt-2">{caseItem.description}</p>
-                  </div>
                 ))}
               </div>
             </div>

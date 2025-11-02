@@ -141,10 +141,72 @@ export default function ITPage() {
             </div>
           </section>
 
-          {/* Services Section */}
+          {/* Cases & Experts Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
+            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
+                <p className="text-lg text-muted-foreground mb-8">
+                  Se hur vi har hjälpt företag i regionen med skalbara IT-lösningar.
+                </p>
+                <div className="space-y-6">
+                  <div className="p-6 border rounded-lg bg-background">
+                    <h3 className="font-bold text-lg">NorrlandsOperan</h3>
+                    <p className="text-muted-foreground">
+                      Helhetsansvar för nätverk, Microsoft 365 & support för 100+ anställda.
+                    </p>
+                  </div>
+                  <div className="p-6 border rounded-lg bg-background">
+                    <h3 className="font-bold text-lg">Umia</h3>
+                    <p className="text-muted-foreground">
+                      Nationellt ansvar för samtliga kontors IT-infrastruktur, Microsoft 365 och säkerhet.
+                    </p>
+                  </div>
+                  <div className="p-6 border rounded-lg bg-background">
+                    <h3 className="font-bold text-lg">Umeå Mark & VA</h3>
+                    <p className="text-muted-foreground">
+                      Utveckling av samarbetsfunktioner, säkerhet, lagring och nätverk.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <AnimatedText text="Våra experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
+                <div className="space-y-8">
+                  {experts.map((expert) => (
+                    <SubtleCard key={expert.name} className="p-6 flex items-center gap-6">
+                      <Image
+                        src={expert.avatar || "/placeholder.svg"}
+                        alt={`Porträtt av ${expert.name}`}
+                        width={100}
+                        height={100}
+                        className="rounded-full border-2 border-primary"
+                      />
+                      <div>
+                        <h3 className="text-2xl font-semibold">{expert.name}</h3>
+                        <p className="text-primary font-medium">{expert.title}</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {expert.certs.map((cert) => (
+                            <span
+                              key={cert}
+                              className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full"
+                            >
+                              {cert}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </SubtleCard>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Services Section */}
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
+              <AnimatedText text="Våra tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
                 Helhetslösningar som täcker allt från nätverk till moln & säkerhet.
               </p>
@@ -179,72 +241,10 @@ export default function ITPage() {
             </div>
           </section>
 
-          {/* Cases & Experts Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <AnimatedText text="Lokala Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
-                <p className="text-lg text-muted-foreground mb-8">
-                  Se hur vi har hjälpt företag i regionen med skalbara IT-lösningar.
-                </p>
-                <div className="space-y-6">
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">NorrlandsOperan</h3>
-                    <p className="text-muted-foreground">
-                      Helhetsansvar för nätverk, Microsoft 365 & support för 100+ anställda.
-                    </p>
-                  </div>
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Umia</h3>
-                    <p className="text-muted-foreground">
-                      Nationellt ansvar för samtliga kontors IT-infrastruktur, Microsoft 365 och säkerhet.
-                    </p>
-                  </div>
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Umeå Mark & VA</h3>
-                    <p className="text-muted-foreground">
-                      Utveckling av samarbetsfunktioner, säkerhet, lagring och nätverk.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
-                <div className="space-y-8">
-                  {experts.map((expert) => (
-                    <SubtleCard key={expert.name} className="p-6 flex items-center gap-6">
-                      <Image
-                        src={expert.avatar || "/placeholder.svg"}
-                        alt={`Porträtt av ${expert.name}`}
-                        width={100}
-                        height={100}
-                        className="rounded-full border-2 border-primary"
-                      />
-                      <div>
-                        <h3 className="text-2xl font-semibold">{expert.name}</h3>
-                        <p className="text-primary font-medium">{expert.title}</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {expert.certs.map((cert) => (
-                            <span
-                              key={cert}
-                              className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full"
-                            >
-                              {cert}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </SubtleCard>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Process Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="relative max-w-2xl mx-auto">
                 <div className="absolute left-8 top-0 h-full w-0.5 bg-border hidden md:block" />
                 {processSteps.map((step, i) => (

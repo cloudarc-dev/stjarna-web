@@ -245,10 +245,37 @@ export default function LandingPage() {
             </div>
           </section>
 
+          {/* Customer Cases Section - Social Proof */}
+          <section id="kundcase" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+            <div className="container mx-auto relative z-10">
+              <AnimatedText text="Senaste kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <motion.div whileHover={{ y: -5, scale: 1.02 }} className="lg:row-span-2">
+                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[24rem]">
+                    <h3 className="text-3xl font-semibold">{cases[0].title}</h3>
+                    <p className="text-muted-foreground mt-4 text-lg">{cases[0].description}</p>
+                  </GlareCard>
+                </motion.div>
+                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
+                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
+                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[1].title}</h3>
+                    <p className="text-muted-foreground mt-2">{cases[1].description}</p>
+                  </GlareCard>
+                </motion.div>
+                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
+                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
+                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[2].title}</h3>
+                    <p className="text-muted-foreground mt-2">{cases[2].description}</p>
+                  </GlareCard>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
           {/* Services Section - 2+2+1 Layout */}
-          <section id="tjanster" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+          <section id="tjanster" className="py-24 md:py-32 dark:border-t relative">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
+              <AnimatedText text="Våra tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center" />
               <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
                 Helhetslösningar inom IT, fordonsteknik, radiokommunikation och företagstelefoni. Våra specialister hittar rätt lösning för dina behov.
               </p>
@@ -314,37 +341,10 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Customer Cases Section */}
-          <section id="kundcase" className="py-24 md:py-32 dark:border-t relative">
-            <div className="container mx-auto relative z-10">
-              <AnimatedText text="Senaste Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <motion.div whileHover={{ y: -5, scale: 1.02 }} className="lg:row-span-2">
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[24rem]">
-                    <h3 className="text-3xl font-semibold">{cases[0].title}</h3>
-                    <p className="text-muted-foreground mt-4 text-lg">{cases[0].description}</p>
-                  </GlareCard>
-                </motion.div>
-                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[1].title}</h3>
-                    <p className="text-muted-foreground mt-2">{cases[1].description}</p>
-                  </GlareCard>
-                </motion.div>
-                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[2].title}</h3>
-                    <p className="text-muted-foreground mt-2">{cases[2].description}</p>
-                  </GlareCard>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-
           {/* Process Section */}
           <section id="process" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Process" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår process" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {processSteps.map((step, i) => (
                   <motion.div
@@ -371,7 +371,7 @@ export default function LandingPage() {
           {/* Certifications Section */}
           <section id="certifieringar" className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Trygghet & Kvalitet" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Trygghet och kvalitet" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
                 {certifications.map((cert, i) => (
                   <motion.div
@@ -402,7 +402,7 @@ export default function LandingPage() {
           {/* Experts Section */}
           <section id="om-oss" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Våra experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-3 gap-8">
                 {experts.map((expert, i) => (
                   <motion.div

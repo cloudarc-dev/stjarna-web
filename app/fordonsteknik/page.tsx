@@ -175,10 +175,25 @@ export default function FordonsteknikPage() {
             </div>
           </section>
 
-          {/* Services Section */}
+          {/* Cases Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-center" />
+              <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {cases.map((c) => (
+                  <motion.div whileHover={{ y: -5 }} key={c.title} className="p-8 border rounded-xl bg-background">
+                    <h3 className="font-bold text-xl">{c.title}</h3>
+                    <p className="text-muted-foreground mt-2">{c.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Services Section */}
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+            <div className="container mx-auto">
+              <AnimatedText text="Våra tjänstekategorier" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
                 {serviceCategories.map((category, i) => (
                   <motion.div
@@ -190,7 +205,7 @@ export default function FordonsteknikPage() {
                     className="flex"
                   >
                     <GlareCard className="p-8 flex flex-col items-center text-center h-full bg-card/80 backdrop-blur-sm group">
-                      <motion.div 
+                      <motion.div
                         className="mb-6"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
@@ -205,25 +220,10 @@ export default function FordonsteknikPage() {
             </div>
           </section>
 
-          {/* Cases Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto">
-              <AnimatedText text="Lokala Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((c) => (
-                  <motion.div whileHover={{ y: -5 }} key={c.title} className="p-8 border rounded-xl bg-background">
-                    <h3 className="font-bold text-xl">{c.title}</h3>
-                    <p className="text-muted-foreground mt-2">{c.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
           {/* Process Section */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Vår Tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Vår tjänsteprocess" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="relative max-w-2xl mx-auto">
                 <div className="absolute left-8 top-0 h-full w-0.5 bg-border hidden md:block" />
                 {processSteps.map((step, i) => (
@@ -246,7 +246,7 @@ export default function FordonsteknikPage() {
           {/* Experts Section */}
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Våra experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {experts.map((expert) => (
                   <motion.div whileHover={{ scale: 1.02 }} key={expert.name}>

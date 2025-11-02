@@ -156,9 +156,35 @@ export default function ForetagstelefoniPage() {
           </section>
 
           {/* Services Section - Grid Layout */}
+          {/* Cases Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Våra Tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <AnimatedText text="Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {cases.map((caseItem, i) => (
+                  <motion.div
+                    key={caseItem.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="relative p-8 border rounded-xl bg-background overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative z-10">
+                      <div className="text-teal-600 dark:text-teal-400 font-bold text-sm mb-2">{caseItem.metric}</div>
+                      <h3 className="font-bold text-xl mb-2">{caseItem.title}</h3>
+                      <p className="text-muted-foreground">{caseItem.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+            <div className="container mx-auto">
+              <AnimatedText text="Våra tjänster" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {serviceCategories.map((category, i) => (
                   <motion.div
@@ -180,32 +206,6 @@ export default function ForetagstelefoniPage() {
                         <p className="text-muted-foreground">{category.description}</p>
                       </div>
                     </GlareCard>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Cases Section - 3 Column Layout */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto">
-              <AnimatedText text="Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((caseItem, i) => (
-                  <motion.div
-                    key={caseItem.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="relative p-8 border rounded-xl bg-background overflow-hidden group"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10">
-                      <div className="text-teal-600 dark:text-teal-400 font-bold text-sm mb-2">{caseItem.metric}</div>
-                      <h3 className="font-bold text-xl mb-2">{caseItem.title}</h3>
-                      <p className="text-muted-foreground">{caseItem.description}</p>
-                    </div>
                   </motion.div>
                 ))}
               </div>

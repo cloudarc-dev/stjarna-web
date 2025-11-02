@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { GlobalChat } from "@/components/global-chat"
 import { LocalBusinessSchema } from "@/components/schema/local-business"
+import { CookieConsent } from "@/components/cookie-consent"
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
           <GlobalChat />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

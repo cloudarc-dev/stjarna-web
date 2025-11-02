@@ -59,7 +59,7 @@ export default function UiKitPage() {
               animationType="soft"
               className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
             />
-            <motion.div 
+            <motion.div
               className="mt-8 p-3 md:p-4 rounded-xl bg-card/50 border max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,6 +75,14 @@ export default function UiKitPage() {
                 <a href="#cards" className="p-2 rounded-lg hover:bg-primary/10 transition-colors text-center font-medium">Kort</a>
                 <a href="#buttons" className="p-2 rounded-lg hover:bg-primary/10 transition-colors text-center font-medium">Knappar</a>
                 <a href="#forms" className="p-2 rounded-lg hover:bg-primary/10 transition-colors text-center font-medium">Formulär</a>
+              </div>
+              <div className="mt-4 pt-4 border-t border-border/50 flex justify-center gap-3">
+                <a href="/dev" className="px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors text-xs font-medium">
+                  Developer Hub
+                </a>
+                <a href="/seo-plan" className="px-3 py-1.5 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors text-xs font-medium">
+                  SEO Plan
+                </a>
               </div>
             </motion.div>
           </div>

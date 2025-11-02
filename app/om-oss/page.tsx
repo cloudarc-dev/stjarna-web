@@ -7,7 +7,7 @@ import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Award, Leaf, Users, MapPin, Clock, Phone, ArrowRight } from "lucide-react"
+import { Award, Leaf, Users, MapPin, Clock, Phone, ArrowRight, Headset, Wrench, Truck } from "lucide-react"
 import { useState } from "react"
 import { UpsalesModal } from "@/upsalesmodul"
 import Image from "next/image"
@@ -197,68 +197,109 @@ export default function OmOssPage() {
 
           {/* Därför väljer företag oss Section */}
           <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
-            <div className="container mx-auto max-w-4xl">
-              <AnimatedText text="Därför väljer företag oss" el="h2" className="text-4xl font-bold mb-12 text-center" />
-              <div className="grid gap-6">
+            <div className="container mx-auto">
+              <AnimatedText text="Därför väljer företag oss" el="h2" className="text-4xl font-bold mb-16 text-center" />
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
                 >
-                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground">
-                    Personligt service och snabb hjälp när det verkligen behövs.
-                  </p>
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Headset className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Personlig service</h3>
+                    <p className="text-muted-foreground">
+                      Snabb hjälp när det verkligen behövs med dedikerad support.
+                    </p>
+                  </SubtleCard>
                 </motion.div>
+
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
                 >
-                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground">
-                    Vår erfarenhet och breda erbjudande skapar färre kontaktytor för den dagliga driften.
-                  </p>
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Users className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">En kontaktpunkt</h3>
+                    <p className="text-muted-foreground">
+                      Bred erfarenhet och komplett erbjudande ger färre kontaktytor.
+                    </p>
+                  </SubtleCard>
                 </motion.div>
+
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
                 >
-                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground">
-                    Egen verkstad och butik för tillgänglighet, installationer och reparationer.
-                  </p>
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Wrench className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Egen verkstad</h3>
+                    <p className="text-muted-foreground">
+                      Lokal tillgänglighet för installationer och reparationer.
+                    </p>
+                  </SubtleCard>
                 </motion.div>
+
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
                 >
-                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground">
-                    En smidig och anpassad köpupplevelse med leverans över hela Sverige.
-                  </p>
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Truck className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Rikstäckande</h3>
+                    <p className="text-muted-foreground">
+                      Smidig köpupplevelse med leverans över hela Sverige.
+                    </p>
+                  </SubtleCard>
                 </motion.div>
+
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-4"
                 >
-                  <div className="w-2 h-2 mt-2 bg-primary rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground">
-                    Ärlig och professionell rådgivning med högsta kvalitet i fokus som ger faktisk nytta.
-                  </p>
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Award className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Professionell rådgivning</h3>
+                    <p className="text-muted-foreground">
+                      Ärlig expertis med högsta kvalitet som ger faktisk nytta.
+                    </p>
+                  </SubtleCard>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <SubtleCard className="p-6 h-full">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <MapPin className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">Lokal närvaro</h3>
+                    <p className="text-muted-foreground">
+                      Kontor i Umeå och Skellefteå för personlig service nära dig.
+                    </p>
+                  </SubtleCard>
                 </motion.div>
               </div>
             </div>
@@ -404,8 +445,10 @@ export default function OmOssPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.8 }}
                     viewport={{ once: true, amount: 0.3 }}
+                    className="cursor-pointer"
+                    onClick={() => setUpsalesOpen(true)}
                   >
-                    <GlareCard className="p-8 flex flex-col gap-4 bg-card/80 backdrop-blur-sm h-full">
+                    <GlareCard className="p-8 flex flex-col gap-4 bg-card/80 backdrop-blur-sm h-full hover:scale-[1.02] transition-transform">
                       <h3 className="text-2xl font-bold text-primary mb-2">{loc.city}</h3>
                       <div className="flex items-start gap-3">
                         <MapPin className="w-5 h-5 text-primary mt-0.5" />
@@ -423,7 +466,7 @@ export default function OmOssPage() {
                           ))}
                         </div>
                       </div>
-                      <ShineButton onClick={() => setUpsalesOpen(true)} className="mt-auto w-full !py-2">
+                      <ShineButton onClick={(e) => { e.stopPropagation(); setUpsalesOpen(true); }} className="mt-auto w-full !py-2">
                         Skicka meddelande
                       </ShineButton>
                     </GlareCard>
