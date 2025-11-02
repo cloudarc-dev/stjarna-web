@@ -227,20 +227,57 @@ export function Header() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 + i * 0.05, type: "spring", stiffness: 300 }}
                       >
-                        <Link
-                          href={item.href}
-                          onClick={closeMenu}
-                          className="flex items-center gap-4 p-4 rounded-xl hover:bg-accent/50 transition-all duration-200 group"
-                        >
-                          <div className="w-6 h-6 text-primary group-hover:scale-110 transition-transform">
-                            <item.icon className="w-6 h-6" />
-                          </div>
-                          <span className="text-lg font-medium group-hover:text-primary transition-colors">
-                            {item.name}
-                          </span>
-                        </Link>
+                        {item.external ? (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={closeMenu}
+                            className="flex items-center gap-4 p-4 rounded-xl hover:bg-accent/50 transition-all duration-200 group"
+                          >
+                            <div className="w-6 h-6 text-primary group-hover:scale-110 transition-transform">
+                              <item.icon className="w-6 h-6" />
+                            </div>
+                            <span className="text-lg font-medium group-hover:text-primary transition-colors">
+                              {item.name}
+                            </span>
+                          </a>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            onClick={closeMenu}
+                            className="flex items-center gap-4 p-4 rounded-xl hover:bg-accent/50 transition-all duration-200 group"
+                          >
+                            <div className="w-6 h-6 text-primary group-hover:scale-110 transition-transform">
+                              <item.icon className="w-6 h-6" />
+                            </div>
+                            <span className="text-lg font-medium group-hover:text-primary transition-colors">
+                              {item.name}
+                            </span>
+                          </Link>
+                        )}
                       </motion.div>
                     ))}
+
+                    {/* Support button in mobile menu */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + NAV_ITEMS.length * 0.05, type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        href="/servicedesk"
+                        onClick={closeMenu}
+                        className="flex items-center gap-4 p-4 rounded-xl bg-primary/10 hover:bg-primary/20 transition-all duration-200 group border border-primary/20"
+                      >
+                        <div className="w-6 h-6 text-primary group-hover:scale-110 transition-transform">
+                          <Users className="w-6 h-6" />
+                        </div>
+                        <span className="text-lg font-medium text-primary transition-colors">
+                          Support
+                        </span>
+                      </Link>
+                    </motion.div>
                   </div>
                 </nav>
                 

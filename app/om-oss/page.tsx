@@ -9,7 +9,7 @@ import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Award, Leaf, Users, MapPin, Clock, Phone, ArrowRight, Headset, Wrench, Truck } from "lucide-react"
 import { useState } from "react"
-import { UpsalesModal } from "@/upsalesmodul"
+import { FormModal } from "@/components/form-modal"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
@@ -476,7 +476,7 @@ export default function OmOssPage() {
             </div>
           </section>
         </main>
-        <UpsalesModal open={upsalesOpen} onClose={() => setUpsalesOpen(false)} />
+        <FormModal open={upsalesOpen} onClose={() => setUpsalesOpen(false)} formType="general" />
 <Footer />
       </div>
     </>

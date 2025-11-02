@@ -4,29 +4,113 @@ import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
-import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
-import { ShineButton } from "@/components/ui/shine-button"
-import { Button } from "@/components/ui/button"
 import { SubtleCard } from "@/components/ui/subtle-card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { MapPin, Clock, Phone, Mail, Shield } from "lucide-react"
-import Image from "next/image"
+import { MapPin, Clock, Phone, Send, Loader2, CheckCircle2 } from "lucide-react"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
-import { FormModal } from "@/components/form-modal"
-// ChatWidget removed - to be replaced with UI-kit based chat interface
+import { getFormConfig, FormField } from "@/lib/form-config"
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export default function KontaktPage() {
-  const [isFormOpen, setIsFormOpen] = useState(false)
+  const config = getFormConfig('general')
+  const [formData, setFormData] = useState<Record<string, string>>({})
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+
+  const handleChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'general',
+          email: config.email,
+          subject: config.subject,
+          data: formData,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
+      setStatus('success')
+      setFormData({})
+
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setStatus('idle')
+      }, 5000)
+    } catch (error) {
+      setStatus('error')
+      setErrorMessage('Något gick fel. Försök igen eller kontakta oss direkt.')
+      console.error('Form submission error:', error)
+    }
+  }
+
+  const renderField = (field: FormField) => {
+    const baseClasses = "w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+
+    switch (field.type) {
+      case 'textarea':
+        return (
+          <textarea
+            name={field.name}
+            id={field.name}
+            required={field.required}
+            placeholder={field.placeholder}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleChange(field.name, e.target.value)}
+            className={`${baseClasses} min-h-[120px] resize-y`}
+            rows={5}
+          />
+        )
+
+      case 'select':
+        return (
+          <select
+            name={field.name}
+            id={field.name}
+            required={field.required}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleChange(field.name, e.target.value)}
+            className={baseClasses}
+          >
+            <option value="">Välj ett alternativ...</option>
+            {field.options?.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        )
+
+      default:
+        return (
+          <input
+            type={field.type}
+            name={field.name}
+            id={field.name}
+            required={field.required}
+            placeholder={field.placeholder}
+            value={formData[field.name] || ''}
+            onChange={(e) => handleChange(field.name, e.target.value)}
+            className={baseClasses}
+          />
+        )
+    }
+  }
 
   return (
     <>
-      <FormModal
-        open={isFormOpen}
-        onClose={() => setIsFormOpen(false)}
-        formType="general"
-      />
-      {/* ChatWidget placeholder - to be replaced with UI-kit based chat interface */}
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
         <main className="flex-grow">
@@ -91,7 +175,7 @@ export default function KontaktPage() {
                       </div>
                     </SubtleCard>
 
-                    <SubtleCard className="p-6 h-[180px]">
+                    <SubtleCard className="p-6 h-[220px]">
                       <div className="flex items-start gap-4">
                         <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
@@ -146,7 +230,7 @@ export default function KontaktPage() {
                       </div>
                     </SubtleCard>
 
-                    <SubtleCard className="p-6 h-[180px]">
+                    <SubtleCard className="p-6 h-[220px]">
                       <div className="flex items-start gap-4">
                         <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
@@ -221,41 +305,73 @@ export default function KontaktPage() {
                   Har du frågor eller vill veta mer? Fyll i formuläret så hör vi av oss.
                 </p>
               </div>
-              <SubtleCard className="p-8">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">
-                        Namn <span className="text-destructive">*</span>
-                      </Label>
-                      <Input id="name" placeholder="Ditt namn" required />
+              <SubtleCard className="p-6 md:p-8">
+                {status === 'success' ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
+                      <CheckCircle2 className="w-8 h-8 text-green-500" />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">E-post</Label>
-                      <Input id="email" type="email" placeholder="din@email.se" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">Företag</Label>
-                    <Input id="company" placeholder="Ditt företag" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Telefon</Label>
-                    <Input id="phone" placeholder="070-123 45 67" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Meddelande</Label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Berätta om ditt projekt eller dina behov..."
-                    />
-                  </div>
-                  <ShineButton className="w-full" onClick={() => setIsFormOpen(true)}>
-                    Skicka meddelande
-                  </ShineButton>
-                </form>
+                    <h3 className="text-xl font-semibold mb-2">Tack för ditt meddelande!</h3>
+                    <p className="text-muted-foreground text-center">
+                      Vi har tagit emot din förfrågan och återkommer så snart som möjligt.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    {config.fields.map((field) => (
+                      <div key={field.name}>
+                        <label
+                          htmlFor={field.name}
+                          className="block text-sm font-medium text-foreground mb-2"
+                        >
+                          {field.label}
+                          {field.required && <span className="text-red-500 ml-1">*</span>}
+                        </label>
+                        {renderField(field)}
+                      </div>
+                    ))}
+
+                    {status === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400"
+                      >
+                        {errorMessage}
+                      </motion.div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                    >
+                      {status === 'loading' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Skickar...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Skicka meddelande
+                        </>
+                      )}
+                    </button>
+
+                    <p className="text-xs text-muted-foreground text-center pt-2">
+                      Genom att skicka formuläret godkänner du vår{' '}
+                      <a href="/integritetspolicy" className="underline hover:text-foreground">
+                        integritetspolicy
+                      </a>
+                      .
+                    </p>
+                  </form>
+                )}
               </SubtleCard>
               <p className="text-center text-sm text-muted-foreground mt-6">
                 All information behandlas konfidentiellt enligt GDPR
