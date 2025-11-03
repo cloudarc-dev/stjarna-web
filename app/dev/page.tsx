@@ -20,6 +20,7 @@ import {
   Settings,
   AlertCircle,
   Clock,
+  Database,
 } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -60,6 +61,341 @@ const devResources = [
 ]
 
 const technicalGuides = [
+  {
+    category: "Supabase Database - MVP Setup",
+    icon: <Database className="w-5 h-5" />,
+    color: "from-cyan-500/20 to-cyan-600/10",
+    guides: [
+      {
+        title: "Översikt & MVP-funktioner",
+        description: "Vad databasen används till och vilka tabeller som behövs",
+        codeFile: "SUPABASE_SETUP.md",
+        details: [
+          {
+            subtitle: "MVP-funktioner (Fas 1)",
+            points: [
+              "1. Kontaktformulär - Spara alla leads från alla formulär",
+              "2. Analytics - Spåra sidvisningar, clicks och användarbeteende",
+              "3. Admin Dashboard Data - Team members (om-oss-sidan)",
+              "4. Karriärsidor - Rekryteringsannonser och jobbansökningar"
+            ]
+          },
+          {
+            subtitle: "Fas 2 (Senare)",
+            points: [
+              "AI Chatbot-historik och konversationer",
+              "Avancerad analytics med custom events",
+              "CMS för blogginlägg och case studies"
+            ]
+          },
+          {
+            subtitle: "Varför Supabase?",
+            points: [
+              "PostgreSQL - Kraftfull relationsdatabas",
+              "Row Level Security (RLS) - Inbyggd säkerhet",
+              "Realtid - WebSocket-stöd för live updates",
+              "Gratis tier - 500 MB databas, 2 GB bandwidth",
+              "EU-hosting - GDPR-compliant"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Databastabeller Schema",
+        description: "SQL för att skapa alla tabeller",
+        details: [
+          {
+            subtitle: "1. Contact Submissions",
+            code: `CREATE TABLE contact_submissions (
+  id UUID PRIMARY KEY,
+  created_at TIMESTAMP,
+  form_type TEXT NOT NULL,
+  email TEXT NOT NULL,
+  name TEXT,
+  phone TEXT,
+  company TEXT,
+  message TEXT,
+  form_data JSONB NOT NULL,
+  status TEXT DEFAULT 'new',
+  ip_address TEXT,
+  user_agent TEXT
+);`,
+            points: [
+              "Sparar alla kontaktförfrågningar",
+              "form_data (JSONB) = Flexibelt för olika formulär",
+              "status = 'new', 'contacted', 'in_progress', 'closed', 'spam'",
+              "Kan aldrig förlora ett lead - allt sparas!"
+            ]
+          },
+          {
+            subtitle: "2. Job Postings (Rekrytering)",
+            code: `CREATE TABLE job_postings (
+  id UUID PRIMARY KEY,
+  title TEXT NOT NULL,
+  department TEXT NOT NULL,
+  location TEXT NOT NULL,
+  description TEXT NOT NULL,
+  responsibilities TEXT[],
+  qualifications TEXT[],
+  is_active BOOLEAN DEFAULT true,
+  published_at TIMESTAMP
+);`,
+            points: [
+              "Dynamiska jobbannonser på karriärsidan",
+              "Kan aktivera/inaktivera utan kod-deploy",
+              "Array-fält för punktlistor",
+              "SEO-vänlig med slug-fält"
+            ]
+          },
+          {
+            subtitle: "3. Job Applications",
+            code: `CREATE TABLE job_applications (
+  id UUID PRIMARY KEY,
+  job_posting_id UUID REFERENCES job_postings(id),
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  cover_letter TEXT,
+  resume_url TEXT,
+  status TEXT DEFAULT 'new',
+  gdpr_consent BOOLEAN NOT NULL
+);`,
+            points: [
+              "Ansökningar kopplade till specifika jobb",
+              "resume_url = Upload CV till Supabase Storage",
+              "GDPR-samtycke obligatoriskt",
+              "Status-tracking för rekryteringsprocess"
+            ]
+          },
+          {
+            subtitle: "4. Page Views & Analytics",
+            code: `CREATE TABLE page_views (
+  id UUID PRIMARY KEY,
+  page_path TEXT NOT NULL,
+  session_id TEXT,
+  visitor_id TEXT,
+  utm_source TEXT,
+  ip_address TEXT,
+  time_on_page INTEGER
+);`,
+            points: [
+              "Spåra vilka sidor som är mest populära",
+              "UTM-tracking för marknadsföring",
+              "Session-baserad analytics",
+              "GDPR-compliant alternativ till Google Analytics"
+            ]
+          },
+          {
+            subtitle: "5. Team Members",
+            code: `CREATE TABLE team_members (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  title TEXT NOT NULL,
+  department TEXT,
+  bio TEXT,
+  image_url TEXT,
+  is_active BOOLEAN DEFAULT true,
+  sort_order INTEGER
+);`,
+            points: [
+              "Dynamiskt innehåll på om-oss-sidan",
+              "Uppdatera team utan kod-deploy",
+              "sort_order för anpassad ordning",
+              "Bilder i Supabase Storage"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Setup & Implementation",
+        description: "Steg-för-steg guide för att aktivera Supabase",
+        details: [
+          {
+            subtitle: "Steg 1: Kör SQL i Supabase",
+            points: [
+              "1. Gå till https://app.supabase.com",
+              "2. Välj ditt projekt (redan aktiverat via Vercel)",
+              "3. Gå till SQL Editor",
+              "4. Öppna SUPABASE_SETUP.md och kopiera SQL",
+              "5. Kör SQL sektion för sektion",
+              "6. Verifiera: Gå till Table Editor och se tabellerna"
+            ]
+          },
+          {
+            subtitle: "Steg 2: Installera Supabase Client",
+            code: `npm install @supabase/supabase-js`,
+            points: [
+              "Officiellt Supabase SDK för Next.js",
+              "TypeScript-stöd inbyggt",
+              "Realtid och caching"
+            ]
+          },
+          {
+            subtitle: "Steg 3: Skapa Supabase Utility",
+            code: `// /lib/supabase.ts
+import { createClient } from '@supabase/supabase-js'
+
+export function getServiceSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}`,
+            points: [
+              "getServiceSupabase() = För API routes (full access)",
+              "getClientSupabase() = För klienten (begränsad via RLS)",
+              "ALDRIG exponera SERVICE_ROLE_KEY till klienten!"
+            ]
+          },
+          {
+            subtitle: "Steg 4: Environment Variables",
+            code: `# I Vercel Dashboard (redan klart)
+NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...
+
+# Lokalt (.env.local)
+# Kopiera samma värden från Vercel`,
+            points: [
+              "NEXT_PUBLIC_* = Synlig på klienten",
+              "SERVICE_ROLE_KEY = Endast server-side",
+              "Redan konfigurerat i Vercel via integration"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Kodexempel - Kontaktformulär",
+        description: "Uppdatera API route för att spara i Supabase",
+        codeFile: "/app/api/contact/route.ts",
+        details: [
+          {
+            subtitle: "Innan (Loggar bara till console)",
+            code: `console.log('=== EMAIL TO SEND ===')
+console.log('To:', config.email)
+// Inget sparas i databas!`,
+            points: [
+              "Data försvinner om något går fel",
+              "Ingen historik eller uppföljning möjlig",
+              "Kan inte bygga CRM eller analytics"
+            ]
+          },
+          {
+            subtitle: "Efter (Sparar i Supabase)",
+            code: `import { getServiceSupabase } from '@/lib/supabase'
+
+const supabase = getServiceSupabase()
+
+const { data, error } = await supabase
+  .from('contact_submissions')
+  .insert({
+    form_type: formType,
+    email: data.email,
+    name: data.namn,
+    phone: data.telefon,
+    form_data: data,
+    ip_address: request.ip
+  })
+  .select()
+  .single()
+
+if (error) {
+  console.error('Supabase error:', error)
+}
+
+// Fortsätt skicka mail via Resend`,
+            points: [
+              "Alla leads sparas ALLTID",
+              "Kan bygga admin dashboard senare",
+              "Analytics: Vilka formulär konverterar bäst?",
+              "GDPR-compliant med RLS"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Kodexempel - Hämta Jobb",
+        description: "Visa aktiva jobbannonser från databasen",
+        codeFile: "/app/api/jobs/route.ts",
+        details: [
+          {
+            subtitle: "API Route",
+            code: `import { getClientSupabase } from '@/lib/supabase'
+
+export async function GET() {
+  const supabase = getClientSupabase()
+
+  const { data, error } = await supabase
+    .from('job_postings')
+    .select('*')
+    .eq('is_active', true)
+    .order('published_at', { ascending: false })
+
+  return NextResponse.json(data)
+}`,
+            points: [
+              "Hämtar endast aktiva jobb",
+              "Sorterade efter publiceringsdatum",
+              "RLS säkerställer endast publika jobb visas"
+            ]
+          },
+          {
+            subtitle: "Användning i Karriärsida",
+            code: `// /app/karriar/page.tsx
+const response = await fetch('/api/jobs')
+const jobs = await response.json()
+
+return (
+  <div>
+    {jobs.map(job => (
+      <JobCard key={job.id} job={job} />
+    ))}
+  </div>
+)`,
+            points: [
+              "Dynamiskt innehåll - uppdateras automatiskt",
+              "Inga kod-deploys för nya jobb",
+              "Kan aktivera/inaktivera jobb direkt i databasen"
+            ]
+          }
+        ]
+      },
+      {
+        title: "Säkerhet - Row Level Security (RLS)",
+        description: "Hur RLS skyddar data",
+        details: [
+          {
+            subtitle: "Vad är RLS?",
+            points: [
+              "Row Level Security = Säkerhet på rad-nivå",
+              "Policies bestämmer vem som kan läsa/skriva",
+              "Supabase kontrollerar automatiskt vid varje query",
+              "Skyddar mot data leaks även om någon hackar API"
+            ]
+          },
+          {
+            subtitle: "Policy-exempel",
+            code: `-- Endast service role kan skriva
+CREATE POLICY "Service role can insert"
+ON contact_submissions FOR INSERT
+TO service_role
+USING (true);
+
+-- Alla kan läsa aktiva jobb
+CREATE POLICY "Anyone can read active jobs"
+ON job_postings FOR SELECT
+USING (is_active = true);`,
+            points: [
+              "Service role = Din API via SUPABASE_SERVICE_ROLE_KEY",
+              "Anon key = Klienten (begränsad access)",
+              "Policies körs automatiskt vid varje query"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   {
     category: "Cookie System - Komplett Guide",
     icon: <Cookie className="w-5 h-5" />,
