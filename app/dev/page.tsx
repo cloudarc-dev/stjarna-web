@@ -6,11 +6,8 @@ import {
   Code2,
   Palette,
   Search,
-  Shield,
   Rocket,
   FileText,
-  Database,
-  Smartphone,
   Globe,
   BookOpen,
   Terminal,
@@ -21,8 +18,6 @@ import {
   ExternalLink,
   Cookie,
   Settings,
-  Eye,
-  Copy,
   AlertCircle,
   Clock,
 } from "lucide-react"
@@ -601,11 +596,11 @@ Sitemaps → Lägg till sitemap → sitemap.xml`,
         details: [
           {
             subtitle: "Repository URL",
-            code: `https://github.com/kryptoniten/stjarnav3
+            code: `https://github.com/cloudarc-dev/stjarna-web
 
 # Klona repo
-git clone https://github.com/kryptoniten/stjarnav3.git
-cd stjarnav3
+git clone https://github.com/cloudarc-dev/stjarna-web.git
+cd stjarna-web
 npm install`,
             points: [
               "Main branch: Produktion (deploy från denna)",
@@ -804,7 +799,7 @@ export default function DevPage() {
 
           <div className="mt-8">
             <a
-              href="https://github.com/kryptoniten/stjarnav3"
+              href="https://github.com/cloudarc-dev/stjarna-web"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-card/50 border hover:bg-primary/10 transition-colors rounded-lg"
@@ -824,7 +819,7 @@ export default function DevPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
             <SubtleCard className="p-6 text-center bg-green-500/5 border-green-500/20">
               <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">95%</div>
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">98%</div>
               <div className="text-sm text-muted-foreground">Funktioner Implementerade</div>
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-blue-500/5 border-blue-500/20">
@@ -834,7 +829,7 @@ export default function DevPage() {
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-orange-500/5 border-orange-500/20">
               <Settings className="w-12 h-12 text-orange-600 dark:text-orange-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">3</div>
+              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">6</div>
               <div className="text-sm text-muted-foreground">Återstående Tasks</div>
             </SubtleCard>
           </div>
@@ -994,6 +989,58 @@ export default function DevPage() {
               </h3>
 
               <div className="space-y-4">
+                {/* Avklarade Tasks */}
+                <div>
+                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Nyligen Avklarat</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>GitHub Repository skapat</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Repository uppladdat till GitHub under cloudarc-dev/stjarna-web.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Vercel deployment setup</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Vercel-konto aktiverat för dev@cloudarc.se och kopplat till GitHub repo.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Supabase-databas aktiverad</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Supabase kopplad via Vercel med credentials i environment variables.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>v0.dev account aktiverat</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          v0-konto aktiverat via Vercel för AI-assisterad utveckling.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Resend mailhantering setup</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Resend API aktiverad för kontaktformulär och mailutskick.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
                 {/* Kritiska Tasks */}
                 <div>
                   <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Kritiskt (Före Launch)</h4>
@@ -1001,9 +1048,18 @@ export default function DevPage() {
                     <li className="flex items-start gap-2">
                       <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Koppla Supabase-databas</strong>
+                        <strong>Verifiera Supabase-integration</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Setup Supabase för datalagring. Lägg till NEXT_PUBLIC_SUPABASE_URL och NEXT_PUBLIC_SUPABASE_ANON_KEY i Vercel.
+                          Testa att datalagring fungerar korrekt med Supabase i produktion.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Verifiera Resend mailutskick</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Testa att kontaktformulär skickar mail korrekt via Resend API.
                         </p>
                       </div>
                     </li>
@@ -1022,42 +1078,6 @@ export default function DevPage() {
                         <strong>Verifiera state-hantering</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
                           Säkerställ att alla komponenter hanterar state korrekt och konsistent.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Koppla Resend för mailhantering</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Setup Resend API för kontaktformulär och mail. Lägg till RESEND_API_KEY i Vercel.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Överför repo till dev@cloudarc.se</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Transfer GitHub repository ownership till dev@cloudarc.se (officiell Cloudarc development handle).
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Setup Vercel för dev@cloudarc.se</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Skapa Vercel-konto med dev@cloudarc.se och koppla repot för deployment.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Setup v0 account för dev@cloudarc.se</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Skapa v0.dev-konto för AI-assisterad utveckling och komponentgenerering.
                         </p>
                       </div>
                     </li>
@@ -1143,12 +1163,13 @@ export default function DevPage() {
                 <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
                   <h5 className="font-semibold text-sm mb-2 text-yellow-700 dark:text-yellow-400">Nästa Steg:</h5>
                   <ol className="space-y-1 text-xs list-decimal list-inside">
-                    <li>Skapa dev@cloudarc.se konto (GitHub, Vercel, v0.dev)</li>
-                    <li>Transfer GitHub repo till dev@cloudarc.se</li>
-                    <li>Setup Supabase-databas och lägg till credentials i Vercel</li>
-                    <li>Setup Resend API och lägg till RESEND_API_KEY i Vercel</li>
+                    <li className="line-through text-muted-foreground">Skapa dev@cloudarc.se konto (GitHub, Vercel, v0.dev) ✅</li>
+                    <li className="line-through text-muted-foreground">Transfer GitHub repo till cloudarc-dev ✅</li>
+                    <li className="line-through text-muted-foreground">Setup Supabase-databas och lägg till credentials i Vercel ✅</li>
+                    <li className="line-through text-muted-foreground">Setup Resend API och lägg till RESEND_API_KEY i Vercel ✅</li>
+                    <li>Verifiera Supabase-integration fungerar i produktion</li>
+                    <li>Verifiera Resend mailutskick fungerar</li>
                     <li>Verifiera cachning och state-hantering fungerar</li>
-                    <li>Deploy till produktion via Vercel</li>
                     <li>Testa cookie-banner och all funktionalitet i prod</li>
                     <li>Setup Google Search Console och skicka in sitemap.xml</li>
                   </ol>
@@ -1205,7 +1226,7 @@ export default function DevPage() {
             Steg-för-steg guider med kod-exempel och felsökning. Kopiera koden direkt!
           </p>
 
-          {technicalGuides.map((category, categoryIndex) => (
+          {technicalGuides.map((category) => (
             <div key={category.category} className="mb-16">
               <div className="flex items-center gap-3 mb-6">
                 <div className={`p-3 rounded-2xl bg-gradient-to-br ${category.color}`}>
@@ -1327,7 +1348,7 @@ export default function DevPage() {
                 <h3 className="font-semibold mb-3 text-lg">Externa Länkar</h3>
                 <div className="space-y-2 text-sm">
                   <a
-                    href="https://github.com/kryptoniten/stjarnav3"
+                    href="https://github.com/cloudarc-dev/stjarna-web"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-primary transition-colors"
