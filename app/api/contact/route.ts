@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getFormConfig, FormType } from '@/lib/form-config'
+import { getServiceSupabase, type ContactSubmission } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,23 +25,58 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Extract UTM parameters from referrer if available
+    const referrer = request.headers.get('referer') || ''
+    const utmParams = extractUtmParams(referrer)
+
+    // Save to Supabase database
+    const supabase = getServiceSupabase()
+    const submissionData: ContactSubmission = {
+      form_type: formType,
+      form_title: config.title,
+      name: data.namn || data.name,
+      email: data.email,
+      phone: data.telefon || data.phone,
+      company: data.foretag || data.company,
+      message: data.meddelande || data.message,
+      form_data: data,
+      status: 'new',
+      ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
+      user_agent: request.headers.get('user-agent') || undefined,
+      referrer: referrer || undefined,
+      utm_source: utmParams.source,
+      utm_medium: utmParams.medium,
+      utm_campaign: utmParams.campaign,
+    }
+
+    const { data: submission, error: dbError } = await supabase
+      .from('contact_submissions')
+      .insert(submissionData)
+      .select()
+      .single()
+
+    if (dbError) {
+      console.error('❌ Supabase insert error:', dbError)
+      // Continue anyway - we still want to send the email
+    } else {
+      console.log('✅ Contact submission saved to database:', submission?.id)
+    }
+
     // Build email content
     const emailContent = buildEmailContent(config, data)
 
-    // ⚠️ TODO: IMPLEMENT EMAIL SENDING
+    // ⚠️ TODO: IMPLEMENT EMAIL SENDING WITH RESEND
     //
-    // Formulären fungerar och vet redan vart de ska skicka mail!
+    // Formulären fungerar och sparar nu i databasen!
     // Men mailen skickas inte på riktigt ännu - de loggas bara här nedan.
     //
-    // 📧 Följ guiden: /docs/guides/email-integration.md
+    // 📧 Nästa steg: Implementera Resend
     //
     // Snabbstart:
     // 1. Skapa konto på Resend.com (gratis)
     // 2. Få API-nyckel
     // 3. npm install resend
-    // 4. Ersätt denna sektion med Resend-kod (se guiden)
-    //
-    // Tar ca 15 minuter - sen funkar allt!
+    // 4. Ersätt denna sektion med Resend-kod
     //
     console.log('=== EMAIL TO SEND ===')
     console.log('To:', config.email)
@@ -55,6 +91,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Meddelandet har skickats',
       email: config.email,
+      submissionId: submission?.id,
     })
   } catch (error) {
     console.error('Contact form error:', error)
@@ -62,6 +99,26 @@ export async function POST(request: NextRequest) {
       { error: 'Ett fel uppstod vid skickande av meddelande' },
       { status: 500 }
     )
+  }
+}
+
+/**
+ * Extract UTM parameters from URL
+ */
+function extractUtmParams(url: string): {
+  source?: string
+  medium?: string
+  campaign?: string
+} {
+  try {
+    const urlObj = new URL(url)
+    return {
+      source: urlObj.searchParams.get('utm_source') || undefined,
+      medium: urlObj.searchParams.get('utm_medium') || undefined,
+      campaign: urlObj.searchParams.get('utm_campaign') || undefined,
+    }
+  } catch {
+    return {}
   }
 }
 
