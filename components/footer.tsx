@@ -63,11 +63,6 @@ export function Footer() {
                   Skellefteå: Företagsvägen 1, 931 57 Skellefteå
                 </a>
               </li>
-              <li>
-                <a href="mailto:umea@stjarnafyrkant.se" className="hover:text-primary transition-colors">
-                  umea@stjarnafyrkant.se
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -102,7 +97,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="https://stjarna.shop/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  E-handel
+                  Shop
                 </a>
               </li>
             </ul>
