@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getFormConfig, FormType } from '@/lib/form-config'
 import { getServiceSupabase, type ContactSubmission } from '@/lib/supabase'
+import { Resend } from 'resend'
 
 export async function POST(request: NextRequest) {
   try {
@@ -64,28 +65,31 @@ export async function POST(request: NextRequest) {
 
     // Build email content
     const emailContent = buildEmailContent(config, data)
+    const htmlContent = buildHtmlEmailContent(config, data)
 
-    // ⚠️ TODO: IMPLEMENT EMAIL SENDING WITH RESEND
-    //
-    // Formulären fungerar och sparar nu i databasen!
-    // Men mailen skickas inte på riktigt ännu - de loggas bara här nedan.
-    //
-    // 📧 Nästa steg: Implementera Resend
-    //
-    // Snabbstart:
-    // 1. Skapa konto på Resend.com (gratis)
-    // 2. Få API-nyckel
-    // 3. npm install resend
-    // 4. Ersätt denna sektion med Resend-kod
-    //
-    console.log('=== EMAIL TO SEND ===')
-    console.log('To:', config.email)
-    console.log('Subject:', config.subject)
-    console.log('Content:', emailContent)
-    console.log('====================')
+    // Send email via Resend
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
-    // Simulate email sending delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const emailResult = await resend.emails.send({
+        from: 'StjärnaFyrkant Västerbotten <noreply@stjarnafyrkant.se>',
+        to: config.email,
+        subject: config.subject,
+        text: emailContent,
+        html: htmlContent,
+        replyTo: data.email,
+      })
+
+      if (emailResult.data) {
+        console.log('✅ Email sent successfully:', emailResult.data.id)
+      } else if (emailResult.error) {
+        console.error('❌ Email sending failed:', emailResult.error)
+      }
+    } catch (emailError) {
+      console.error('❌ Email sending failed:', emailError)
+      // Don't fail the request - data is already saved to database
+      // The team can follow up from the database even if email fails
+    }
 
     return NextResponse.json({
       success: true,
@@ -136,4 +140,76 @@ function buildEmailContent(
   content += `\n---\nSkickat via ${config.title} formulär på stjarnafyrkant.se`
 
   return content
+}
+
+function buildHtmlEmailContent(
+  config: ReturnType<typeof getFormConfig>,
+  data: Record<string, string>
+): string {
+  const rows = config.fields
+    .map((field) => {
+      const value = data[field.name] || 'Ej angivet'
+      return `
+        <tr>
+          <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #374151;">${field.label}</td>
+          <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; color: #6b7280;">${value.replace(/\n/g, '<br>')}</td>
+        </tr>
+      `
+    })
+    .join('')
+
+  return `
+    <!DOCTYPE html>
+    <html lang="sv">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${config.subject}</title>
+    </head>
+    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f9fafb;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f9fafb; padding: 40px 0;">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              <!-- Header -->
+              <tr>
+                <td style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 32px; text-align: center;">
+                  <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 700;">StjärnaFyrkant Västerbotten</h1>
+                  <p style="margin: 8px 0 0 0; color: #dbeafe; font-size: 16px;">${config.title}</p>
+                </td>
+              </tr>
+
+              <!-- Content -->
+              <tr>
+                <td style="padding: 32px;">
+                  <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px;">
+                    Ny förfrågan mottagen via webbplatsen:
+                  </p>
+
+                  <table width="100%" cellpadding="0" cellspacing="0" style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
+                    ${rows}
+                  </table>
+
+                  <p style="margin: 24px 0 0 0; padding-top: 24px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">
+                    För att svara kunden, klicka på "Svara" i ditt e-postprogram eller skicka till: <a href="mailto:${data.email}" style="color: #3b82f6; text-decoration: none;">${data.email}</a>
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="background-color: #f9fafb; padding: 24px; text-align: center; border-top: 1px solid #e5e7eb;">
+                  <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                    Skickat via stjarnafyrkant.se kontaktformulär<br>
+                    Detta mail är automatiskt genererat - svara inte på detta mail utan på kundens e-postadress ovan.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `
 }

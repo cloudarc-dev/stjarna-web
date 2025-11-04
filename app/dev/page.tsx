@@ -1155,17 +1155,17 @@ export default function DevPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
             <SubtleCard className="p-6 text-center bg-green-500/5 border-green-500/20">
               <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">98%</div>
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">99%</div>
               <div className="text-sm text-muted-foreground">Funktioner Implementerade</div>
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-blue-500/5 border-blue-500/20">
               <Package className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">126</div>
+              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">128</div>
               <div className="text-sm text-muted-foreground">Komponenter & Sidor</div>
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-orange-500/5 border-orange-500/20">
               <Settings className="w-12 h-12 text-orange-600 dark:text-orange-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">6</div>
+              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">4</div>
               <div className="text-sm text-muted-foreground">Återstående Tasks</div>
             </SubtleCard>
           </div>
@@ -1350,9 +1350,10 @@ export default function DevPage() {
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Supabase-databas aktiverad</strong>
+                        <strong>Supabase-databas implementerad ✨</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Supabase kopplad via Vercel med credentials i environment variables.
+                          Supabase kopplad via Vercel. Databastabeller skapade. Kontaktformulär sparar till contact_submissions.
+                          Dokumentation: COMPONENT_DATABASE_MAPPING.md & FORMS_MAPPING.md
                         </p>
                       </div>
                     </li>
@@ -1382,43 +1383,25 @@ export default function DevPage() {
                   <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Kritiskt (Före Launch)</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Verifiera Supabase-integration</strong>
+                        <strong>Implementera Resend mailutskick</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Testa att datalagring fungerar korrekt med Supabase i produktion.
+                          Ersätt console.log i /app/api/contact/route.ts med faktiskt mail-sending via Resend API.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Verifiera Resend mailutskick</strong>
+                        <strong>Testa kontaktformulär end-to-end</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Testa att kontaktformulär skickar mail korrekt via Resend API.
+                          Verifiera: Formulär → Supabase (✅) → Email via Resend → Mottagare får mail.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Verifiera cachning fungerar</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Kontrollera att Next.js cachning fungerar korrekt för optimal performance.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Verifiera state-hantering</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Säkerställ att alla komponenter hanterar state korrekt och konsistent.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <strong>Testa cookie-banner i produktion</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -1427,7 +1410,7 @@ export default function DevPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <strong>Google Search Console setup</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -1502,10 +1485,11 @@ export default function DevPage() {
                     <li className="line-through text-muted-foreground">Skapa dev@cloudarc.se konto (GitHub, Vercel, v0.dev) ✅</li>
                     <li className="line-through text-muted-foreground">Transfer GitHub repo till cloudarc-dev ✅</li>
                     <li className="line-through text-muted-foreground">Setup Supabase-databas och lägg till credentials i Vercel ✅</li>
+                    <li className="line-through text-muted-foreground">Implementera Supabase i kontaktformulär (contact_submissions tabell) ✅</li>
+                    <li className="line-through text-muted-foreground">Dokumentera formulär-databas-kopplingar (COMPONENT_DATABASE_MAPPING.md) ✅</li>
                     <li className="line-through text-muted-foreground">Setup Resend API och lägg till RESEND_API_KEY i Vercel ✅</li>
-                    <li>Verifiera Supabase-integration fungerar i produktion</li>
-                    <li>Verifiera Resend mailutskick fungerar</li>
-                    <li>Verifiera cachning och state-hantering fungerar</li>
+                    <li><strong>Implementera Resend mailutskick i /app/api/contact/route.ts</strong></li>
+                    <li>Testa kontaktformulär end-to-end (formulär → Supabase → email)</li>
                     <li>Testa cookie-banner och all funktionalitet i prod</li>
                     <li>Setup Google Search Console och skicka in sitemap.xml</li>
                   </ol>
