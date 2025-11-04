@@ -185,7 +185,7 @@ export const formConfigs: Record<FormType, FormConfig> = {
   },
   'general': {
     type: 'general',
-    email: 'info@stjarnafyrkant.se',
+    email: 'order.vb@stjarnafyrkant.se',
     subject: 'Allmän förfrågan',
     title: 'Hör av dig',
     description: 'Välj vilken avdelning du vill kontakta så hjälper vi dig gärna!',
