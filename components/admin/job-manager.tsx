@@ -30,11 +30,11 @@ export function JobManager() {
     setEditingJob({
       title: '',
       department: 'IT',
-      office: 'Umeå',
+      location: 'Umeå',
       employment_type: 'Heltid',
       description: '',
-      is_published: false,
-      display_order: 0,
+      is_active: false,
+      sort_order: 0,
     })
     setIsCreating(true)
   }
@@ -78,7 +78,7 @@ export function JobManager() {
         <div>
           <h2 className="text-2xl font-bold">Hantera Jobbannonser</h2>
           <p className="text-muted-foreground mt-1">
-            {jobs.length} jobbannonser ({jobs.filter(j => j.is_published).length} publicerade)
+            {jobs.length} jobbannonser ({jobs.filter(j => j.is_active).length} publicerade)
           </p>
         </div>
         <button onClick={handleCreate} className="px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2">
@@ -124,8 +124,8 @@ export function JobManager() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Kontor</label>
-              <select value={editingJob.office} onChange={(e) => setEditingJob({ ...editingJob, office: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background">
+              <label className="block text-sm font-medium mb-2">Plats</label>
+              <select value={editingJob.location} onChange={(e) => setEditingJob({ ...editingJob, location: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background">
                 <option value="Umeå">Umeå</option>
                 <option value="Skellefteå">Skellefteå</option>
                 <option value="Distans">Distans</option>
@@ -172,7 +172,7 @@ export function JobManager() {
             </div>
 
             <div className="flex items-center gap-2">
-              <input type="checkbox" checked={editingJob.is_published || false} onChange={(e) => setEditingJob({ ...editingJob, is_published: e.target.checked })} />
+              <input type="checkbox" checked={editingJob.is_active || false} onChange={(e) => setEditingJob({ ...editingJob, is_active: e.target.checked })} />
               <label className="text-sm font-medium">Publicerad</label>
             </div>
 
@@ -206,7 +206,7 @@ export function JobManager() {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-bold">{job.title}</h3>
-                  {job.is_published ? (
+                  {job.is_active ? (
                     <span className="px-2 py-1 text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded flex items-center gap-1">
                       <Eye className="w-3 h-3" /> Publicerad
                     </span>
@@ -218,7 +218,7 @@ export function JobManager() {
                 </div>
                 <div className="flex gap-3 text-sm text-muted-foreground mb-2">
                   <span className="px-2 py-1 bg-accent rounded">{job.department}</span>
-                  <span className="px-2 py-1 bg-accent rounded">{job.office}</span>
+                  <span className="px-2 py-1 bg-accent rounded">{job.location}</span>
                   <span>{job.employment_type}</span>
                 </div>
                 <p className="text-sm text-muted-foreground line-clamp-2">{job.description}</p>

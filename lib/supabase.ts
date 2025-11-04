@@ -230,7 +230,7 @@ export interface JobPosting2 {
   updated_at?: string
   title: string
   department: string
-  office: string
+  location: string // Changed from office to match existing schema
   employment_type?: string
   description: string
   responsibilities?: string
@@ -238,14 +238,22 @@ export interface JobPosting2 {
   qualifications?: string
   benefits?: string
   application_deadline?: string
+  start_date?: string
   contact_person?: string
   contact_email?: string
-  is_published?: boolean
+  contact_phone?: string
+  is_active?: boolean // Changed from is_published to match existing schema
+  is_featured?: boolean
   published_at?: string
-  display_order?: number
+  closed_at?: string
+  sort_order?: number // Changed from display_order to match existing schema
   salary_range?: string
   experience_level?: string
   tags?: string[]
+  slug?: string
+  meta_description?: string
+  views_count?: number
+  applications_count?: number
 }
 
 export interface CaseStudy {
