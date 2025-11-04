@@ -8,10 +8,11 @@ import { SubtleCard } from "@/components/ui/subtle-card"
 import { ShineButton } from "@/components/ui/shine-button"
 import { GlareCard } from "@/components/ui/glare-card"
 import { Award, Leaf, Users, MapPin, Clock, Phone, ArrowRight, Headset, Wrench, Truck } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FormModal } from "@/components/form-modal"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
+import { fetchEmployees, type DepartmentGroup } from "@/lib/fetch-employees"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const isoCards = [
@@ -35,7 +36,7 @@ const isoCards = [
   },
 ]
 
-const departments = [
+const fallbackDepartments = [
   {
     name: "Backoffice",
     members: [
@@ -104,7 +105,19 @@ const departments = [
 ]
 
 export default function OmOssPage() {
-  const [upsalesOpen, setUpsalesOpen] = useState(false);
+  const [upsalesOpen, setUpsalesOpen] = useState(false)
+  const [departments, setDepartments] = useState<DepartmentGroup[]>(fallbackDepartments)
+
+  useEffect(() => {
+    async function loadEmployees() {
+      const data = await fetchEmployees()
+      if (data.length > 0) {
+        setDepartments(data)
+      }
+    }
+    loadEmployees()
+  }, [])
+
   const locations = [
     {
       city: "Umeå",

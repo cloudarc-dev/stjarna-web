@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -15,6 +15,7 @@ import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
 import { FormType } from "@/lib/form-config"
+import { fetchCaseStudies, type SimpleCaseStudy } from "@/lib/fetch-cases"
 
 const serviceCategories = [
   {
@@ -47,7 +48,7 @@ const processSteps = [
   { icon: <Rocket size={32} />, title: "05. Eftermarknad" },
 ]
 
-const cases = [
+const fallbackCases = [
   {
     title: "Holmen Wood Products",
     description: "Kamerasystem från Motec för säkrare logistikarbete i Combiliftar inklusive installation on site.",
@@ -107,6 +108,17 @@ const faqItems = [
 export default function FordonsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<FormType>('fordon')
+  const [cases, setCases] = useState<SimpleCaseStudy[]>(fallbackCases)
+
+  useEffect(() => {
+    async function loadCases() {
+      const data = await fetchCaseStudies({ services: ['Fordonsteknik'] })
+      if (data.length > 0) {
+        setCases(data)
+      }
+    }
+    loadCases()
+  }, [])
 
   const handleOpenForm = (formType: FormType) => {
     setCurrentFormType(formType)

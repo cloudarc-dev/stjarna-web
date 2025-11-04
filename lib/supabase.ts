@@ -41,6 +41,37 @@ export function getServiceSupabase() {
 }
 
 /**
+ * Get Supabase client with ANON key (for client-side use)
+ *
+ * Safe to use in client-side code (React components).
+ * Access is controlled by Row Level Security (RLS) policies.
+ *
+ * Usage:
+ * ```typescript
+ * // In client components
+ * const supabase = getAnonSupabase()
+ * const { data } = await supabase.from('case_studies').select('*').eq('is_published', true)
+ * ```
+ */
+export function getAnonSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error(
+      'Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY'
+    )
+  }
+
+  return createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  })
+}
+
+/**
  * Get Supabase client with ANON key
  *
  * Safe to use in client-side code (React components).

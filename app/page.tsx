@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import {
   Computer,
@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { Typewriter } from "@/components/ui/typewriter"
+import { getAnonSupabase, type CaseStudy } from "@/lib/supabase"
 
 // Lazy load FormModal - only loads when needed
 const FormModal = dynamic(() => import("@/components/form-modal").then(mod => ({ default: mod.FormModal })), {
@@ -101,7 +102,8 @@ const services = [
   },
 ]
 
-const cases = [
+// Fallback cases if Supabase is not available
+const fallbackCases = [
   {
     title: "Komatsu Forest",
     description:
@@ -194,6 +196,37 @@ const experts = [
 export default function LandingPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<'projekt' | 'general'>('projekt')
+  const [cases, setCases] = useState<Array<{title: string, description: string}>>(fallbackCases)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchCases() {
+      try {
+        const supabase = getAnonSupabase()
+        const { data, error } = await supabase
+          .from('case_studies')
+          .select('client_name, summary')
+          .eq('is_published', true)
+          .eq('is_featured', true)
+          .order('display_order', { ascending: true })
+          .limit(3)
+
+        if (data && data.length > 0) {
+          setCases(data.map(c => ({
+            title: c.client_name,
+            description: c.summary
+          })))
+        }
+      } catch (err) {
+        console.error('Failed to fetch cases:', err)
+        // Keep fallback cases
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCases()
+  }, [])
 
   const handleOpenForm = (formType: 'projekt' | 'general') => {
     setCurrentFormType(formType)

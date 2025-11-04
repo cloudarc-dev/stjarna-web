@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -14,6 +14,7 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
+import { fetchCaseStudies, type SimpleCaseStudy } from "@/lib/fetch-cases"
 
 const serviceCategories = [
   {
@@ -62,7 +63,7 @@ const experts = [
   },
 ];
 
-const cases = [
+const fallbackCases = [
   {
     title: "Northvolt",
     description: "Helhetslösning för säker gruppkommunikation genom att brygga traditionell radio med GroupTalk, samt leverans och service av hörselskydd.",
@@ -102,6 +103,17 @@ const faqItems = [
 
 export default function KommunikationsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [cases, setCases] = useState<SimpleCaseStudy[]>(fallbackCases)
+
+  useEffect(() => {
+    async function loadCases() {
+      const data = await fetchCaseStudies({ services: ['Kommunikationsteknik'] })
+      if (data.length > 0) {
+        setCases(data)
+      }
+    }
+    loadCases()
+  }, [])
 
   return (
     <>
