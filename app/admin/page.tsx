@@ -136,8 +136,6 @@ export default function AdminPage() {
 }
 
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
-  const [activeTab, setActiveTab] = useState<'forms' | 'settings'>('forms')
-
   return (
     <>
       {/* Header */}
@@ -157,66 +155,82 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         </div>
       </header>
 
-      {/* Navigation Tabs */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex gap-2 border-b border-border mb-8">
-          <button
-            onClick={() => setActiveTab('forms')}
-            className={`px-6 py-3 font-medium transition-colors relative ${
-              activeTab === 'forms'
-                ? 'text-primary'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
+      {/* Admin Dashboard */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
+          {/* Medarbetare Card */}
+          <motion.a
+            href="/admin/medarbetare"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0 }}
+            className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group"
           >
-            Formulär
-            {activeTab === 'forms' && (
-              <motion.div
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              />
-            )}
-          </button>
-          <button
-            onClick={() => setActiveTab('settings')}
-            className={`px-6 py-3 font-medium transition-colors relative ${
-              activeTab === 'settings'
-                ? 'text-primary'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Medarbetare</h3>
+            <p className="text-sm text-muted-foreground">Hantera medarbetare, titlar och bilder</p>
+          </motion.a>
+
+          {/* Jobb Card */}
+          <motion.a
+            href="/admin/jobb"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group"
           >
-            Inställningar
-            {activeTab === 'settings' && (
-              <motion.div
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              />
-            )}
-          </button>
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Jobbannonser</h3>
+            <p className="text-sm text-muted-foreground">Skapa och hantera rekryteringsannonser</p>
+          </motion.a>
+
+          {/* Kundcase Card */}
+          <motion.a
+            href="/admin/kundcase"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group"
+          >
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Kundcase</h3>
+            <p className="text-sm text-muted-foreground">Hantera kundreferenser och case studies</p>
+          </motion.a>
+
+          {/* Formulär Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="bg-card border border-border rounded-xl p-6"
+          >
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Formulär</h3>
+            <p className="text-sm text-muted-foreground mb-4">Hantera kontaktformulär</p>
+            <a href="#formulär" className="text-sm text-primary hover:underline">Bläddra ner ↓</a>
+          </motion.div>
         </div>
 
-        {/* Content */}
-        <AnimatePresence mode="wait">
-          {activeTab === 'forms' && (
-            <motion.div
-              key="forms"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <FormManager />
-            </motion.div>
-          )}
-          {activeTab === 'settings' && (
-            <motion.div
-              key="settings"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <SettingsPanel />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Formulärhantering */}
+        <div id="formulär">
+          <FormManager />
+        </div>
       </div>
     </>
   )

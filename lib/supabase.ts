@@ -200,3 +200,78 @@ export interface TeamMember {
   sort_order?: number
   show_on_about_page?: boolean
 }
+
+// =====================================================
+// Admin Content Management Types
+// =====================================================
+
+export interface Employee {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  name: string
+  title: string
+  email?: string
+  phone?: string
+  bio?: string
+  image_url?: string
+  linkedin_url?: string
+  department?: string
+  office?: string
+  display_order?: number
+  is_visible?: boolean
+  specialties?: string[]
+  certifications?: string[]
+}
+
+export interface JobPosting2 {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  title: string
+  department: string
+  office: string
+  employment_type?: string
+  description: string
+  responsibilities?: string
+  requirements?: string
+  qualifications?: string
+  benefits?: string
+  application_deadline?: string
+  contact_person?: string
+  contact_email?: string
+  is_published?: boolean
+  published_at?: string
+  display_order?: number
+  salary_range?: string
+  experience_level?: string
+  tags?: string[]
+}
+
+export interface CaseStudy {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  client_name: string
+  project_title: string
+  slug?: string
+  summary?: string
+  challenge?: string
+  solution?: string
+  results?: string
+  featured_image_url?: string
+  gallery_images?: string[]
+  services: string[]
+  industry?: string
+  project_date?: string
+  project_duration?: string
+  is_published?: boolean
+  published_at?: string
+  display_order?: number
+  is_featured?: boolean
+  client_logo_url?: string
+  testimonial?: string
+  testimonial_author?: string
+  testimonial_title?: string
+  metrics?: Record<string, any>
+}
