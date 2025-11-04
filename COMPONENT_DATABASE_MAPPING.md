@@ -25,6 +25,10 @@ API Route (app/api/contact/route.ts)
     getServiceSupabase()  ← lib/supabase.ts
          ↓
 Supabase Database (contact_submissions tabell)
+         ↓
+    Resend Email API  ← Professional HTML email
+         ↓
+Recipient Email (config.email)
 ```
 
 **Viktigt:**
@@ -32,6 +36,7 @@ Supabase Database (contact_submissions tabell)
 - ✅ **Samma API endpoint** (`/api/contact`) används av alla formulär
 - ✅ **formType** bestämmer vilket email som får meddelandet och hur data sparas
 - ✅ **form_data** kolumnen (JSONB) innehåller all formulärdata för flexibilitet
+- ✅ **Email skickas via Resend** med professionell HTML-template och reply-to funktionalitet
 
 ---
 
@@ -212,13 +217,30 @@ const { data: submission, error: dbError } = await supabase
 }
 ```
 
-### **5. Email skickas (TODO: Implementera Resend)**
+### **5. Email skickas via Resend ✅**
 ```typescript
-// app/api/contact/route.ts (rad 80-84)
-console.log('To:', 'servicedesk@stjarnafyrkant.se')  // eller 'order.vb@' för general
-console.log('Subject:', 'IT-support förfrågan')
-console.log('Content:', emailContent)
+// app/api/contact/route.ts (rad 70-88)
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+const emailResult = await resend.emails.send({
+  from: 'StjärnaFyrkant Västerbotten <noreply@stjarnafyrkant.se>',
+  to: 'servicedesk@stjarnafyrkant.se',  // från config.email
+  subject: 'IT-support förfrågan',       // från config.subject
+  text: emailContent,                     // Plain text version
+  html: htmlContent,                      // Professional HTML template
+  replyTo: 'anna@acme.se',               // Kundens email för enkel svar
+})
+
+console.log('✅ Email sent successfully:', emailResult.data.id)
 ```
+
+**Email-template features:**
+- Professional HTML design med StjärnaFyrkant branding
+- Gradient header (blå gradient) med formtyp
+- Tabell-layout för formulärdata
+- Reply-to satt till kundens email
+- Plain text fallback för gamla email-klienter
+- Footer med instruktioner om att svara kunden
 
 ---
 
@@ -383,25 +405,30 @@ export interface ContactSubmission {
 | [lib/form-config.ts](lib/form-config.ts) | Centraliserad formulärkonfiguration |
 | [lib/supabase.ts](lib/supabase.ts) | Supabase klient och TypeScript interfaces |
 | [components/form-modal.tsx](components/form-modal.tsx) | Återanvändbar modal-komponent |
-| [app/api/contact/route.ts](app/api/contact/route.ts) | API endpoint som sparar till databas |
+| [app/api/contact/route.ts](app/api/contact/route.ts) | API endpoint som sparar till databas OCH skickar email via Resend |
 
 ---
 
 ## ✅ Sammanfattning
 
-### **Alla formulär är redan kopplade till Supabase!**
+### **Alla formulär är fullt funktionella!**
 
-- ✅ **FormModal** (9 sidor) → `/api/contact` → Supabase
-- ✅ **Kontaktsida** (inline) → `/api/contact` → Supabase
+- ✅ **FormModal** (9 sidor) → `/api/contact` → Supabase → Resend Email
+- ✅ **Kontaktsida** (inline) → `/api/contact` → Supabase → Resend Email
 - ✅ **API Route** sparar automatiskt till `contact_submissions` tabell
+- ✅ **Email skickas via Resend** med professionell HTML-template
 - ✅ **TypeScript types** definierade i `lib/supabase.ts`
 - ✅ **Environment variables** korrekt konfigurerade
 
-### **Nästa steg:**
-1. Kör `supabase-setup.sql` i Supabase SQL Editor (om inte redan gjort)
-2. Testa ett formulär på sajten
-3. Kontrollera att data sparas i `contact_submissions` tabell
-4. Implementera email-sending med Resend (TODO i API route)
+### **Nästa steg för testning:**
+1. Verifiera att RESEND_API_KEY finns i Vercel miljövariabler
+2. Verifiera att din domän (stjarnafyrkant.se) är verifierad i Resend
+3. Testa ett formulär på sajten (t.ex. IT-support)
+4. Kontrollera att:
+   - Data sparas i Supabase `contact_submissions` tabell
+   - Email kommer fram till mottagaren (t.ex. servicedesk@stjarnafyrkant.se)
+   - Reply-to fungerar (kundens email-adress)
+5. Testa flera olika formulärtyper för att verifiera olika email-destinationer
 
 ---
 
