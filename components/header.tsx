@@ -280,16 +280,6 @@ export function Header() {
                     </motion.div>
                   </div>
                 </nav>
-                
-                {/* Bottom Actions */}
-                <div className="p-6 border-t border-border/40 space-y-4">
-                  
-                  <div className="flex items-center justify-center gap-4 pt-4">
-                    <NavChatLauncher />
-                    <span className="text-sm text-muted-foreground">Tema:</span>
-                    <ThemeToggle />
-                  </div>
-                </div>
               </div>
             </motion.div>
           </>
