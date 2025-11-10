@@ -59,7 +59,7 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
   }
 
   const renderField = (field: FormField) => {
-    const baseClasses = "w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+    const baseClasses = "w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
 
     switch (field.type) {
       case 'textarea':
@@ -131,17 +131,17 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card rounded-2xl shadow-2xl pointer-events-auto border border-border"
+              className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl pointer-events-auto border border-gray-200"
             >
               {/* Header */}
-              <div className="sticky top-0 z-10 bg-card/95 backdrop-blur-sm border-b border-border px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-6 py-4 flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground">{config.title}</h2>
-                  <p className="text-sm text-muted-foreground mt-1">{config.description}</p>
+                  <h2 className="text-2xl font-bold text-gray-900">{config.title}</h2>
+                  <p className="text-sm text-gray-600 mt-1">{config.description}</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-accent transition-colors"
+                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-700"
                   aria-label="Stäng"
                 >
                   <X className="w-5 h-5" />
@@ -159,8 +159,8 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
                     <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
                       <CheckCircle2 className="w-8 h-8 text-green-500" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">Tack för ditt meddelande!</h3>
-                    <p className="text-muted-foreground text-center">
+                    <h3 className="text-xl font-semibold mb-2 text-gray-900">Tack för ditt meddelande!</h3>
+                    <p className="text-gray-600 text-center">
                       Vi har tagit emot din förfrågan och återkommer så snart som möjligt.
                     </p>
                   </motion.div>
@@ -170,7 +170,7 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
                       <div key={field.name}>
                         <label
                           htmlFor={field.name}
-                          className="block text-sm font-medium text-foreground mb-2"
+                          className="block text-sm font-medium text-gray-900 mb-2"
                         >
                           {field.label}
                           {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -194,14 +194,14 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
                         type="button"
                         onClick={onClose}
                         disabled={status === 'loading'}
-                        className="flex-1 px-6 py-3 rounded-lg border border-border hover:bg-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex-1 px-6 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-gray-700"
                       >
                         Avbryt
                       </button>
                       <button
                         type="submit"
                         disabled={status === 'loading'}
-                        className="flex-1 px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                        className="flex-1 px-6 py-3 rounded-lg bg-primary text-black hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
                       >
                         {status === 'loading' ? (
                           <>
@@ -217,9 +217,9 @@ export function FormModal({ open, onClose, formType }: FormModalProps) {
                       </button>
                     </div>
 
-                    <p className="text-xs text-muted-foreground text-center pt-2">
+                    <p className="text-xs text-gray-500 text-center pt-2">
                       Genom att skicka formuläret godkänner du vår{' '}
-                      <a href="/verksamhetspolicy" className="underline hover:text-foreground">
+                      <a href="/verksamhetspolicy" className="underline hover:text-gray-900">
                         integritetspolicy
                       </a>
                       .
