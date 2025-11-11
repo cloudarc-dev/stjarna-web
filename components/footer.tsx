@@ -26,9 +26,8 @@ export function Footer() {
           </div>
           <p className="text-muted-foreground max-w-4xl leading-relaxed">
             StjärnaFyrkant Västerbotten är en ledande partner inom IT, fordonsteknik, kommunikationsteknik och företagstelefoni.
-            Vi erbjuder skalbara helhetslösningar och fullservice support till företag och organisationer i hela Västerbotten.
-            Genom nära samarbete, lokal närvaro och ett starkt hållbarhetsansvar hjälper vi våra kunder att växa säkert med rätt teknik.
-            Med kontor i Umeå och Skellefteå har vi arbetat lokalt i över 40 år som en del av den nationella franchisen StjärnaFyrkant sedan 2003.
+            Vi erbjuder skalbara helhetslösningar till företag och organisationer i hela Sverige.
+            Genom nära samarbete, lokal närvaro och ett starkt hållbarhetsansvar har vi hjälpt våra kunder att växa säkert med rätt teknik i över 40 år.
           </p>
         </div>
 
