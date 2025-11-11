@@ -279,7 +279,6 @@ export interface JobPosting2 {
   closed_at?: string
   sort_order?: number // Changed from display_order to match existing schema
   salary_range?: string
-  experience_level?: string
   tags?: string[]
   slug?: string
   meta_description?: string

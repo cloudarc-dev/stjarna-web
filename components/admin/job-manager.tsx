@@ -142,16 +142,6 @@ export function JobManager() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Erfarenhetsnivå</label>
-              <select value={editingJob.experience_level || ''} onChange={(e) => setEditingJob({ ...editingJob, experience_level: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background">
-                <option value="">Välj...</option>
-                <option value="Junior">Junior</option>
-                <option value="Medior">Medior</option>
-                <option value="Senior">Senior</option>
-              </select>
-            </div>
-
-            <div>
               <label className="block text-sm font-medium mb-2">Ansökningsdatum (sista dag)</label>
               <input type="date" value={editingJob.application_deadline || ''} onChange={(e) => setEditingJob({ ...editingJob, application_deadline: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" />
             </div>
