@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Users, Briefcase, FileText, Mail, TrendingUp, Activity, CheckCircle2, Clock } from "lucide-react"
+import { Users, Briefcase, FileText, Mail, TrendingUp, Activity, CheckCircle2, Clock, Image, Settings, Code } from "lucide-react"
 import Link from "next/link"
 
 interface Stats {
@@ -115,19 +115,25 @@ export default function AdminDashboardPage() {
       label: "Media Library",
       description: "Hantera bilder och filer",
       href: "/admin/media",
-      icon: "🖼️"
+      icon: Image,
+      color: "text-blue-600 dark:text-blue-400",
+      bgColor: "bg-blue-500/10"
     },
     {
       label: "Site Settings",
       description: "Företagsinformation",
       href: "/admin/settings",
-      icon: "⚙️"
+      icon: Settings,
+      color: "text-gray-600 dark:text-gray-400",
+      bgColor: "bg-gray-500/10"
     },
     {
       label: "Developer Hub",
       description: "Progress & utveckling",
       href: "/admin/dev",
-      icon: "🚀"
+      icon: Code,
+      color: "text-purple-600 dark:text-purple-400",
+      bgColor: "bg-purple-500/10"
     }
   ]
 
@@ -193,7 +199,9 @@ export default function AdminDashboardPage() {
                 transition={{ delay: 0.4 + index * 0.1 }}
                 className="bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/50 transition-all group cursor-pointer"
               >
-                <div className="text-4xl mb-3">{action.icon}</div>
+                <div className={`w-12 h-12 ${action.bgColor} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                  <action.icon className={`w-6 h-6 ${action.color}`} />
+                </div>
                 <h3 className="text-lg font-semibold mb-1">{action.label}</h3>
                 <p className="text-sm text-muted-foreground">{action.description}</p>
               </motion.div>
