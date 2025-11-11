@@ -172,13 +172,45 @@ export function JobManager() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Arbetsuppgifter</label>
-              <textarea value={editingJob.responsibilities || ''} onChange={(e) => setEditingJob({ ...editingJob, responsibilities: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={3} />
+              <label className="block text-sm font-medium mb-2">Arbetsuppgifter (en per rad)</label>
+              <textarea
+                value={editingJob.responsibilities?.join('\n') || ''}
+                onChange={(e) => setEditingJob({
+                  ...editingJob,
+                  responsibilities: e.target.value.split('\n').filter(line => line.trim())
+                })}
+                className="w-full px-4 py-2 rounded-lg border bg-background"
+                rows={4}
+                placeholder="Installera och konfigurera IT-system&#10;Ge support till användare&#10;Dokumentera rutiner"
+              />
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Meriterande</label>
-              <textarea value={editingJob.qualifications || ''} onChange={(e) => setEditingJob({ ...editingJob, qualifications: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={2} />
+              <label className="block text-sm font-medium mb-2">Meriterande (en per rad)</label>
+              <textarea
+                value={editingJob.qualifications?.join('\n') || ''}
+                onChange={(e) => setEditingJob({
+                  ...editingJob,
+                  qualifications: e.target.value.split('\n').filter(line => line.trim())
+                })}
+                className="w-full px-4 py-2 rounded-lg border bg-background"
+                rows={3}
+                placeholder="Erfarenhet av Windows Server&#10;Certifiering inom IT-säkerhet&#10;Körkort B"
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-2">Förmåner (en per rad)</label>
+              <textarea
+                value={editingJob.benefits?.join('\n') || ''}
+                onChange={(e) => setEditingJob({
+                  ...editingJob,
+                  benefits: e.target.value.split('\n').filter(line => line.trim())
+                })}
+                className="w-full px-4 py-2 rounded-lg border bg-background"
+                rows={3}
+                placeholder="Friskvårdsbidrag&#10;Tjänstebil&#10;Flexibla arbetstider"
+              />
             </div>
           </div>
         </motion.div>

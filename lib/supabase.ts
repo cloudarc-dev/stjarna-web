@@ -259,30 +259,37 @@ export interface JobPosting2 {
   id?: string
   created_at?: string
   updated_at?: string
+  // Job info
   title: string
   department: string
-  location: string // Changed from office to match existing schema
-  employment_type?: string
+  location: string
+  employment_type: string
+  // Description (arrays in database)
   description: string
-  responsibilities?: string
-  qualifications?: string
-  benefits?: string
-  application_deadline?: string
+  responsibilities?: string[]
+  qualifications?: string[]
+  benefits?: string[]
+  // Practical info
+  salary_range?: string
   start_date?: string
+  application_deadline?: string
+  // Status
+  is_active?: boolean
+  is_featured?: boolean
+  sort_order?: number
+  // Contact
   contact_person?: string
   contact_email?: string
   contact_phone?: string
-  is_active?: boolean // Changed from is_published to match existing schema
-  is_featured?: boolean
-  published_at?: string
-  closed_at?: string
-  sort_order?: number // Changed from display_order to match existing schema
-  salary_range?: string
-  tags?: string[]
+  // SEO
   slug?: string
   meta_description?: string
+  // Statistics
   views_count?: number
   applications_count?: number
+  // Timestamps
+  published_at?: string
+  closed_at?: string
 }
 
 export interface CaseStudy {
