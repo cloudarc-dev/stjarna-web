@@ -122,11 +122,6 @@ export function Footer() {
                   Verksamhetspolicy (KMA)
                 </Link>
               </li>
-              <li>
-                <Link href="/om-oss#iso" className="hover:text-primary transition-colors">
-                  Hållbarhet & ISO
-                </Link>
-              </li>
               <li className="text-muted-foreground/60">
                 Press & nyheter
               </li>
