@@ -12,6 +12,7 @@ import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, Shield } from "lucid
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
+import Link from "next/link"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const benefits = [
@@ -130,7 +131,9 @@ export default function KarriarPage() {
                 transition={{ delay: 1.5, duration: 0.8 }}
                 className="mt-10"
               >
-                <ShineButton onClick={() => setIsFormOpen(true)}>Se lediga tjänster</ShineButton>
+                <Link href="/karriar/annonser">
+                  <ShineButton>Se lediga tjänster</ShineButton>
+                </Link>
               </motion.div>
             </div>
           </section>
@@ -304,7 +307,9 @@ export default function KarriarPage() {
                 även om du inte ser en specifik tjänst som passar dig.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <ShineButton onClick={() => setIsFormOpen(true)}>Se lediga tjänster</ShineButton>
+                <Link href="/karriar/annonser">
+                  <ShineButton>Se lediga tjänster</ShineButton>
+                </Link>
                 <ShineButton
                   onClick={() => setIsFormOpen(true)}
                   className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
