@@ -4,13 +4,14 @@ import { FileText, Code, ExternalLink } from "lucide-react"
 
 export default function FormularPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold">Formulärhanterare</h2>
-        <p className="text-muted-foreground mt-1">
-          Hantera och konfigurera formulär på webbplatsen
-        </p>
-      </div>
+    <div className="p-6 max-w-5xl mx-auto">
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold">Formulärhanterare</h2>
+          <p className="text-muted-foreground mt-1">
+            Hantera och konfigurera formulär på webbplatsen
+          </p>
+        </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -92,6 +93,7 @@ export default function FormularPage() {
             </li>
           </ul>
         </motion.div>
+      </div>
       </div>
     </div>
   )
