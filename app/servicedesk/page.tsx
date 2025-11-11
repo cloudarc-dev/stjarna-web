@@ -131,9 +131,9 @@ export default function ServicedeskPage() {
             <OptimizedBackground variant="hero" className="absolute inset-0 z-0" />
             <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative z-10 text-left">
-                <p className="text-primary font-semibold">Din personliga IT-avdelning</p>
+                <p className="text-primary font-semibold">Din personliga IT- & telefoniavdelning</p>
                 <PaintableTextBrushV2
-                  text="Servicedesk i Västerbotten"
+                  text="Servicedesk i stjärnklass"
                   el="h1"
                   paintColor="#fedb00"
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mt-2 leading-tight"
@@ -145,7 +145,7 @@ export default function ServicedeskPage() {
                   className="max-w-xl mt-6 text-lg text-muted-foreground"
                 >
                   Snabb, personlig och proaktiv support som håller din verksamhet rullande. Vi är din första kontakt för
-                  alla IT-relaterade ärenden.
+                  alla IT- & telefonirelaterade ärenden.
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
