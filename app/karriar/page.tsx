@@ -8,7 +8,7 @@ import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, MapPin, Clock, Phone, Mail } from "lucide-react"
+import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, MapPin, Clock, Phone, Mail, Shield } from "lucide-react"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
@@ -53,6 +53,26 @@ const values = [
   {
     title: "Utveckling",
     description: "Vi uppmuntrar kontinuerlig utveckling och innovation",
+  },
+]
+
+const principles = [
+  {
+    title: "Service",
+    icon: <Heart className="w-8 h-8 text-primary" />,
+    description:
+      "Vi strävar alltid efter att överträffa kundernas förväntningar genom att vara lyhörda, förbättra oss själva och alltid bemöta människor internt och externt med ett vänligt bemötande.",
+  },
+  {
+    title: "Ärlighet",
+    icon: <Shield className="w-8 h-8 text-primary" />,
+    description:
+      "Vi visar respekt till kollegor, våra kunder och samarbetspartners genom att vara transparenta och ärliga. Vi är raka i vår kommunikation, tar ansvar för det vi säger och håller våra löften.",
+  },
+  {
+    title: "Kvalité",
+    icon: <Award className="w-8 h-8 text-primary" />,
+    description: "Vi strävar alltid efter bästa möjliga upplevelse, omtanke och kompetens i det vi säger och gör.",
   },
 ]
 
@@ -176,8 +196,47 @@ export default function KarriarPage() {
             </div>
           </section>
 
-          {/* Vision Section */}
+          {/* Grundprinciper Section */}
           <section className="py-24 md:py-32 dark:border-t">
+            <div className="container mx-auto">
+              <AnimatedText text="Våra grundprinciper" el="h2" animationType="soft" className="text-4xl font-bold mb-4 text-center" />
+              <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+                Vi står för service, ärlighet och kvalité och dessa värdeord ska vara utgångspunkten i allt vi säger och
+                gör.
+              </p>
+              <div className="grid md:grid-cols-3 gap-8">
+                {principles.map((principle, i) => (
+                  <motion.div
+                    key={principle.title}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, type: "spring" }}
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    <SubtleCard className="p-8 h-full text-center">
+                      <div className="flex justify-center mb-6">{principle.icon}</div>
+                      <h3 className="text-2xl font-semibold mb-4">{principle.title}</h3>
+                      <p className="text-muted-foreground">{principle.description}</p>
+                    </SubtleCard>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                viewport={{ once: true }}
+                className="mt-12 text-center"
+              >
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Vår lägsta nivå ska alltid vara att vi följer relevant lagstiftning och bindande krav.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Vision Section */}
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="flex items-center justify-center gap-4 mb-8">
@@ -209,7 +268,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Testimonial Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto">
                 <SubtleCard className="p-12 text-center">
@@ -237,7 +296,7 @@ export default function KarriarPage() {
           </section>
 
           {/* CTA Section */}
-          <section className="py-24 md:py-32 dark:border-t">
+          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto text-center">
               <AnimatedText text="Redo att bli en del av teamet?" el="h2" className="text-4xl font-bold mb-6" />
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
@@ -257,7 +316,7 @@ export default function KarriarPage() {
           </section>
 
           {/* Contact Info Section */}
-          <section className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
+          <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <SubtleCard className="p-6">
