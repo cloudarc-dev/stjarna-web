@@ -130,7 +130,7 @@ export default function AdminDashboardPage() {
     {
       label: "Developer Hub",
       description: "Progress & utveckling",
-      href: "/dev",
+      href: "/admin/dev",
       icon: Code,
       color: "text-purple-600 dark:text-purple-400",
       bgColor: "bg-purple-500/10"
@@ -246,13 +246,13 @@ export default function AdminDashboardPage() {
             ))}
           </div>
           <div className="mt-4 pt-4 border-t border-border flex gap-3">
-            <Link href="/seo-plan" className="text-sm text-primary hover:underline">
+            <Link href="/admin/seo" className="text-sm text-primary hover:underline">
               Se SEO Plan →
             </Link>
-            <Link href="/seo-implementation" className="text-sm text-primary hover:underline">
+            <Link href="/admin/seo-implementation" className="text-sm text-primary hover:underline">
               SEO Implementation →
             </Link>
-            <Link href="/dev" className="text-sm text-primary hover:underline">
+            <Link href="/admin/dev" className="text-sm text-primary hover:underline">
               Developer Hub →
             </Link>
           </div>
