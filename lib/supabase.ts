@@ -265,7 +265,6 @@ export interface JobPosting2 {
   employment_type?: string
   description: string
   responsibilities?: string
-  requirements?: string
   qualifications?: string
   benefits?: string
   application_deadline?: string

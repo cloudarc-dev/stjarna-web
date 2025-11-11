@@ -177,11 +177,6 @@ export function JobManager() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Krav</label>
-              <textarea value={editingJob.requirements || ''} onChange={(e) => setEditingJob({ ...editingJob, requirements: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={3} />
-            </div>
-
-            <div className="md:col-span-2">
               <label className="block text-sm font-medium mb-2">Meriterande</label>
               <textarea value={editingJob.qualifications || ''} onChange={(e) => setEditingJob({ ...editingJob, qualifications: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={2} />
             </div>
