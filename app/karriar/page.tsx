@@ -8,7 +8,7 @@ import { PaintableTextBrushV2 } from "@/components/ui/paintable-text-v2"
 import { ShineButton } from "@/components/ui/shine-button"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { GlareCard } from "@/components/ui/glare-card"
-import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, MapPin, Clock, Phone, Mail, Shield } from "lucide-react"
+import { Users, Heart, Award, TrendingUp, Coffee, Dumbbell, Shield } from "lucide-react"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
@@ -311,57 +311,6 @@ export default function KarriarPage() {
                 >
                   Skicka spontanansökan
                 </ShineButton>
-              </div>
-            </div>
-          </section>
-
-          {/* Contact Info Section */}
-          <section className="py-24 md:py-32 dark:border-t">
-            <div className="container mx-auto">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <SubtleCard className="p-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="w-6 h-6 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">Adress</h3>
-                      <p className="text-muted-foreground text-sm">Förrådsvägen 15</p>
-                      <p className="text-muted-foreground text-sm">901 32 Västerbotten</p>
-                    </div>
-                  </div>
-                </SubtleCard>
-
-                <SubtleCard className="p-6">
-                  <div className="flex items-center gap-4">
-                    <Phone className="w-6 h-6 text-primary" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Telefon</h3>
-                      <p className="text-muted-foreground text-sm">090-70 44 70</p>
-                    </div>
-                  </div>
-                </SubtleCard>
-
-                <SubtleCard className="p-6">
-                  <div className="flex items-center gap-4">
-                    <Mail className="w-6 h-6 text-primary" />
-                    <div>
-                      <h3 className="font-semibold mb-1">E-post</h3>
-                      <p className="text-muted-foreground text-sm">umea@stjarnafyrkant.se</p>
-                    </div>
-                  </div>
-                </SubtleCard>
-
-                <SubtleCard className="p-6">
-                  <div className="flex items-start gap-4">
-                    <Clock className="w-6 h-6 text-primary mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-2">Öppettider</h3>
-                      <div className="space-y-1 text-muted-foreground text-sm">
-                        <p>Mån-fre: 07:00-17:00</p>
-                        <p>(Dag före röd dag 07:00-15:00)</p>
-                      </div>
-                    </div>
-                  </div>
-                </SubtleCard>
               </div>
             </div>
           </section>
