@@ -1,22 +1,22 @@
 "use client"
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { ShineButton } from "@/components/ui/shine-button"
-import { MapPin, Clock, Briefcase, Calendar, ChevronRight } from "lucide-react"
+import { MapPin, Clock, Briefcase, Calendar, ChevronRight, ChevronDown, User, Mail, Phone, DollarSign } from "lucide-react"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
 import { type JobPosting2 } from "@/lib/supabase"
-import Link from "next/link"
 
 export default function JobAnnonsPage() {
   const [jobs, setJobs] = useState<JobPosting2[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedJob, setSelectedJob] = useState<JobPosting2 | null>(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [expandedJobId, setExpandedJobId] = useState<string | null>(null)
 
   useEffect(() => {
     fetchJobs()
@@ -37,6 +37,10 @@ export default function JobAnnonsPage() {
   const handleApply = (job: JobPosting2) => {
     setSelectedJob(job)
     setIsFormOpen(true)
+  }
+
+  const toggleExpanded = (jobId: string) => {
+    setExpandedJobId(expandedJobId === jobId ? null : jobId)
   }
 
   if (loading) {
@@ -110,84 +114,185 @@ export default function JobAnnonsPage() {
                 </motion.div>
               ) : (
                 <div className="grid gap-6 max-w-5xl mx-auto">
-                  {jobs.map((job, index) => (
-                    <motion.div
-                      key={job.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                    >
-                      <SubtleCard className="p-6 md:p-8 hover:shadow-lg transition-shadow">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                          <div className="flex-1">
-                            <div className="flex items-start gap-4 mb-4">
-                              <div className="bg-primary/10 p-3 rounded-lg">
-                                <Briefcase className="w-6 h-6 text-primary" />
-                              </div>
-                              <div>
-                                <h3 className="text-2xl font-bold mb-2">{job.title}</h3>
-                                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                                  <span className="flex items-center gap-1">
-                                    <MapPin className="w-4 h-4" />
-                                    {job.location}
-                                  </span>
-                                  <span className="flex items-center gap-1">
-                                    <Clock className="w-4 h-4" />
-                                    {job.employment_type}
-                                  </span>
-                                  <span className="px-2 py-1 bg-primary/10 text-primary rounded">
-                                    {job.department}
-                                  </span>
+                  {jobs.map((job, index) => {
+                    const isExpanded = expandedJobId === job.id
+
+                    return (
+                      <motion.div
+                        key={job.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                      >
+                        <SubtleCard className="overflow-hidden hover:shadow-lg transition-shadow">
+                          <div className="p-6 md:p-8">
+                            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                              <div className="flex-1">
+                                <div className="flex items-start gap-4 mb-4">
+                                  <div className="bg-primary/10 p-3 rounded-lg flex-shrink-0">
+                                    <Briefcase className="w-6 h-6 text-primary" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <h3 className="text-2xl font-bold mb-2">{job.title}</h3>
+                                    <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                                      <span className="flex items-center gap-1">
+                                        <MapPin className="w-4 h-4" />
+                                        {job.location}
+                                      </span>
+                                      <span className="flex items-center gap-1">
+                                        <Clock className="w-4 h-4" />
+                                        {job.employment_type}
+                                      </span>
+                                      <span className="px-2 py-1 bg-primary/10 text-primary rounded">
+                                        {job.department}
+                                      </span>
+                                    </div>
+                                  </div>
                                 </div>
+
+                                <p className="text-muted-foreground mb-4">
+                                  {job.description}
+                                </p>
+
+                                {job.application_deadline && (
+                                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                                    <Calendar className="w-4 h-4" />
+                                    <span>Sök senast: {new Date(job.application_deadline).toLocaleDateString('sv-SE')}</span>
+                                  </div>
+                                )}
+
+                                {/* Expandable content */}
+                                <AnimatePresence>
+                                  {isExpanded && (
+                                    <motion.div
+                                      initial={{ height: 0, opacity: 0 }}
+                                      animate={{ height: "auto", opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      transition={{ duration: 0.3 }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="pt-6 border-t space-y-6">
+                                        {/* Responsibilities */}
+                                        {job.responsibilities && job.responsibilities.length > 0 && (
+                                          <div>
+                                            <h4 className="font-semibold text-lg mb-3">Arbetsuppgifter</h4>
+                                            <ul className="space-y-2">
+                                              {job.responsibilities.map((resp, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                                                  <ChevronRight className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                                  <span>{resp}</span>
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
+
+                                        {/* Qualifications */}
+                                        {job.qualifications && job.qualifications.length > 0 && (
+                                          <div>
+                                            <h4 className="font-semibold text-lg mb-3">Meriterande</h4>
+                                            <ul className="space-y-2">
+                                              {job.qualifications.map((qual, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                                                  <ChevronRight className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                                  <span>{qual}</span>
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
+
+                                        {/* Benefits */}
+                                        {job.benefits && job.benefits.length > 0 && (
+                                          <div>
+                                            <h4 className="font-semibold text-lg mb-3">Förmåner</h4>
+                                            <ul className="space-y-2">
+                                              {job.benefits.map((benefit, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                                                  <ChevronRight className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                                  <span>{benefit}</span>
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
+
+                                        {/* Additional info */}
+                                        <div className="grid md:grid-cols-2 gap-4 pt-4">
+                                          {job.salary_range && (
+                                            <div className="flex items-center gap-2 text-sm">
+                                              <DollarSign className="w-4 h-4 text-primary" />
+                                              <span className="font-medium">Lön:</span>
+                                              <span className="text-muted-foreground">{job.salary_range}</span>
+                                            </div>
+                                          )}
+                                          {job.start_date && (
+                                            <div className="flex items-center gap-2 text-sm">
+                                              <Calendar className="w-4 h-4 text-primary" />
+                                              <span className="font-medium">Tillträde:</span>
+                                              <span className="text-muted-foreground">{job.start_date}</span>
+                                            </div>
+                                          )}
+                                          {job.contact_person && (
+                                            <div className="flex items-center gap-2 text-sm">
+                                              <User className="w-4 h-4 text-primary" />
+                                              <span className="font-medium">Kontakt:</span>
+                                              <span className="text-muted-foreground">{job.contact_person}</span>
+                                            </div>
+                                          )}
+                                          {job.contact_email && (
+                                            <div className="flex items-center gap-2 text-sm">
+                                              <Mail className="w-4 h-4 text-primary" />
+                                              <a href={`mailto:${job.contact_email}`} className="text-primary hover:underline">
+                                                {job.contact_email}
+                                              </a>
+                                            </div>
+                                          )}
+                                          {job.contact_phone && (
+                                            <div className="flex items-center gap-2 text-sm">
+                                              <Phone className="w-4 h-4 text-primary" />
+                                              <a href={`tel:${job.contact_phone}`} className="text-primary hover:underline">
+                                                {job.contact_phone}
+                                              </a>
+                                            </div>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </div>
+
+                              <div className="flex md:flex-col gap-3">
+                                <ShineButton
+                                  onClick={() => handleApply(job)}
+                                  className="flex-1 md:flex-initial whitespace-nowrap"
+                                >
+                                  Ansök nu
+                                </ShineButton>
+                                <button
+                                  onClick={() => toggleExpanded(job.id!)}
+                                  className="flex-1 md:flex-initial px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+                                >
+                                  {isExpanded ? (
+                                    <>
+                                      <ChevronDown className="w-4 h-4" />
+                                      Stäng
+                                    </>
+                                  ) : (
+                                    <>
+                                      <ChevronRight className="w-4 h-4" />
+                                      Läs mer
+                                    </>
+                                  )}
+                                </button>
                               </div>
                             </div>
-
-                            <p className="text-muted-foreground mb-4 line-clamp-3">
-                              {job.description}
-                            </p>
-
-                            {job.application_deadline && (
-                              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                                <Calendar className="w-4 h-4" />
-                                <span>Sök senast: {new Date(job.application_deadline).toLocaleDateString('sv-SE')}</span>
-                              </div>
-                            )}
-
-                            {job.responsibilities && job.responsibilities.length > 0 && (
-                              <div className="mb-4">
-                                <h4 className="font-semibold mb-2">Arbetsuppgifter:</h4>
-                                <ul className="space-y-1 text-sm text-muted-foreground">
-                                  {job.responsibilities.slice(0, 3).map((resp, i) => (
-                                    <li key={i} className="flex items-start gap-2">
-                                      <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                      <span>{resp}</span>
-                                    </li>
-                                  ))}
-                                  {job.responsibilities.length > 3 && (
-                                    <li className="text-primary text-sm">+ {job.responsibilities.length - 3} till...</li>
-                                  )}
-                                </ul>
-                              </div>
-                            )}
                           </div>
-
-                          <div className="flex md:flex-col gap-3">
-                            <ShineButton
-                              onClick={() => handleApply(job)}
-                              className="flex-1 md:flex-initial"
-                            >
-                              Ansök nu
-                            </ShineButton>
-                            <Link href={`/karriar/annonser/${job.id}`} className="flex-1 md:flex-initial">
-                              <button className="w-full px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
-                                Läs mer
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </SubtleCard>
-                    </motion.div>
-                  ))}
+                        </SubtleCard>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               )}
 
