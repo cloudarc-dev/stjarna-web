@@ -10,10 +10,14 @@ export async function GET() {
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: false })
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error fetching jobs:', error)
+      return NextResponse.json({ error: error.message || 'Failed to fetch jobs' }, { status: 500 })
+    }
     return NextResponse.json(data || [])
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch jobs' }, { status: 500 })
+    console.error('Error fetching jobs:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to fetch jobs' }, { status: 500 })
   }
 }
 
@@ -31,10 +35,14 @@ export async function POST(request: NextRequest) {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error creating job:', error)
+      return NextResponse.json({ error: error.message || 'Failed to create job' }, { status: 500 })
+    }
     return NextResponse.json(data)
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to create job' }, { status: 500 })
+    console.error('Error creating job:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to create job' }, { status: 500 })
   }
 }
 
@@ -53,10 +61,14 @@ export async function PUT(request: NextRequest) {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error updating job:', error)
+      return NextResponse.json({ error: error.message || 'Failed to update job' }, { status: 500 })
+    }
     return NextResponse.json(data)
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update job' }, { status: 500 })
+    console.error('Error updating job:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to update job' }, { status: 500 })
   }
 }
 
@@ -71,9 +83,13 @@ export async function DELETE(request: NextRequest) {
     const supabase = getServiceSupabase()
     const { error } = await supabase.from('job_postings').delete().eq('id', id)
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase error deleting job:', error)
+      return NextResponse.json({ error: error.message || 'Failed to delete job' }, { status: 500 })
+    }
     return NextResponse.json({ success: true })
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to delete job' }, { status: 500 })
+    console.error('Error deleting job:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to delete job' }, { status: 500 })
   }
 }
