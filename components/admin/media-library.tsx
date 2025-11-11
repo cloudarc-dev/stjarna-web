@@ -127,14 +127,15 @@ export function MediaLibrary() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold">Mediabibliotek</h2>
-          <p className="text-muted-foreground mt-1">
-            Hantera bilder och filer ({filteredFiles.length} filer)
-          </p>
-        </div>
+    <div className="p-6 max-w-7xl mx-auto">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Mediabibliotek</h2>
+            <p className="text-muted-foreground mt-1">
+              Hantera bilder och filer ({filteredFiles.length} filer)
+            </p>
+          </div>
         <div className="flex gap-3">
           <input
             type="file"
@@ -244,12 +245,13 @@ export function MediaLibrary() {
         ))}
       </div>
 
-      {filteredFiles.length === 0 && (
-        <div className="text-center py-12 text-muted-foreground">
-          <Upload className="w-12 h-12 mx-auto mb-4 opacity-50" />
-          <p>Inga filer än. Ladda upp en fil för att komma igång.</p>
-        </div>
-      )}
+        {filteredFiles.length === 0 && (
+          <div className="text-center py-12 text-muted-foreground">
+            <Upload className="w-12 h-12 mx-auto mb-4 opacity-50" />
+            <p>Inga filer än. Ladda upp en fil för att komma igång.</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

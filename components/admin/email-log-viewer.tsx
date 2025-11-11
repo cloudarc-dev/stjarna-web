@@ -89,14 +89,15 @@ export function EmailLogViewer() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h2 className="text-2xl font-bold">Kontaktförfrågningar</h2>
-        <p className="text-muted-foreground mt-1">
-          Hantera alla inkomna förfrågningar från hemsidan
-        </p>
-      </div>
+    <div className="p-6 max-w-7xl mx-auto">
+      <div className="space-y-6">
+        {/* Header */}
+        <div>
+          <h2 className="text-2xl font-bold">Kontaktförfrågningar</h2>
+          <p className="text-muted-foreground mt-1">
+            Hantera alla inkomna förfrågningar från hemsidan
+          </p>
+        </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -364,6 +365,7 @@ export function EmailLogViewer() {
           </>
         )}
       </AnimatePresence>
+      </div>
     </div>
   )
 }

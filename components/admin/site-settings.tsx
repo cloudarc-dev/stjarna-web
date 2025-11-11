@@ -140,14 +140,15 @@ export function SiteSettings() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold">Webbplatsinställningar</h2>
-          <p className="text-muted-foreground mt-1">
-            Hantera företagsinformation, kontor och sociala medier
-          </p>
-        </div>
+    <div className="p-6 max-w-5xl mx-auto">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Webbplatsinställningar</h2>
+            <p className="text-muted-foreground mt-1">
+              Hantera företagsinformation, kontor och sociala medier
+            </p>
+          </div>
         <button
           onClick={handleSave}
           disabled={saving}
@@ -416,16 +417,17 @@ export function SiteSettings() {
         </div>
       </motion.div>
 
-      {/* Save Button Bottom */}
-      <div className="flex justify-end">
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50 font-medium"
-        >
-          <Save className="w-5 h-5" />
-          {saving ? 'Sparar...' : saved ? 'Sparat!' : 'Spara alla ändringar'}
-        </button>
+        {/* Save Button Bottom */}
+        <div className="flex justify-end">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center gap-2 disabled:opacity-50 font-medium"
+          >
+            <Save className="w-5 h-5" />
+            {saving ? 'Sparar...' : saved ? 'Sparat!' : 'Spara alla ändringar'}
+          </button>
+        </div>
       </div>
     </div>
   )
