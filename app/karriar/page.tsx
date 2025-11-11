@@ -272,7 +272,7 @@ export default function KarriarPage() {
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto">
                 <SubtleCard className="p-12 text-center">
-                  <blockquote className="text-2xl italic text-muted-foreground mb-8">
+                  <blockquote className="text-lg italic text-muted-foreground mb-8">
                     "Vi har tillsammans hittat nya vägar framåt, utvecklat och kommit på lösningar för att effektivisera
                     och optimera. De finns alltid nära till hands när vi behöver dem och ger en service i Stjärnklass.
                     Hela deras team är på alerten och ger ett väldigt trevligt bemötande."
