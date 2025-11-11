@@ -483,7 +483,9 @@ export default function LandingPage() {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
                 Kontakta oss för en kostnadsfri behovsanalys och låt oss skapa framtidens lösningar för er.
               </p>
-              <ShineButton onClick={() => handleOpenForm('general')}>Kontakta oss</ShineButton>
+              <Link href="/kontakt">
+                <ShineButton>Kontakta oss</ShineButton>
+              </Link>
             </div>
           </section>
         </main>
