@@ -30,7 +30,8 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { Typewriter } from "@/components/ui/typewriter"
-import { getAnonSupabase, type CaseStudy } from "@/lib/supabase"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 
 // Lazy load FormModal - only loads when needed
 const FormModal = dynamic(() => import("@/components/form-modal").then(mod => ({ default: mod.FormModal })), {
@@ -99,25 +100,6 @@ const services = [
     href: "/foretagstelefoni",
     title: "Företagstelefoni",
     description: "Moderna lösningar från paketerade mobiltelefoner och abonnemang till växlar, AI och headset.",
-  },
-]
-
-// Fallback cases if Supabase is not available
-const fallbackCases = [
-  {
-    title: "Komatsu Forest",
-    description:
-      "Upphandling och projektledning av en ny lösning för företagstelefonin med Microsoft Teams samt datanätsförbindelser till samtliga siter.",
-  },
-  {
-    title: "Norrtech VVS",
-    description:
-      "Anpassade fordonsinredningar till uppdaterad flotta för ett mer effektivt arbete ute i fält.",
-  },
-  {
-    title: "Railcare",
-    description:
-      "Paketerad hårdvara med livscykelhantering för drygt 200 anställda, samt intern avlastning med vår servicedesk för all support rörande företagstelefonin.",
   },
 ]
 
@@ -196,30 +178,17 @@ const experts = [
 export default function LandingPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<'projekt' | 'general'>('projekt')
-  const [cases, setCases] = useState<Array<{title: string, description: string}>>(fallbackCases)
+  const [cases, setCases] = useState<CaseStudy[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchCases() {
       try {
-        const supabase = getAnonSupabase()
-        const { data, error } = await supabase
-          .from('case_studies')
-          .select('client_name, summary')
-          .eq('is_published', true)
-          .eq('is_featured', true)
-          .order('display_order', { ascending: true })
-          .limit(3)
-
-        if (data && data.length > 0) {
-          setCases(data.map(c => ({
-            title: c.client_name,
-            description: c.summary
-          })))
-        }
+        const response = await fetch('/api/cases/featured')
+        const data = await response.json()
+        setCases(data)
       } catch (err) {
         console.error('Failed to fetch cases:', err)
-        // Keep fallback cases
       } finally {
         setLoading(false)
       }
@@ -281,27 +250,22 @@ export default function LandingPage() {
           {/* Customer Cases Section - Social Proof */}
           <section id="kundcase" className="py-24 md:py-32 dark:border-t bg-gray-100 dark:bg-card/20">
             <div className="container mx-auto relative z-10">
-              <AnimatedText text="Senaste kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <motion.div whileHover={{ y: -5, scale: 1.02 }} className="lg:row-span-2">
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[24rem]">
-                    <h3 className="text-3xl font-semibold">{cases[0].title}</h3>
-                    <p className="text-muted-foreground mt-4 text-lg">{cases[0].description}</p>
-                  </GlareCard>
-                </motion.div>
-                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[1].title}</h3>
-                    <p className="text-muted-foreground mt-2">{cases[1].description}</p>
-                  </GlareCard>
-                </motion.div>
-                <motion.div whileHover={{ y: -5, scale: 1.02 }}>
-                  <GlareCard className="bg-card/80 backdrop-blur-sm p-8 flex flex-col justify-center text-left h-full min-h-[11.5rem]">
-                    <h3 className="text-xl sm:text-2xl font-semibold">{cases[2].title}</h3>
-                    <p className="text-muted-foreground mt-2">{cases[2].description}</p>
-                  </GlareCard>
-                </motion.div>
-              </div>
+              <AnimatedText text="Utvalda kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              {loading ? (
+                <div className="flex justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                </div>
+              ) : cases.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {cases.map((caseStudy, index) => (
+                    <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-12">
+                  Inga utvalda kundcase att visa än.
+                </p>
+              )}
             </div>
           </section>
 
