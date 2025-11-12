@@ -1,7 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { type CaseStudy } from "@/lib/supabase"
-import { Building2, Calendar, Clock, Quote } from "lucide-react"
+import { Building2, Calendar, Clock, Quote, Users } from "lucide-react"
 import Image from "next/image"
 
 interface CaseCardProps {
@@ -78,6 +78,12 @@ export function CaseCard({ caseStudy, index = 0 }: CaseCardProps) {
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4" />
             <span>{caseStudy.project_duration}</span>
+          </div>
+        )}
+        {caseStudy.user_count && (
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4" />
+            <span className="font-medium">{caseStudy.user_count} användare</span>
           </div>
         )}
       </div>

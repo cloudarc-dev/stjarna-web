@@ -128,6 +128,12 @@ export function CaseManager() {
             </div>
 
             <div>
+              <label className="block text-sm font-medium mb-2">Antal användare</label>
+              <input type="number" value={editingCase.user_count || ''} onChange={(e) => setEditingCase({ ...editingCase, user_count: e.target.value ? parseInt(e.target.value) : undefined })} className="w-full px-4 py-2 rounded-lg border bg-background" placeholder="50" min="1" />
+              <p className="text-xs text-muted-foreground mt-1">Antal användare som berörs av projektet</p>
+            </div>
+
+            <div>
               <label className="block text-sm font-medium mb-2">Bild från Media Library</label>
               <input type="url" value={editingCase.client_logo_url || ''} onChange={(e) => setEditingCase({ ...editingCase, client_logo_url: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" placeholder="Välj bild från media library" />
               <p className="text-xs text-muted-foreground mt-1">Ange URL till uppladdad bild (t.ex. logotyp)</p>
