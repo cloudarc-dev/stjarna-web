@@ -1155,18 +1155,18 @@ export default function DevPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
             <SubtleCard className="p-6 text-center bg-green-500/5 border-green-500/20">
               <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">99%</div>
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">95%</div>
               <div className="text-sm text-muted-foreground">Funktioner Implementerade</div>
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-blue-500/5 border-blue-500/20">
               <Package className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">128</div>
+              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">150+</div>
               <div className="text-sm text-muted-foreground">Komponenter & Sidor</div>
             </SubtleCard>
             <SubtleCard className="p-6 text-center bg-orange-500/5 border-orange-500/20">
               <Settings className="w-12 h-12 text-orange-600 dark:text-orange-400 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">4</div>
-              <div className="text-sm text-muted-foreground">Återstående Tasks</div>
+              <div className="text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">6</div>
+              <div className="text-sm text-muted-foreground">Rekommenderade Åtgärder</div>
             </SubtleCard>
           </div>
 
@@ -1209,27 +1209,54 @@ export default function DevPage() {
 
                 {/* Sidor */}
                 <div>
-                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Sidor (14 publika + 3 dev)</h4>
+                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Publika Sidor (17 st)</h4>
                   <ul className="space-y-1 text-sm">
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>Startsida med hero, tjänster, kundcase</span>
+                      <span>Startsida med hero, featured cases</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>5 Tjänstesidor (IT, Fordonsteknik, Kommunikation, Telefoni, Servicedesk)</span>
+                      <span>5 Tjänstesidor med dynamiska FAQs</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>Om oss, Kontakt, Karriär, Verksamhetspolicy</span>
+                      <span>Om oss (dynamisk kontaktinfo), Kontakt, Karriär</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>Integritetspolicy & Cookiepolicy</span>
+                      <span>Verksamhetspolicy, Integritetspolicy, Cookiepolicy</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Admin Panel */}
+                <div>
+                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Admin-panelen (10+ sidor)</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Dashboard med statistik och snabblänkar</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>UI-kit, SEO-plan, Dev hub (denna sida)</span>
+                      <span>Medarbetare, Jobb, Kundcase (CRUD)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Site Settings (kontaktinfo, öppettider)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>FAQ-hantering per tjänst</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Formulär-inlämningar, Email-logg, Media Library</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>SEO-plan, SEO Implementation, UI-kit, Dev hub</span>
                     </li>
                   </ul>
                 </div>
@@ -1288,6 +1315,33 @@ export default function DevPage() {
                   </ul>
                 </div>
 
+                {/* Databas & Backend */}
+                <div>
+                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Supabase Database (Production)</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Employees, Jobs, Case Studies tabeller</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Email logs (contact_submissions)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>Site Settings (dynamiska kontaktuppgifter)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>FAQs (service-baserade vanliga frågor)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                      <span>RLS policies för säkerhet</span>
+                    </li>
+                  </ul>
+                </div>
+
                 {/* Features */}
                 <div>
                   <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">Features</h4>
@@ -1298,7 +1352,7 @@ export default function DevPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>Upsales kontaktformulär</span>
+                      <span>Resend email integration för formulär</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
@@ -1310,188 +1364,189 @@ export default function DevPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span>Enterprise footer med 2 kontor</span>
+                      <span>Dynamisk footer med öppettider per kontor</span>
                     </li>
                   </ul>
                 </div>
               </div>
             </SubtleCard>
 
-            {/* MÅSTE GÖRAS */}
+            {/* REKOMMENDERADE ÅTGÄRDER */}
             <SubtleCard className="p-6 bg-orange-500/5 border-2 border-orange-500/20">
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <AlertCircle className="text-orange-600 dark:text-orange-400" />
-                Måste Göras
+                Rekommenderade Åtgärder
               </h3>
 
               <div className="space-y-4">
-                {/* Avklarade Tasks */}
+                {/* Nyligen Avklarat */}
                 <div>
-                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Nyligen Avklarat</h4>
+                  <h4 className="font-semibold text-green-700 dark:text-green-400 mb-2">✅ Nyligen Avklarat (Nov 2025)</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>GitHub Repository skapat</strong>
+                        <strong>Admin-panel komplett implementerad</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Repository uppladdat till GitHub under cloudarc-dev/stjarna-web.
+                          Full CRUD för medarbetare, jobb, kundcase, FAQs, site settings, media library och formulär.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Vercel deployment setup</strong>
+                        <strong>Dynamiska site settings</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Vercel-konto aktiverat för dev@cloudarc.se och kopplat till GitHub repo.
+                          Kontaktuppgifter och öppettider kan nu redigeras via admin-panel och uppdateras live på alla sidor.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Supabase-databas implementerad ✨</strong>
+                        <strong>FAQ-management system</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Supabase kopplad via Vercel. Databastabeller skapade. Kontaktformulär sparar till contact_submissions.
-                          Dokumentation: COMPONENT_DATABASE_MAPPING.md & FORMS_MAPPING.md
+                          Vanliga frågor kan nu hanteras per tjänst via /admin/faqs. Alla tjänstesidor hämtar FAQs dynamiskt från databas.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>v0.dev account aktiverat</strong>
+                        <strong>Case management med featured & publishing</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          v0-konto aktiverat via Vercel för AI-assisterad utveckling.
+                          Kundcase kan markeras som featured och publiceras per tjänst. Featured cases visas på startsidan.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Resend mailhantering setup</strong>
+                        <strong>Resend email + Supabase logging</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Resend API aktiverad för kontaktformulär och mailutskick.
+                          All formulär sparas i contact_submissions och skickas via Resend. Email-logg tillgänglig i admin-panel.
                         </p>
                       </div>
                     </li>
                   </ul>
                 </div>
 
-                {/* Kritiska Tasks */}
+                {/* Performance Optimization */}
                 <div>
-                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Kritiskt (Före Launch)</h4>
+                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">🚀 Performance Optimization</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Implementera Resend mailutskick</strong>
+                        <strong>Rensa gammal/oanvänd kod</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Ersätt console.log i /app/api/contact/route.ts med faktiskt mail-sending via Resend API.
+                          Ta bort hårdkodade FAQ-arrayer (nu i databas), oanvända imports, kommenterad kod. Minskar bundle size.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Testa kontaktformulär end-to-end</strong>
+                        <strong>Bundle size analysis</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Verifiera: Formulär → Supabase (✅) → Email via Resend → Mottagare får mail.
+                          Kör next-bundle-analyzer för att identifiera stora dependencies. Överväg code splitting.
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
-                        <strong>Testa cookie-banner i produktion</strong>
+                        <strong>Lighthouse performance audit</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Verifiera att cookie-consent visas korrekt för nya besökare i prod.
+                          Kör Lighthouse på alla sidor. Mål: 90+ i Performance, Accessibility, Best Practices, SEO.
                         </p>
                       </div>
                     </li>
+                  </ul>
+                </div>
+
+                {/* SEO & Marketing */}
+                <div>
+                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">📊 SEO & Marketing</h4>
+                  <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
-                      <AlertCircle size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <strong>Google Search Console setup</strong>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Verifiera domän, skicka in sitemap.xml, övervaka indexering.
+                          Verifiera domän, skicka in sitemap.xml, övervaka indexering och prestanda.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Google Analytics 4 (GA4)</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Lägg till GA4 tracking, konfigurera custom events, mät formulär-konverteringar.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <strong>Google Business Profile optimization</strong>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Verifiera och optimera profiler för både Umeå och Skellefteå-kontor.
                         </p>
                       </div>
                     </li>
                   </ul>
                 </div>
 
-                {/* Viktiga Tasks */}
+                {/* Framtida Förbättringar */}
                 <div>
-                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Viktigt (Vecka 1-2)</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Google Analytics setup</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Lägg till GA4 tracking code, konfigurera events, mät konverteringar.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Google Business Profile</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Verifiera både Umeå och Skellefteå-kontor, optimera profiler.
-                        </p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock size={14} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <strong>Lighthouse audit</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Kör Lighthouse på alla sidor, fixa eventuella warnings. Mål: 90+.
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Nice to Have */}
-                <div>
-                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">Nice to Have (Månad 1)</h4>
+                  <h4 className="font-semibold text-orange-700 dark:text-orange-400 mb-2">💡 Framtida Förbättringar</h4>
                   <ul className="space-y-1 text-sm">
                     <li className="flex items-start gap-2">
                       <ArrowRight size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
-                      <span>FAQ för Kommunikationsteknik & Företagstelefoni (SEO Fas 4)</span>
+                      <span>Unit tests för kritiska komponenter (Jest/React Testing Library)</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ArrowRight size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
-                      <span>Bloggsystem för lokalt innehåll</span>
+                      <span>E2E testing med Playwright för användarflöden</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ArrowRight size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
-                      <span>Automated testing (Jest/Playwright)</span>
+                      <span>Bloggsystem för lokalt SEO-innehåll</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ArrowRight size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
-                      <span>CMS-integration (Sanity/Contentful)</span>
+                      <span>A/B testing för CTA-knappar och formulär</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
+                      <span>Internationalisering (i18n) för flerspråksstöd</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* Action Items */}
-                <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                  <h5 className="font-semibold text-sm mb-2 text-yellow-700 dark:text-yellow-400">Nästa Steg:</h5>
+                {/* Quick Wins */}
+                <div className="mt-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+                  <h5 className="font-semibold text-sm mb-2 text-green-700 dark:text-green-400">⚡ Quick Wins (1-2 timmar):</h5>
                   <ol className="space-y-1 text-xs list-decimal list-inside">
-                    <li className="line-through text-muted-foreground">Skapa dev@cloudarc.se konto (GitHub, Vercel, v0.dev) ✅</li>
-                    <li className="line-through text-muted-foreground">Transfer GitHub repo till cloudarc-dev ✅</li>
-                    <li className="line-through text-muted-foreground">Setup Supabase-databas och lägg till credentials i Vercel ✅</li>
-                    <li className="line-through text-muted-foreground">Implementera Supabase i kontaktformulär (contact_submissions tabell) ✅</li>
-                    <li className="line-through text-muted-foreground">Dokumentera formulär-databas-kopplingar (COMPONENT_DATABASE_MAPPING.md) ✅</li>
-                    <li className="line-through text-muted-foreground">Setup Resend API och lägg till RESEND_API_KEY i Vercel ✅</li>
-                    <li><strong>Implementera Resend mailutskick i /app/api/contact/route.ts</strong></li>
-                    <li>Testa kontaktformulär end-to-end (formulär → Supabase → email)</li>
-                    <li>Testa cookie-banner och all funktionalitet i prod</li>
-                    <li>Setup Google Search Console och skicka in sitemap.xml</li>
+                    <li>Rensa hårdkodade FAQ-arrayer från tjänstesidor (nu i databas)</li>
+                    <li>Ta bort oanvända imports och kommenterad kod</li>
+                    <li>Kör Lighthouse audit på 3-5 sidor och dokumentera resultat</li>
+                    <li>Verifiera att alla formulär loggas korrekt i Supabase</li>
+                    <li>Testa admin-panel: skapa/redigera/radera i alla CRUD-sektioner</li>
+                  </ol>
+                </div>
+
+                {/* Prioriterad Roadmap */}
+                <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <h5 className="font-semibold text-sm mb-2 text-blue-700 dark:text-blue-400">🗓️ Prioriterad Roadmap:</h5>
+                  <ol className="space-y-1 text-xs list-decimal list-inside">
+                    <li><strong>Vecka 1:</strong> Performance optimization (rensa kod, bundle analysis)</li>
+                    <li><strong>Vecka 2:</strong> Google Search Console + GA4 setup</li>
+                    <li><strong>Vecka 3:</strong> Lighthouse audits och fixar</li>
+                    <li><strong>Vecka 4:</strong> Google Business Profile optimization</li>
+                    <li><strong>Månad 2:</strong> Unit tests för kritiska komponenter</li>
                   </ol>
                 </div>
               </div>
