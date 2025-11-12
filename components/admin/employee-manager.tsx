@@ -36,7 +36,7 @@ export function EmployeeManager() {
       title: '',
       email: '',
       phone: '',
-      bio: '',
+      linkedin_url: '',
       department: 'IT',
       office: 'Umeå',
       display_order: 0,
@@ -205,9 +205,9 @@ export function EmployeeManager() {
               >
                 <option value="IT">IT</option>
                 <option value="Fordonsteknik">Fordonsteknik</option>
-                <option value="Företagstelefoni">Företagstelefoni</option>
-                <option value="Kommunikationsteknik">Kommunikationsteknik</option>
-                <option value="Administration">Administration</option>
+                <option value="Backoffice">Backoffice</option>
+                <option value="Försäljning">Försäljning</option>
+                <option value="Ledning">Ledning</option>
               </select>
             </div>
 
@@ -221,17 +221,6 @@ export function EmployeeManager() {
                 <option value="Umeå">Umeå</option>
                 <option value="Skellefteå">Skellefteå</option>
               </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">Bild-URL</label>
-              <input
-                type="url"
-                value={editingEmployee.image_url || ''}
-                onChange={(e) => setEditingEmployee({ ...editingEmployee, image_url: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-border bg-background"
-                placeholder="https://..."
-              />
             </div>
 
             <div>
@@ -263,17 +252,6 @@ export function EmployeeManager() {
                 className="rounded"
               />
               <label className="text-sm font-medium">Synlig på webbplatsen</label>
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Bio</label>
-              <textarea
-                value={editingEmployee.bio || ''}
-                onChange={(e) => setEditingEmployee({ ...editingEmployee, bio: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg border border-border bg-background"
-                rows={4}
-                placeholder="Kort beskrivning om medarbetaren..."
-              />
             </div>
           </div>
         </motion.div>
@@ -321,10 +299,12 @@ export function EmployeeManager() {
                     )}
                     {employee.email && <span>{employee.email}</span>}
                     {employee.phone && <span>{employee.phone}</span>}
+                    {employee.linkedin_url && (
+                      <a href={employee.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                        LinkedIn
+                      </a>
+                    )}
                   </div>
-                  {employee.bio && (
-                    <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{employee.bio}</p>
-                  )}
                 </div>
               </div>
               <div className="flex gap-2">
