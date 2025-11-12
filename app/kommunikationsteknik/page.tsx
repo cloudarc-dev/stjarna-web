@@ -14,7 +14,8 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
-import { fetchCaseStudies, type SimpleCaseStudy } from "@/lib/fetch-cases"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -63,20 +64,6 @@ const experts = [
   },
 ];
 
-const fallbackCases = [
-  {
-    title: "Northvolt",
-    description: "Helhetslösning för säker gruppkommunikation genom att brygga traditionell radio med GroupTalk, samt leverans och service av hörselskydd.",
-  },
-  {
-    title: "Umeå Vatten och Avfall",
-    description: "Täckningsförstärkning för mobilnätet på 4G-frekvens i hela Hamrinstunneln för säker kommunikation under jord.",
-  },
-  {
-    title: "Boliden Mineral",
-    description: "Projektledning av infrastruktur för radionät samt leverans och service av DECT-telefoner och hörselskydd.",
-  },
-]
 
 const faqItems = [
   {
@@ -103,13 +90,19 @@ const faqItems = [
 
 export default function KommunikationsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
-  const [cases, setCases] = useState<SimpleCaseStudy[]>(fallbackCases)
+  const [cases, setCases] = useState<CaseStudy[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadCases() {
-      const data = await fetchCaseStudies({ services: ['Kommunikationsteknik'] })
-      if (data.length > 0) {
+      try {
+        const response = await fetch('/api/cases/kommunikation')
+        const data = await response.json()
         setCases(data)
+      } catch (error) {
+        console.error('Failed to fetch cases:', error)
+      } finally {
+        setLoading(false)
       }
     }
     loadCases()
@@ -172,14 +165,21 @@ export default function KommunikationsteknikPage() {
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((caseItem) => (
-                  <div key={caseItem.title} className="p-8 border rounded-xl bg-background text-center">
-                    <h3 className="font-bold text-xl">{caseItem.title}</h3>
-                    <p className="text-muted-foreground mt-2">{caseItem.description}</p>
-                  </div>
-                ))}
-              </div>
+              {loading ? (
+                <div className="flex justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                </div>
+              ) : cases.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {cases.map((caseStudy, index) => (
+                    <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-12">
+                  Inga kundcase att visa än.
+                </p>
+              )}
             </div>
           </section>
 

@@ -15,7 +15,8 @@ import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
 import { FormType } from "@/lib/form-config"
-import { fetchCaseStudies, type SimpleCaseStudy } from "@/lib/fetch-cases"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -48,20 +49,6 @@ const processSteps = [
   { icon: <Rocket size={32} />, title: "05. Eftermarknad" },
 ]
 
-const fallbackCases = [
-  {
-    title: "Holmen Wood Products",
-    description: "Kamerasystem från Motec för säkrare logistikarbete i Combiliftar inklusive installation on site.",
-  },
-  {
-    title: "Säll Entreprenad",
-    description: "Transportradios inklusive programmering och installation till entreprenadfordon.",
-  },
-  {
-    title: "Räddningstjänsten Västerbotten",
-    description: "Kommunikationsradio och varningssystem i utryckningsfordon.",
-  },
-]
 
 const experts = [
   {
@@ -108,13 +95,19 @@ const faqItems = [
 export default function FordonsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<FormType>('fordon')
-  const [cases, setCases] = useState<SimpleCaseStudy[]>(fallbackCases)
+  const [cases, setCases] = useState<CaseStudy[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadCases() {
-      const data = await fetchCaseStudies({ services: ['Fordonsteknik'] })
-      if (data.length > 0) {
+      try {
+        const response = await fetch('/api/cases/fordonsteknik')
+        const data = await response.json()
         setCases(data)
+      } catch (error) {
+        console.error('Failed to fetch cases:', error)
+      } finally {
+        setLoading(false)
       }
     }
     loadCases()
@@ -191,14 +184,21 @@ export default function FordonsteknikPage() {
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
               <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((c) => (
-                  <motion.div whileHover={{ y: -5 }} key={c.title} className="p-8 border rounded-xl bg-background">
-                    <h3 className="font-bold text-xl">{c.title}</h3>
-                    <p className="text-muted-foreground mt-2">{c.description}</p>
-                  </motion.div>
-                ))}
-              </div>
+              {loading ? (
+                <div className="flex justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                </div>
+              ) : cases.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {cases.map((caseStudy, index) => (
+                    <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-12">
+                  Inga kundcase att visa än.
+                </p>
+              )}
             </div>
           </section>
 

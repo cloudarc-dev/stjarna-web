@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
@@ -12,6 +12,8 @@ import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const includedServices = [
@@ -110,6 +112,23 @@ const faqItems = [
 export default function ServicedeskPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<'it-support' | 'telefoni-support'>('it-support')
+  const [cases, setCases] = useState<CaseStudy[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadCases() {
+      try {
+        const response = await fetch('/api/cases/servicedesk')
+        const data = await response.json()
+        setCases(data)
+      } catch (error) {
+        console.error('Failed to fetch cases:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadCases()
+  }, [])
 
   return (
     <>
@@ -175,6 +194,26 @@ export default function ServicedeskPage() {
               </div>
             </div>
           </section>
+
+          {/* Cases Section */}
+          {cases.length > 0 && (
+            <section className="py-24 md:py-32 dark:border-t">
+              <div className="container mx-auto">
+                <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+                {loading ? (
+                  <div className="flex justify-center py-12">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {cases.map((caseStudy, index) => (
+                      <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
 
           {/* Services Section */}
           <section className="py-24 md:py-32 dark:border-t">

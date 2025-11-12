@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -10,6 +10,8 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { SubtleCard } from "@/components/ui/subtle-card"
 import { FormModal } from "@/components/form-modal"
 import { FAQSchema } from "@/components/schema/faq-schema"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer, Brush, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -103,6 +105,23 @@ const faqItems = [
 
 export default function ITPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [cases, setCases] = useState<CaseStudy[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadCases() {
+      try {
+        const response = await fetch('/api/cases/it-tjanster')
+        const data = await response.json()
+        setCases(data)
+      } catch (error) {
+        console.error('Failed to fetch cases:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadCases()
+  }, [])
 
   return (
     <>
@@ -143,32 +162,27 @@ export default function ITPage() {
 
           {/* Cases & Experts Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
-            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-start">
               <div>
                 <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" />
                 <p className="text-lg text-muted-foreground mb-8">
                   Se hur vi har hjälpt företag i regionen med skalbara IT-lösningar.
                 </p>
-                <div className="space-y-6">
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">NorrlandsOperan</h3>
-                    <p className="text-muted-foreground">
-                      Helhetsansvar för nätverk, Microsoft 365 & support för 100+ anställda.
-                    </p>
+                {loading ? (
+                  <div className="flex justify-center py-12">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
                   </div>
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Umia</h3>
-                    <p className="text-muted-foreground">
-                      Nationellt ansvar för samtliga kontors IT-infrastruktur, Microsoft 365 och säkerhet.
-                    </p>
+                ) : cases.length > 0 ? (
+                  <div className="space-y-6">
+                    {cases.map((caseStudy, index) => (
+                      <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                    ))}
                   </div>
-                  <div className="p-6 border rounded-lg bg-background">
-                    <h3 className="font-bold text-lg">Umeå Mark & VA</h3>
-                    <p className="text-muted-foreground">
-                      Utveckling av samarbetsfunktioner, säkerhet, lagring och nätverk.
-                    </p>
-                  </div>
-                </div>
+                ) : (
+                  <p className="text-center text-muted-foreground py-12">
+                    Inga kundcase att visa än.
+                  </p>
+                )}
               </div>
               <div>
                 <AnimatedText text="Våra experter" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
