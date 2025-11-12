@@ -82,7 +82,7 @@ export function SiteSettings() {
   const updateField = (field: keyof SiteSettingsType, value: string) => {
     setSettings(prev => ({
       ...prev,
-      [field]: value
+      [field]: value || '' // Ensure empty strings instead of undefined
     }))
   }
 

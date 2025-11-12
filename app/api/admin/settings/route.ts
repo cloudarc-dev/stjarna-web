@@ -58,6 +58,9 @@ export async function PUT(request: NextRequest) {
     const body: SiteSettings = await request.json()
     const supabase = getServiceSupabase()
 
+    // Remove id, created_at, updated_at from body to avoid conflicts
+    const { id, created_at, updated_at, ...settingsData } = body
+
     // Check if settings exist
     const { data: existing } = await supabase
       .from('site_settings')
@@ -71,7 +74,7 @@ export async function PUT(request: NextRequest) {
       result = await supabase
         .from('site_settings')
         .update({
-          ...body,
+          ...settingsData,
           updated_at: new Date().toISOString()
         })
         .eq('id', existing.id)
@@ -82,7 +85,7 @@ export async function PUT(request: NextRequest) {
       result = await supabase
         .from('site_settings')
         .insert({
-          ...body,
+          ...settingsData,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         })
@@ -90,13 +93,19 @@ export async function PUT(request: NextRequest) {
         .single()
     }
 
-    if (result.error) throw result.error
+    if (result.error) {
+      console.error('Supabase error:', result.error)
+      return NextResponse.json(
+        { error: result.error.message || 'Failed to update settings' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json(result.data)
   } catch (error) {
     console.error('PUT settings error:', error)
     return NextResponse.json(
-      { error: 'Failed to update settings' },
+      { error: error instanceof Error ? error.message : 'Failed to update settings' },
       { status: 500 }
     )
   }
