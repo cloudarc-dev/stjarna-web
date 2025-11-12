@@ -164,7 +164,16 @@ export function CaseManager() {
               <input
                 type="text"
                 value={editingCase.services?.join(', ') || ''}
-                onChange={(e) => setEditingCase({ ...editingCase, services: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })}
+                onChange={(e) => setEditingCase({ ...editingCase, services: e.target.value as any })}
+                onBlur={(e) => {
+                  // Convert string to array on blur
+                  if (typeof e.target.value === 'string') {
+                    setEditingCase({
+                      ...editingCase,
+                      services: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
+                    })
+                  }
+                }}
                 className="w-full px-4 py-2 rounded-lg border bg-background"
                 placeholder="IT-support, Molnlösningar"
               />
