@@ -36,70 +36,70 @@ const isoCards = [
   },
 ]
 
-const fallbackDepartments = [
+const fallbackDepartments: DepartmentGroup[] = [
   {
     name: "Backoffice",
     members: [
-      "Lina Sjöstedt - Inköp & backoffice",
-      "Albin Kapstad - Backoffice",
-      "Katarina Bjuhr - Backoffice",
-      "Anneli Bogardi - Backoffice",
-      "Nathalie Bodén - Backoffice",
-      "Jonas Karlsson - Backoffice",
-      "Linda Edlund - Ekonomi",
+      { name: "Lina Sjöstedt", title: "Inköp & backoffice" },
+      { name: "Albin Kapstad", title: "Backoffice" },
+      { name: "Katarina Bjuhr", title: "Backoffice" },
+      { name: "Anneli Bogardi", title: "Backoffice" },
+      { name: "Nathalie Bodén", title: "Backoffice" },
+      { name: "Jonas Karlsson", title: "Backoffice" },
+      { name: "Linda Edlund", title: "Ekonomi" },
     ],
   },
   {
     name: "IT",
     members: [
-      "Erik Damber - Konsult",
-      "Jonnie Karlsson - Affärsutvecklare",
-      "Kendy Larsson - Servicedesk IT",
-      "Konny Larsson - Servicedesk IT",
-      "Daniel Bennervall - Konsult",
-      "Alexander Landby - IT-Chef",
-      "Jens Nordström - Konsultchef",
-      "Dominic Ek - IT Tekniker",
+      { name: "Erik Damber", title: "Konsult" },
+      { name: "Jonnie Karlsson", title: "Affärsutvecklare" },
+      { name: "Kendy Larsson", title: "Servicedesk IT" },
+      { name: "Konny Larsson", title: "Servicedesk IT" },
+      { name: "Daniel Bennervall", title: "Konsult" },
+      { name: "Alexander Landby", title: "IT-Chef" },
+      { name: "Jens Nordström", title: "Konsultchef" },
+      { name: "Dominic Ek", title: "IT Tekniker" },
     ],
   },
   {
     name: "Fordonsteknik",
     members: [
-      "Aron Hallberg - Servicetekniker",
-      "Per Söderlind - Servicetekniker",
-      "Oliver Karlsson - Servicetekniker",
-      "Robert Fransson - Fordonstekniker",
-      "Jacob Lundholm - Fordonstekniker",
-      "Andreas Lundqvist - Verkstadschef Umeå",
-      "Kamil Dziwniel - Fordonstekniker",
-      "Urban Eriksson - Verkstadschef Skellefteå",
-      "Stefan Malmgren - Fordonstekniker",
+      { name: "Aron Hallberg", title: "Servicetekniker" },
+      { name: "Per Söderlind", title: "Servicetekniker" },
+      { name: "Oliver Karlsson", title: "Servicetekniker" },
+      { name: "Robert Fransson", title: "Fordonstekniker" },
+      { name: "Jacob Lundholm", title: "Fordonstekniker" },
+      { name: "Andreas Lundqvist", title: "Verkstadschef Umeå" },
+      { name: "Kamil Dziwniel", title: "Fordonstekniker" },
+      { name: "Urban Eriksson", title: "Verkstadschef Skellefteå" },
+      { name: "Stefan Malmgren", title: "Fordonstekniker" },
     ],
   },
   {
     name: "Försäljning",
     members: [
-      "Ludvig Johansson - Kundansvarig",
-      "Leo Lindgren - Butikssäljare",
-      "Lucas Englund - Butikssäljare",
-      "Patric Junes - Kundansvarig",
-      "Urban Spetz - Industriförsäljning",
-      "Astrid Fahlgren - Butikssäljare",
-      "Andreas Lindforss - Kundansvarig",
-      "Anton Forsberg - Kundansvarig",
-      "Mattias Rigertzon - Kundansvarig",
-      "Anders Skogebrandt - Säljare e-handel",
-      "Radion Golubenko - Kundansvarig",
-      "Oscar Wiklund - Avdelningschef E-handel",
+      { name: "Ludvig Johansson", title: "Kundansvarig" },
+      { name: "Leo Lindgren", title: "Butikssäljare" },
+      { name: "Lucas Englund", title: "Butikssäljare" },
+      { name: "Patric Junes", title: "Kundansvarig" },
+      { name: "Urban Spetz", title: "Industriförsäljning" },
+      { name: "Astrid Fahlgren", title: "Butikssäljare" },
+      { name: "Andreas Lindforss", title: "Kundansvarig" },
+      { name: "Anton Forsberg", title: "Kundansvarig" },
+      { name: "Mattias Rigertzon", title: "Kundansvarig" },
+      { name: "Anders Skogebrandt", title: "Säljare e-handel" },
+      { name: "Radion Golubenko", title: "Kundansvarig" },
+      { name: "Oscar Wiklund", title: "Avdelningschef E-handel" },
     ],
   },
   {
     name: "Ledning",
     members: [
-      "Lin Haspel - Vice VD & KMA",
-      "Niklas Bjuhr - VD",
-      "Joakim Silén - Platschef Skellefteå",
-      "Sebastian A. Bjuhr - Säljchef & Marknad",
+      { name: "Lin Haspel", title: "Vice VD & KMA" },
+      { name: "Niklas Bjuhr", title: "VD" },
+      { name: "Joakim Silén", title: "Platschef Skellefteå" },
+      { name: "Sebastian A. Bjuhr", title: "Säljchef & Marknad" },
     ],
   },
 ]
@@ -432,9 +432,27 @@ export default function OmOssPage() {
                     <SubtleCard className="p-8">
                       <h3 className="text-2xl font-bold mb-6 text-primary">{dept.name}</h3>
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {dept.members.map((member) => (
-                          <div key={member} className="p-3 bg-secondary/50 rounded-lg">
-                            <p className="text-sm">{member}</p>
+                        {dept.members.map((member, idx) => (
+                          <div key={member.id || `${member.name}-${idx}`} className="p-4 bg-secondary/50 rounded-lg">
+                            <p className="font-semibold">{member.name}</p>
+                            <p className="text-sm text-muted-foreground">{member.title}</p>
+                            {(member.office || member.linkedin_url) && (
+                              <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                                {member.office && (
+                                  <span className="px-2 py-1 bg-accent rounded">{member.office}</span>
+                                )}
+                                {member.linkedin_url && (
+                                  <a
+                                    href={member.linkedin_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-2 py-1 bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors"
+                                  >
+                                    LinkedIn
+                                  </a>
+                                )}
+                              </div>
+                            )}
                           </div>
                         ))}
                       </div>

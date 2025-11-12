@@ -1,14 +1,8 @@
-import { getAnonSupabase } from './supabase'
-
-export interface SimpleEmployee {
-  name: string
-  title: string
-  department?: string
-}
+import { getAnonSupabase, type Employee } from './supabase'
 
 export interface DepartmentGroup {
   name: string
-  members: string[]
+  members: Employee[]
 }
 
 /**
@@ -20,7 +14,7 @@ export async function fetchEmployees(): Promise<DepartmentGroup[]> {
     const supabase = getAnonSupabase()
     const { data, error } = await supabase
       .from('employees')
-      .select('name, title, department')
+      .select('*')
       .eq('is_visible', true)
       .order('display_order', { ascending: true })
 
@@ -28,16 +22,15 @@ export async function fetchEmployees(): Promise<DepartmentGroup[]> {
 
     if (data && data.length > 0) {
       // Group employees by department
-      const departmentMap = new Map<string, string[]>()
+      const departmentMap = new Map<string, Employee[]>()
 
       data.forEach(emp => {
         const dept = emp.department || 'Övrigt'
-        const memberString = `${emp.name} - ${emp.title}`
 
         if (!departmentMap.has(dept)) {
           departmentMap.set(dept, [])
         }
-        departmentMap.get(dept)!.push(memberString)
+        departmentMap.get(dept)!.push(emp as Employee)
       })
 
       // Convert map to array format
