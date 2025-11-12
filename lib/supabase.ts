@@ -321,3 +321,48 @@ export interface CaseStudy {
   publish_on?: string // Tjänstesida att publicera på: 'it-tjanster' | 'fordonsteknik' | 'kommunikation' | 'servicedesk'
   user_count?: number // Antal användare som berörs av projektet
 }
+
+export interface OfficeHours {
+  umea: {
+    weekdays: string
+    dayBeforeHoliday: string
+    special: string
+  }
+  skelleftea: {
+    weekdays: string
+    dayBeforeHoliday: string
+    special: string
+  }
+}
+
+export interface SiteSettings {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  // Company info
+  company_name: string
+  company_description: string
+  // Umeå office
+  umea_address: string
+  umea_postal_code: string
+  umea_city: string
+  umea_phone: string
+  umea_email: string
+  umea_hours_weekdays: string
+  umea_hours_day_before_holiday: string
+  umea_hours_special: string
+  // Skellefteå office
+  skelleftea_address: string
+  skelleftea_postal_code: string
+  skelleftea_city: string
+  skelleftea_phone: string
+  skelleftea_email: string
+  skelleftea_hours_weekdays: string
+  skelleftea_hours_day_before_holiday: string
+  skelleftea_hours_special: string
+  // Social media
+  facebook_url?: string
+  instagram_url?: string
+  linkedin_url?: string
+  youtube_url?: string
+}

@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AnimatedText } from "@/components/ui/animated-text"
@@ -8,6 +8,7 @@ import { SubtleCard } from "@/components/ui/subtle-card"
 import { MapPin, Clock, Phone, Send, Loader2, CheckCircle2 } from "lucide-react"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { getFormConfig, FormField } from "@/lib/form-config"
+import { type SiteSettings } from "@/lib/supabase"
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -16,6 +17,22 @@ export default function KontaktPage() {
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [settings, setSettings] = useState<SiteSettings | null>(null)
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings')
+        if (response.ok) {
+          const data = await response.json()
+          setSettings(data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch settings:', error)
+      }
+    }
+    fetchSettings()
+  }, [])
 
   const handleChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -146,10 +163,10 @@ export default function KontaktPage() {
                         <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold mb-2">Träffa oss</h4>
-                          <p className="text-muted-foreground">Förrådsvägen 15</p>
-                          <p className="text-muted-foreground mb-3">901 32 Umeå</p>
+                          <p className="text-muted-foreground">{settings?.umea_address || 'Förrådsvägen 15'}</p>
+                          <p className="text-muted-foreground mb-3">{settings?.umea_postal_code || '901 32'} {settings?.umea_city || 'Umeå'}</p>
                           <a
-                            href="https://www.google.com/maps/place/Förrådsvägen+15,+901+32+Umeå"
+                            href={`https://www.google.com/maps/place/${encodeURIComponent(`${settings?.umea_address || 'Förrådsvägen 15'}, ${settings?.umea_postal_code || '901 32'} ${settings?.umea_city || 'Umeå'}`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary hover:underline text-sm inline-flex items-center gap-1"
@@ -165,26 +182,36 @@ export default function KontaktPage() {
                         <Phone className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div className="flex-1">
                           <h4 className="font-semibold mb-2">Kontakta oss</h4>
-                          <a href="tel:+4690704470" className="text-muted-foreground hover:text-primary block">
-                            090-70 44 70
+                          <a href={`tel:+46${(settings?.umea_phone || '090-70 44 70').replace(/[^0-9]/g, '')}`} className="text-muted-foreground hover:text-primary block">
+                            {settings?.umea_phone || '090-70 44 70'}
                           </a>
-                          <a href="mailto:umea@stjarnafyrkant.se" className="text-muted-foreground hover:text-primary block mt-1">
-                            umea@stjarnafyrkant.se
+                          <a href={`mailto:${settings?.umea_email || 'umea@stjarnafyrkant.se'}`} className="text-muted-foreground hover:text-primary block mt-1">
+                            {settings?.umea_email || 'umea@stjarnafyrkant.se'}
                           </a>
                         </div>
                       </div>
                     </SubtleCard>
 
-                    <SubtleCard className="p-6 h-[220px]">
+                    <SubtleCard className="p-6 min-h-[220px]">
                       <div className="flex items-start gap-4">
                         <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold mb-2">Öppettider</h4>
                           <div className="space-y-1 text-muted-foreground text-sm">
-                            <p>Helgfria vardagar: 07:00-17:00</p>
-                            <p>Dag före röd dag: 07:00-15:00</p>
-                            <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
-                            <p>Vecka 28-31: 08:00-16:00</p>
+                            <p>{settings?.umea_hours_weekdays || 'Helgfria vardagar: 07:00-17:00'}</p>
+                            <p>{settings?.umea_hours_day_before_holiday || 'Dag före röd dag: 07:00-15:00'}</p>
+                            {settings?.umea_hours_special && (
+                              <>
+                                <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
+                                <p>{settings.umea_hours_special}</p>
+                              </>
+                            )}
+                            {!settings?.umea_hours_special && (
+                              <>
+                                <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
+                                <p>Vecka 28-31: 08:00-16:00</p>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -201,10 +228,10 @@ export default function KontaktPage() {
                         <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold mb-2">Träffa oss</h4>
-                          <p className="text-muted-foreground">Företagsvägen 1</p>
-                          <p className="text-muted-foreground mb-3">931 57 Skellefteå</p>
+                          <p className="text-muted-foreground">{settings?.skelleftea_address || 'Företagsvägen 1'}</p>
+                          <p className="text-muted-foreground mb-3">{settings?.skelleftea_postal_code || '931 57'} {settings?.skelleftea_city || 'Skellefteå'}</p>
                           <a
-                            href="https://www.google.com/maps/place/Företagsvägen+1,+931+57+Skellefteå"
+                            href={`https://www.google.com/maps/place/${encodeURIComponent(`${settings?.skelleftea_address || 'Företagsvägen 1'}, ${settings?.skelleftea_postal_code || '931 57'} ${settings?.skelleftea_city || 'Skellefteå'}`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-primary hover:underline text-sm inline-flex items-center gap-1"
@@ -220,27 +247,37 @@ export default function KontaktPage() {
                         <Phone className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div className="flex-1">
                           <h4 className="font-semibold mb-2">Kontakta oss</h4>
-                          <a href="tel:+46910711220" className="text-muted-foreground hover:text-primary block">
-                            0910-71 12 20
+                          <a href={`tel:+46${(settings?.skelleftea_phone || '0910-71 12 20').replace(/[^0-9]/g, '')}`} className="text-muted-foreground hover:text-primary block">
+                            {settings?.skelleftea_phone || '0910-71 12 20'}
                           </a>
-                          <a href="mailto:skelleftea@stjarnafyrkant.se" className="text-muted-foreground hover:text-primary block mt-1">
-                            skelleftea@stjarnafyrkant.se
+                          <a href={`mailto:${settings?.skelleftea_email || 'skelleftea@stjarnafyrkant.se'}`} className="text-muted-foreground hover:text-primary block mt-1">
+                            {settings?.skelleftea_email || 'skelleftea@stjarnafyrkant.se'}
                           </a>
                         </div>
                       </div>
                     </SubtleCard>
 
-                    <SubtleCard className="p-6 h-[220px]">
+                    <SubtleCard className="p-6 min-h-[220px]">
                       <div className="flex items-start gap-4">
                         <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold mb-2">Öppettider</h4>
                           <div className="space-y-1 text-muted-foreground text-sm">
-                            <p>Mån-Tors: 08:00-17:00</p>
-                            <p>Fre: 08:00-16:00</p>
-                            <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
-                            <p>Vecka 28 & 31: 08:00-16:00</p>
-                            <p>Stängt vecka 29 & 30</p>
+                            <p>{settings?.skelleftea_hours_weekdays || 'Mån-Tors: 08:00-17:00, Fre: 08:00-16:00'}</p>
+                            <p>{settings?.skelleftea_hours_day_before_holiday || 'Dag före röd dag: 07:00-15:00'}</p>
+                            {settings?.skelleftea_hours_special && (
+                              <>
+                                <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
+                                <p>{settings.skelleftea_hours_special}</p>
+                              </>
+                            )}
+                            {!settings?.skelleftea_hours_special && (
+                              <>
+                                <p className="font-medium text-foreground mt-3">Särskilda öppettider</p>
+                                <p>Vecka 28 & 31: 08:00-16:00</p>
+                                <p>Stängt vecka 29 & 30</p>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>

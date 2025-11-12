@@ -13,6 +13,7 @@ import { FormModal } from "@/components/form-modal"
 import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { fetchEmployees, type DepartmentGroup } from "@/lib/fetch-employees"
+import { type SiteSettings } from "@/lib/supabase"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 /**
@@ -119,6 +120,7 @@ const fallbackDepartments: DepartmentGroup[] = [
 export default function OmOssPage() {
   const [upsalesOpen, setUpsalesOpen] = useState(false)
   const [departments, setDepartments] = useState<DepartmentGroup[]>(fallbackDepartments)
+  const [settings, setSettings] = useState<SiteSettings | null>(null)
 
   useEffect(() => {
     async function loadEmployees() {
@@ -130,26 +132,41 @@ export default function OmOssPage() {
     loadEmployees()
   }, [])
 
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const response = await fetch('/api/settings')
+        if (response.ok) {
+          const data = await response.json()
+          setSettings(data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch settings:', error)
+      }
+    }
+    fetchSettings()
+  }, [])
+
   const locations = [
     {
-      city: "Umeå",
-      address: "Förrådsvägen 15, 901 32 Umeå",
-      phone: "090-70 44 70",
+      city: settings?.umea_city || "Umeå",
+      address: `${settings?.umea_address || 'Förrådsvägen 15'}, ${settings?.umea_postal_code || '901 32'} ${settings?.umea_city || 'Umeå'}`,
+      phone: settings?.umea_phone || "090-70 44 70",
       hours: [
-        "Helgfria vardagar 07:00 - 17:00",
-        "Dag före röd dag 07:00 - 15:00",
-        "Avvikande v. 28-31: 08:00 - 16:00",
-      ],
+        settings?.umea_hours_weekdays || "Helgfria vardagar 07:00 - 17:00",
+        settings?.umea_hours_day_before_holiday || "Dag före röd dag 07:00 - 15:00",
+        settings?.umea_hours_special || "Avvikande v. 28-31: 08:00 - 16:00",
+      ].filter(Boolean),
     },
     {
-      city: "Skellefteå",
-      address: "Företagsvägen 1, 931 57 Skellefteå",
-      phone: "0910-71 12 20",
+      city: settings?.skelleftea_city || "Skellefteå",
+      address: `${settings?.skelleftea_address || 'Företagsvägen 1'}, ${settings?.skelleftea_postal_code || '931 57'} ${settings?.skelleftea_city || 'Skellefteå'}`,
+      phone: settings?.skelleftea_phone || "0910-71 12 20",
       hours: [
-        "Helgfria vardagar 08:00 - 17:00 (fre 08:00 - 16:00)",
-        "Dag före röd dag 07:00 - 15:00",
-        "Stängt v. 29-30",
-      ],
+        settings?.skelleftea_hours_weekdays || "Helgfria vardagar 08:00 - 17:00 (fre 08:00 - 16:00)",
+        settings?.skelleftea_hours_day_before_holiday || "Dag före röd dag 07:00 - 15:00",
+        settings?.skelleftea_hours_special || "Stängt v. 29-30",
+      ].filter(Boolean),
     },
   ];
 
