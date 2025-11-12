@@ -170,7 +170,7 @@ export function CaseManager() {
               <label className="block text-sm font-medium mb-2">Tjänster (kommaseparerade) *</label>
               <input
                 type="text"
-                value={editingCase.services?.join(', ') || ''}
+                value={Array.isArray(editingCase.services) ? editingCase.services.join(', ') : (editingCase.services || '')}
                 onChange={(e) => setEditingCase({ ...editingCase, services: e.target.value as any })}
                 onBlur={(e) => {
                   // Convert string to array on blur
