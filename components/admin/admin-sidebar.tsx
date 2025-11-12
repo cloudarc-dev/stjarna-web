@@ -16,7 +16,8 @@ import {
   Wrench,
   Settings,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  HelpCircle
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -60,6 +61,11 @@ const navSections: NavSection[] = [
         label: "Formulär",
         href: "/admin/formular",
         icon: <FileInput className="w-4 h-4" />,
+      },
+      {
+        label: "FAQs",
+        href: "/admin/faqs",
+        icon: <HelpCircle className="w-4 h-4" />,
       },
     ],
   },
