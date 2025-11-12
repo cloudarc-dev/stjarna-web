@@ -12,7 +12,8 @@ import Image from "next/image"
 import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
-import { fetchCaseStudies, type SimpleCaseStudy } from "@/lib/fetch-cases"
+import { CaseCard } from "@/components/case-card"
+import { type CaseStudy } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -61,20 +62,6 @@ const experts = [
   },
 ];
 
-const fallbackCases = [
-  {
-    title: "Komatsu Forest",
-    description: "Upphandling och projektledning av en ny lösning för företagstelefonin med Microsoft Teams samt datanätsförbindelser till samtliga siter.",
-  },
-  {
-    title: "Contractor Bygg",
-    description: "Modern företagsväxel och abonnemangshantering med Flow, där anställda enkelt kan hantera sin telefoni på egen hand - samt löpande leverans av paketerade mobiler och headset.",
-  },
-  {
-    title: "Diös Fastigheter",
-    description: "Hårdvara som tjänst och system för inventarie­hantering.",
-  },
-]
 
 const faqItems = [
   {
@@ -101,13 +88,19 @@ const faqItems = [
 
 export default function ForetagstelefoniPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
-  const [cases, setCases] = useState<SimpleCaseStudy[]>(fallbackCases)
+  const [cases, setCases] = useState<CaseStudy[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadCases() {
-      const data = await fetchCaseStudies({ services: ['Företagstelefoni'] })
-      if (data.length > 0) {
+      try {
+        const response = await fetch('/api/cases/foretagstelefoni')
+        const data = await response.json()
         setCases(data)
+      } catch (error) {
+        console.error('Failed to fetch cases:', error)
+      } finally {
+        setLoading(false)
       }
     }
     loadCases()
@@ -164,30 +157,25 @@ export default function ForetagstelefoniPage() {
             </div>
           </section>
 
-          {/* Services Section - Grid Layout */}
           {/* Cases Section - Social Proof */}
           <section className="py-24 md:py-32 dark:border-t">
             <div className="container mx-auto">
-              <AnimatedText text="Kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {cases.map((caseItem, i) => (
-                  <motion.div
-                    key={caseItem.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="relative p-8 border rounded-xl bg-background overflow-hidden group"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10">
-                      <div className="text-teal-600 dark:text-teal-400 font-bold text-sm mb-2">{caseItem.metric}</div>
-                      <h3 className="font-bold text-xl mb-2">{caseItem.title}</h3>
-                      <p className="text-muted-foreground">{caseItem.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <AnimatedText text="Lokala kundcase" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center" />
+              {loading ? (
+                <div className="flex justify-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                </div>
+              ) : cases.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {cases.map((caseStudy, index) => (
+                    <CaseCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-12">
+                  Inga kundcase att visa än.
+                </p>
+              )}
             </div>
           </section>
 

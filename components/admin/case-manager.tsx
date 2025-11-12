@@ -144,6 +144,7 @@ export function CaseManager() {
                 <option value="it-tjanster">IT-tjänster</option>
                 <option value="fordonsteknik">Fordonsteknik</option>
                 <option value="kommunikation">Kommunikation</option>
+                <option value="foretagstelefoni">Företagstelefoni</option>
                 <option value="servicedesk">Servicedesk</option>
               </select>
             </div>
