@@ -13,7 +13,7 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
 import { CaseCard } from "@/components/case-card"
-import { type CaseStudy } from "@/lib/supabase"
+import { type CaseStudy, type FAQ } from "@/lib/supabase"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
 const includedServices = [
@@ -93,41 +93,31 @@ const experts = [
   },
 ]
 
-const faqItems = [
-  {
-    question: "Vilka öppettider har er servicedesk?",
-    answer:
-      "Vår servicedesk är bemannad alla helgfria vardagar 07:00-17:00. Vi erbjuder även utökad support via avtal.",
-  },
-  {
-    question: "Hur snabbt får jag hjälp?",
-    answer: "Vi har som mål att påbörja ärenden inom 15 minuter efter registrering för avtalskunder.",
-  },
-  {
-    question: "Kan jag få hjälp på plats?",
-    answer: "Absolut, vi erbjuder både fjärrsupport och tekniker på plats i hela Västerbotten.",
-  },
-]
-
 export default function ServicedeskPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<'it-support' | 'telefoni-support'>('it-support')
   const [cases, setCases] = useState<CaseStudy[]>([])
+  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadCases() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/cases/servicedesk')
-        const data = await response.json()
-        setCases(data)
+        const [casesResponse, faqsResponse] = await Promise.all([
+          fetch('/api/cases/servicedesk'),
+          fetch('/api/faqs?service=servicedesk')
+        ])
+        const casesData = await casesResponse.json()
+        const faqsData = await faqsResponse.json()
+        setCases(casesData)
+        setFaqs(faqsData)
       } catch (error) {
-        console.error('Failed to fetch cases:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
-    loadCases()
+    loadData()
   }, [])
 
   return (
@@ -328,12 +318,16 @@ export default function ServicedeskPage() {
                 className="text-4xl font-bold mb-8 text-center"
               />
               <Accordion type="single" collapsible className="w-full">
-                {faqItems.map((item, i) => (
-                  <AccordionItem value={`item-${i}`} key={i}>
-                    <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
-                  </AccordionItem>
-                ))}
+                {faqs && faqs.length > 0 ? (
+                  faqs.map((item) => (
+                    <AccordionItem value={`item-${item.id}`} key={item.id}>
+                      <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
+                    </AccordionItem>
+                  ))
+                ) : (
+                  <p className="text-center text-muted-foreground py-4">Inga vanliga frågor tillgängliga.</p>
+                )}
               </Accordion>
             </div>
           </section>

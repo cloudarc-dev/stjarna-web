@@ -15,7 +15,7 @@ import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
 import { CaseCard } from "@/components/case-card"
-import { type CaseStudy } from "@/lib/supabase"
+import { type CaseStudy, type FAQ } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -65,47 +65,30 @@ const experts = [
 ];
 
 
-const faqItems = [
-  {
-    question: "Vad är skillnaden mellan traditionell komradio och GroupTalk?",
-    answer:
-      "Traditionell komradio använder dedikerade frekvenser och fungerar utan mobilnät, perfekt för avlägsna områden. GroupTalk använder 4G/5G och ger komradions enkelhet i din smartphone med obegränsad räckvidd.",
-  },
-  {
-    question: "Hur fungerar täckningsförstärkning?",
-    answer:
-      "Vi installerar repeaters och signalförstärkare som förbättrar mobiltäckningen inomhus och i svårtillgängliga områden. Detta säkerställer pålitlig kommunikation även där operatörernas nät är svagt.",
-  },
-  {
-    question: "Varför behöver vi specialiserat hörselskydd?",
-    answer:
-      "I bullriga miljöer som skogsbruk, industri och bygg behövs hörselskydd som både dämpar farligt buller OCH tillåter tydlig radiokommunikation. 3M Peltor-system integreras direkt med era radioapparater.",
-  },
-  {
-    question: "Hur fungerar supporten efter installation?",
-    answer:
-      "Ni får ett anpassat serviceavtal med garanterade responstider och en dedikerad kontaktperson för trygg och långsiktig drift.",
-  },
-]
-
 export default function KommunikationsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [cases, setCases] = useState<CaseStudy[]>([])
+  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadCases() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/cases/kommunikation')
-        const data = await response.json()
-        setCases(data)
+        const [casesResponse, faqsResponse] = await Promise.all([
+          fetch('/api/cases/kommunikation'),
+          fetch('/api/faqs?service=kommunikationsteknik')
+        ])
+        const casesData = await casesResponse.json()
+        const faqsData = await faqsResponse.json()
+        setCases(casesData)
+        setFaqs(faqsData)
       } catch (error) {
-        console.error('Failed to fetch cases:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
-    loadCases()
+    loadData()
   }, [])
 
   return (
@@ -276,12 +259,16 @@ export default function KommunikationsteknikPage() {
               <div className="lg:col-span-3">
                 <AnimatedText text="Vanliga frågor" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
                 <Accordion type="single" collapsible className="w-full">
-                  {faqItems.map((item, i) => (
-                    <AccordionItem value={`item-${i}`} key={i}>
-                      <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
-                    </AccordionItem>
-                  ))}
+                  {faqs && faqs.length > 0 ? (
+                    faqs.map((item) => (
+                      <AccordionItem value={`item-${item.id}`} key={item.id}>
+                        <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
+                      </AccordionItem>
+                    ))
+                  ) : (
+                    <p className="text-center text-muted-foreground py-4">Inga vanliga frågor tillgängliga.</p>
+                  )}
                 </Accordion>
               </div>
             </div>

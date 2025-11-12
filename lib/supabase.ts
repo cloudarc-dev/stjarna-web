@@ -366,3 +366,14 @@ export interface SiteSettings {
   linkedin_url?: string
   youtube_url?: string
 }
+
+export interface FAQ {
+  id?: string
+  created_at?: string
+  updated_at?: string
+  question: string
+  answer: string
+  service: 'it' | 'servicedesk' | 'fordonsteknik' | 'kommunikationsteknik' | 'foretagstelefoni'
+  order_index: number
+  is_active: boolean
+}

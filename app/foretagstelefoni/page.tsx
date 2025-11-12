@@ -13,7 +13,7 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FormModal } from "@/components/form-modal"
 import { CaseCard } from "@/components/case-card"
-import { type CaseStudy } from "@/lib/supabase"
+import { type CaseStudy, type FAQ } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -63,47 +63,30 @@ const experts = [
 ];
 
 
-const faqItems = [
-  {
-    question: "Kan ni hjälpa till med upphandling av operatörsavtal?",
-    answer:
-      "Ja, vi analyserar era samtalsmönster och behov för att förhandla fram det bästa och mest kostnadseffektiva avtalet för er.",
-  },
-  {
-    question: "Vad är skillnaden mellan VoIP och traditionell telefoni?",
-    answer:
-      "VoIP använder internetanslutning istället för traditionella telefonlinjer, vilket ger lägre kostnader, större flexibilitet och integration med andra system. Dessutom kan ni enkelt lägga till funktioner som videosamtal och skärmdelning.",
-  },
-  {
-    question: "Erbjuder ni hyr- eller leasinglösningar?",
-    answer:
-      "Absolut. Vi kan skräddarsy flexibla finansieringslösningar för både hård- och mjukvara som passar er budget.",
-  },
-  {
-    question: "Hur fungerar supporten efter installation?",
-    answer:
-      "Ni får ett anpassat serviceavtal med garanterade responstider och en dedikerad kontaktperson för trygg och långsiktig drift.",
-  },
-]
-
 export default function ForetagstelefoniPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [cases, setCases] = useState<CaseStudy[]>([])
+  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadCases() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/cases/foretagstelefoni')
-        const data = await response.json()
-        setCases(data)
+        const [casesResponse, faqsResponse] = await Promise.all([
+          fetch('/api/cases/foretagstelefoni'),
+          fetch('/api/faqs?service=foretagstelefoni')
+        ])
+        const casesData = await casesResponse.json()
+        const faqsData = await faqsResponse.json()
+        setCases(casesData)
+        setFaqs(faqsData)
       } catch (error) {
-        console.error('Failed to fetch cases:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
-    loadCases()
+    loadData()
   }, [])
 
   return (
@@ -273,12 +256,16 @@ export default function ForetagstelefoniPage() {
               <div>
                 <AnimatedText text="Vanliga frågor" el="h2" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8" />
                 <Accordion type="single" collapsible className="w-full">
-                  {faqItems.map((item, i) => (
-                    <AccordionItem value={`item-${i}`} key={i}>
-                      <AccordionTrigger className="text-lg text-left">{item.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
-                    </AccordionItem>
-                  ))}
+                  {faqs && faqs.length > 0 ? (
+                    faqs.map((item) => (
+                      <AccordionItem value={`item-${item.id}`} key={item.id}>
+                        <AccordionTrigger className="text-lg text-left">{item.question}</AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
+                      </AccordionItem>
+                    ))
+                  ) : (
+                    <p className="text-center text-muted-foreground py-4">Inga vanliga frågor tillgängliga.</p>
+                  )}
                 </Accordion>
               </div>
             </div>

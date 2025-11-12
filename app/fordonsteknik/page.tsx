@@ -16,7 +16,7 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { FormModal } from "@/components/form-modal"
 import { FormType } from "@/lib/form-config"
 import { CaseCard } from "@/components/case-card"
-import { type CaseStudy } from "@/lib/supabase"
+import { type CaseStudy, type FAQ } from "@/lib/supabase"
 
 const serviceCategories = [
   {
@@ -65,52 +65,31 @@ const experts = [
   },
 ]
 
-const faqItems = [
-  {
-    question: "Hur lång tid tar installation av alkolås i Umeå?",
-    answer: "Installation av alkolås tar normalt 1-2 timmar beroende på fordonets modell. Vi erbjuder drop-in-tider vardagar 08:00-15:00 i Umeå och Skellefteå, eller du kan boka tid i förväg. Efter installation får du en grundlig genomgång av hur alkolåset fungerar och underhålls. Vi är godkända för installation av alla ledande märken.",
-  },
-  {
-    question: "Vad kostar installation av taxameter och taxiutrustning?",
-    answer: "Kostnaden varierar beroende på vilken utrustning du väljer och fordonets förutsättningar. En komplett taxiinstallation med taxameter, takljus, skylt och betalningssystem kostar från ca 25 000 kr exkl. moms. Vi hjälper även till med ansökan till Transportstyrelsen och ser till att fordonet uppfyller alla krav. Kontakta oss för en kostnadsfri offert anpassad efter ditt fordon.",
-  },
-  {
-    question: "Kan ni anpassa fordonsinredning för olika yrken?",
-    answer: "Absolut! Vi designar och installerar skräddarsydda fordonsinredningar för hantverkare, service, räddningstjänst och transport. Våra lösningar inkluderar effektiv förvaring, verktygsorganisation, arbetsbelysning och lastningslösningar. Alla inredningar är tillverkade i Sverige med hög kvalitet och anpassas efter ditt specifika behov och fordonets mått.",
-  },
-  {
-    question: "Vilken kommunikationsutrustning behöver mitt företag i fordonen?",
-    answer: "Behovet varierar beroende på er bransch. För många företag räcker komradio (PMR/DMR) för intern kommunikation, medan andra behöver GPS-spårning, digital tachograf eller mobilt bredband. Vi gör alltid en behovsanalys för att rekommendera rätt lösning. Vanliga kombinationer är komradio + GPS-spårning för entreprenad och transport, eller 4G-router + radio för räddningstjänst.",
-  },
-  {
-    question: "Erbjuder ni service och underhåll av fordonsutrustning?",
-    answer: "Ja, vi erbjuder löpande service och kalibrering av alkolås, taxameter, kamerasystem och annan fordonsutrustning. Vi har serviceavtal för företag med flera fordon där vi sköter all periodisk kontroll och underhåll. Vid fel eller problem kan du besöka våra verkstäder i Umeå eller Skellefteå för snabb reparation. Vi har ett stort lager av reservdelar för att minimera stilleståndstid.",
-  },
-  {
-    question: "Är ni godkända för installation av säkerhetsutrustning?",
-    answer: "Ja, vi är certifierade och godkända för installation av alkolås, kamerasystem, GPS-spårning och säkerhetsutrustning för företagsfordon. Våra tekniker har specialutbildning för olika fabrikat och vi följer alla branschstandarder och lagkrav. All installation dokumenteras och levereras med garantier. Vi är även godkända av Transportstyrelsen för taxiinstallationer.",
-  },
-]
-
 export default function FordonsteknikPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [currentFormType, setCurrentFormType] = useState<FormType>('fordon')
   const [cases, setCases] = useState<CaseStudy[]>([])
+  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadCases() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/cases/fordonsteknik')
-        const data = await response.json()
-        setCases(data)
+        const [casesResponse, faqsResponse] = await Promise.all([
+          fetch('/api/cases/fordonsteknik'),
+          fetch('/api/faqs?service=fordonsteknik')
+        ])
+        const casesData = await casesResponse.json()
+        const faqsData = await faqsResponse.json()
+        setCases(casesData)
+        setFaqs(faqsData)
       } catch (error) {
-        console.error('Failed to fetch cases:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
-    loadCases()
+    loadData()
   }, [])
 
   const handleOpenForm = (formType: FormType) => {
@@ -120,7 +99,7 @@ export default function FordonsteknikPage() {
 
   return (
     <>
-      <FAQSchema faqItems={faqItems} />
+      <FAQSchema faqItems={faqs} />
       <FormModal
         open={isFormOpen}
         onClose={() => setIsFormOpen(false)}
@@ -294,16 +273,20 @@ export default function FordonsteknikPage() {
             <div className="container mx-auto max-w-4xl">
               <AnimatedText text="Vanliga frågor" el="h2" className="text-4xl font-bold mb-12 text-center" />
               <Accordion type="single" collapsible className="space-y-4">
-                {faqItems.map((item, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="bg-background border rounded-lg px-6">
-                    <AccordionTrigger className="text-left hover:no-underline">
-                      <span className="font-semibold">{item.question}</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
+                {faqs && faqs.length > 0 ? (
+                  faqs.map((item) => (
+                    <AccordionItem key={item.id} value={`item-${item.id}`} className="bg-background border rounded-lg px-6">
+                      <AccordionTrigger className="text-left hover:no-underline">
+                        <span className="font-semibold">{item.question}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))
+                ) : (
+                  <p className="text-center text-muted-foreground py-4">Inga vanliga frågor tillgängliga.</p>
+                )}
               </Accordion>
             </div>
           </section>

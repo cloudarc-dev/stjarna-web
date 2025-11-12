@@ -11,7 +11,7 @@ import { SubtleCard } from "@/components/ui/subtle-card"
 import { FormModal } from "@/components/form-modal"
 import { FAQSchema } from "@/components/schema/faq-schema"
 import { CaseCard } from "@/components/case-card"
-import { type CaseStudy } from "@/lib/supabase"
+import { type CaseStudy, type FAQ } from "@/lib/supabase"
 import { CheckCircle2, ShieldCheck, Cloud, Server, Search, Code, Users, Rocket, Computer, Brush, FileCheck2 } from "lucide-react"
 import Image from "next/image"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -71,61 +71,39 @@ const experts = [
   },
 ]
 
-const faqItems = [
-  {
-    question: "Hur snabbt kan ni hjälpa till vid IT-problem i Umeå och Västerbotten?",
-    answer: "Vi erbjuder snabb fjärrsupport och akuta insatser alla vardagar kl. 08:00-17:00. Vid kritiska IT-problem strävar vi efter att påbörja åtgärder inom 2 timmar för att minimera er nertid. För företag i Umeå och Skellefteå kan vi även göra besök på plats samma dag vid akuta ärenden.",
-  },
-  {
-    question: "Vad kostar IT-support för småföretag i Umeå?",
-    answer:
-      "Kostnaden beror på ert specifika behov och antal användare. Vi erbjuder både löpande supportavtal från ca 500 kr/användare/månad samt timdebitering för enstaka uppdrag. Kontakta oss för en kostnadsfri behovsanalys där vi kan ge en exakt offert anpassad efter ert företag.",
-  },
-  {
-    question: "Vad innebär proaktiv IT-support?",
-    answer:
-      "Proaktiv IT-support innebär att vi kontinuerligt övervakar era system dygnet runt för att upptäcka och åtgärda potentiella problem innan de påverkar er verksamhet. Detta inkluderar automatiska uppdateringar, säkerhetsövervakning, backup-kontroller och prestandaoptimering. Resultatet är färre driftstopp, högre säkerhet och lägre totalkostnader jämfört med reaktiv support.",
-  },
-  {
-    question: "Arbetar ni med små och medelstora företag?",
-    answer:
-      "Absolut! Våra lösningar är specialanpassade för små och medelstora företag i Västerbotten med 5-200 anställda. Vi fungerar som er externa IT-avdelning och erbjuder samma professionella service som stora företag har internt, men till en bråkdel av kostnaden. Vi har över 40 års erfarenhet av att hjälpa lokala företag med IT-infrastruktur, Microsoft 365, säkerhet och support.",
-  },
-  {
-    question: "Vilka Microsoft 365-tjänster hjälper ni företag med?",
-    answer:
-      "Vi hjälper er med komplett Microsoft 365-hantering: licenser och upphandling, migrering från äldre system, konfiguration av Teams, SharePoint och OneDrive, e-postsäkerhet och spam-filter, utbildning av era medarbetare samt löpande support. Vi är certifierade Microsoft-partners och kan optimera er investering i molntjänster.",
-  },
-  {
-    question: "Hur arbetar ni med IT-säkerhet och GDPR?",
-    answer:
-      "IT-säkerhet är vår högsta prioritet. Vi implementerar brandväggar, antivirus, multifaktorautentisering (MFA), krypterad backup och säkerhetsövervakning. För GDPR-compliance hjälper vi er med dataskyddsrutiner, behörighetshantering, säkra backuplösningar och dokumentation enligt Datainspektionens krav. Vi genomför även regelbundna säkerhetsgranskningar för att hålla er skyddade mot nya hot.",
-  },
-]
-
 export default function ITPage() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [cases, setCases] = useState<CaseStudy[]>([])
+  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadCases() {
+    async function loadData() {
       try {
-        const response = await fetch('/api/cases/it-tjanster')
-        const data = await response.json()
-        setCases(data)
+        const [casesResponse, faqsResponse] = await Promise.all([
+          fetch('/api/cases/it-tjanster'),
+          fetch('/api/faqs?service=it')
+        ])
+
+        const [casesData, faqsData] = await Promise.all([
+          casesResponse.json(),
+          faqsResponse.json()
+        ])
+
+        setCases(casesData)
+        setFaqs(faqsData)
       } catch (error) {
-        console.error('Failed to fetch cases:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
-    loadCases()
+    loadData()
   }, [])
 
   return (
     <>
-      <FAQSchema faqItems={faqItems} />
+      <FAQSchema faqItems={faqs} />
       <FormModal open={isFormOpen} onClose={() => setIsFormOpen(false)} formType="it-support" />
       <div className="flex flex-col min-h-screen bg-background">
         <Header />
@@ -287,12 +265,16 @@ export default function ITPage() {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center"
               />
               <Accordion type="single" collapsible className="w-full">
-                {faqItems.map((item, i) => (
-                  <AccordionItem value={`item-${i}`} key={i}>
-                    <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
-                  </AccordionItem>
-                ))}
+                {faqs.length > 0 ? (
+                  faqs.map((item, i) => (
+                    <AccordionItem value={`item-${i}`} key={item.id || i}>
+                      <AccordionTrigger className="text-lg">{item.question}</AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground text-base">{item.answer}</AccordionContent>
+                    </AccordionItem>
+                  ))
+                ) : (
+                  <p className="text-center text-muted-foreground py-8">Inga FAQs tillgängliga än.</p>
+                )}
               </Accordion>
             </div>
           </section>
