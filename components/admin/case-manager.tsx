@@ -128,8 +128,24 @@ export function CaseManager() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Bild-URL</label>
-              <input type="url" value={editingCase.featured_image_url || ''} onChange={(e) => setEditingCase({ ...editingCase, featured_image_url: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" placeholder="https://..." />
+              <label className="block text-sm font-medium mb-2">Bild från Media Library</label>
+              <input type="url" value={editingCase.client_logo_url || ''} onChange={(e) => setEditingCase({ ...editingCase, client_logo_url: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" placeholder="Välj bild från media library" />
+              <p className="text-xs text-muted-foreground mt-1">Ange URL till uppladdad bild (t.ex. logotyp)</p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">Publicera på *</label>
+              <select
+                value={editingCase.publish_on || ''}
+                onChange={(e) => setEditingCase({ ...editingCase, publish_on: e.target.value })}
+                className="w-full px-4 py-2 rounded-lg border bg-background"
+              >
+                <option value="">Välj tjänstesida</option>
+                <option value="it-tjanster">IT-tjänster</option>
+                <option value="fordonsteknik">Fordonsteknik</option>
+                <option value="kommunikation">Kommunikation</option>
+                <option value="servicedesk">Servicedesk</option>
+              </select>
             </div>
 
             <div className="flex gap-4">
@@ -157,21 +173,6 @@ export function CaseManager() {
             <div className="md:col-span-2">
               <label className="block text-sm font-medium mb-2">Sammanfattning</label>
               <textarea value={editingCase.summary || ''} onChange={(e) => setEditingCase({ ...editingCase, summary: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={2} placeholder="Kort sammanfattning (1-2 meningar)" />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Utmaning</label>
-              <textarea value={editingCase.challenge || ''} onChange={(e) => setEditingCase({ ...editingCase, challenge: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={3} placeholder="Kundens problem..." />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Lösning</label>
-              <textarea value={editingCase.solution || ''} onChange={(e) => setEditingCase({ ...editingCase, solution: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={3} placeholder="Hur vi löste problemet..." />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Resultat</label>
-              <textarea value={editingCase.results || ''} onChange={(e) => setEditingCase({ ...editingCase, results: e.target.value })} className="w-full px-4 py-2 rounded-lg border bg-background" rows={3} placeholder="Resultat och effekter..." />
             </div>
 
             <div className="md:col-span-2">

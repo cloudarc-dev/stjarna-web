@@ -318,4 +318,5 @@ export interface CaseStudy {
   testimonial_author?: string
   testimonial_title?: string
   metrics?: Record<string, any>
+  publish_on?: string // Tjänstesida att publicera på: 'it-tjanster' | 'fordonsteknik' | 'kommunikation' | 'servicedesk'
 }
