@@ -15,6 +15,18 @@ import { OptimizedBackground } from "@/components/ui/optimized-background"
 import { fetchEmployees, type DepartmentGroup } from "@/lib/fetch-employees"
 // ChatWidget removed - to be replaced with UI-kit based chat interface
 
+/**
+ * Ensures a URL has a proper protocol prefix (https://)
+ * This prevents URLs from being treated as relative paths
+ */
+const normalizeUrl = (url: string | undefined): string => {
+  if (!url) return ''
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  return `https://${url}`
+}
+
 const isoCards = [
   {
     title: "Arbetsmiljö",
@@ -443,7 +455,7 @@ export default function OmOssPage() {
                                 )}
                                 {member.linkedin_url && (
                                   <a
-                                    href={member.linkedin_url}
+                                    href={normalizeUrl(member.linkedin_url)}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="px-2 py-1 bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors"
