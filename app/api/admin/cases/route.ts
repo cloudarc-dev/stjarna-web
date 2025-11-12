@@ -31,10 +31,14 @@ export async function POST(request: NextRequest) {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase insert error:', error)
+      return NextResponse.json({ error: error.message || 'Failed to create case' }, { status: 500 })
+    }
     return NextResponse.json(data)
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to create case' }, { status: 500 })
+    console.error('POST error:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to create case' }, { status: 500 })
   }
 }
 
@@ -53,10 +57,14 @@ export async function PUT(request: NextRequest) {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase update error:', error)
+      return NextResponse.json({ error: error.message || 'Failed to update case' }, { status: 500 })
+    }
     return NextResponse.json(data)
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update case' }, { status: 500 })
+    console.error('PUT error:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Failed to update case' }, { status: 500 })
   }
 }
 
